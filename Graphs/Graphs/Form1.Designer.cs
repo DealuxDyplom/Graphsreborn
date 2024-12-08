@@ -28,10 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			this.tableLayoutPanel_Tables = new System.Windows.Forms.TableLayoutPanel();
 			this.label_Title = new System.Windows.Forms.Label();
 			this.tableLayoutPanel_Bentonit_La3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label_Bent = new System.Windows.Forms.Label();
@@ -54,7 +54,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-			this.tableLayoutPanel1.SuspendLayout();
+			this.tableLayoutPanel_Tables.SuspendLayout();
 			this.tableLayoutPanel_Bentonit_La3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Bentonit_La3)).BeginInit();
 			this.tableLayoutPanel_Kinetika_Sorb_La3.SuspendLayout();
@@ -67,22 +67,22 @@
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// tableLayoutPanel1
+			// tableLayoutPanel_Tables
 			// 
-			this.tableLayoutPanel1.AutoSize = true;
-			this.tableLayoutPanel1.ColumnCount = 1;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel_Bentonit_La3, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel_Kinetika_Sorb_La3, 0, 2);
-			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 3;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(524, 547);
-			this.tableLayoutPanel1.TabIndex = 0;
+			this.tableLayoutPanel_Tables.AutoSize = true;
+			this.tableLayoutPanel_Tables.ColumnCount = 1;
+			this.tableLayoutPanel_Tables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel_Tables.Controls.Add(this.tableLayoutPanel_Bentonit_La3, 0, 1);
+			this.tableLayoutPanel_Tables.Controls.Add(this.tableLayoutPanel_Kinetika_Sorb_La3, 0, 2);
+			this.tableLayoutPanel_Tables.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel_Tables.Location = new System.Drawing.Point(0, 0);
+			this.tableLayoutPanel_Tables.Name = "tableLayoutPanel_Tables";
+			this.tableLayoutPanel_Tables.RowCount = 3;
+			this.tableLayoutPanel_Tables.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel_Tables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel_Tables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel_Tables.Size = new System.Drawing.Size(524, 547);
+			this.tableLayoutPanel_Tables.TabIndex = 0;
 			// 
 			// label_Title
 			// 
@@ -119,7 +119,7 @@
 			this.label_Bent.Name = "label_Bent";
 			this.label_Bent.Size = new System.Drawing.Size(512, 13);
 			this.label_Bent.TabIndex = 0;
-			this.label_Bent.Text = "Бентонит La3+";
+			this.label_Bent.Text = "Бентонит La3+ 0,7 (20°C) мкг/мл";
 			this.label_Bent.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// dataGridView_Bentonit_La3
@@ -250,7 +250,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
+			this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel_Tables);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -276,17 +276,19 @@
 			// 
 			// chart1
 			// 
-			chartArea1.Name = "ChartArea1";
-			this.chart1.ChartAreas.Add(chartArea1);
-			legend1.Name = "Legend1";
-			this.chart1.Legends.Add(legend1);
-			this.chart1.Location = new System.Drawing.Point(41, 95);
+			chartArea2.Name = "ChartArea1";
+			this.chart1.ChartAreas.Add(chartArea2);
+			this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+			legend2.Name = "Legend1";
+			this.chart1.Legends.Add(legend2);
+			this.chart1.Location = new System.Drawing.Point(0, 0);
 			this.chart1.Name = "chart1";
-			series1.ChartArea = "ChartArea1";
-			series1.Legend = "Legend1";
-			series1.Name = "Series1";
-			this.chart1.Series.Add(series1);
-			this.chart1.Size = new System.Drawing.Size(300, 300);
+			series2.ChartArea = "ChartArea1";
+			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+			series2.Legend = "Legend1";
+			series2.Name = "Series1";
+			this.chart1.Series.Add(series2);
+			this.chart1.Size = new System.Drawing.Size(350, 547);
 			this.chart1.TabIndex = 0;
 			this.chart1.Text = "chart1";
 			// 
@@ -298,7 +300,7 @@
 			this.Controls.Add(this.tableLayoutPanel2);
 			this.Name = "Form1";
 			this.Text = "Form1";
-			this.tableLayoutPanel1.ResumeLayout(false);
+			this.tableLayoutPanel_Tables.ResumeLayout(false);
 			this.tableLayoutPanel_Bentonit_La3.ResumeLayout(false);
 			this.tableLayoutPanel_Bentonit_La3.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Bentonit_La3)).EndInit();
@@ -319,7 +321,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Tables;
 		private System.Windows.Forms.Label label_Title;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Bentonit_La3;
 		private System.Windows.Forms.Label label_Bent;

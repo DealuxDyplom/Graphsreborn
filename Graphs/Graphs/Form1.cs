@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Graphs
 {
@@ -108,21 +109,12 @@ namespace Graphs
 
 		public void createGraphics()
 		{
-
-			//pictureBox_Graphic.Image = new Bitmap(pictureBox_Graphic.Width, pictureBox_Graphic.Height);
-			//Pen pen = new Pen(Color.Black, 3f);
-			//Graphics g = Graphics.FromImage(pictureBox_Graphic.Image);
-			//g.DrawRectangle(pen, pictureBox_Graphic.Image.Width / 2, pictureBox_Graphic.Image.Height / 2, 1, 1);
-			//using (Graphics g = Graphics.FromImage(pictureBox_Graphic.Image))
-			//{
-			//	for (int i = 0; i < 6; i++)
-			//	{
-			//		double y = double.Parse(dataGridView_Kinetika_Sorb_La3["Column_Kin_log_qe_qt", i].Value.ToString());
-			//		g.DrawRectangle(new Pen(Color.Black, 4), i + 30*i, (int)y - 50* (int)y, 2, 2);
-			//	}
-			//	//g.DrawRectangle(new Pen(Color.Black, 4), 2, 2, 2, 2);
-			//	//g.DrawLine(new Pen(Color.Black, 4), 0, pictureBox_Graphic.Height / 2, pictureBox_Graphic.Width, pictureBox_Graphic.Height / 2);
-			//}
+			for (int i = 0; i < 6; i++)
+			{
+				double x = double.Parse(this.dataGridView_Kinetika_Sorb_La3["Column_Kin_time", i].Value.ToString());
+				double y = double.Parse(this.dataGridView_Kinetika_Sorb_La3["Column_Kin_log_qe_qt", i].Value.ToString());
+				this.chart1.Series[0].Points.AddXY(x, y);
+			}
 		}
 		public Form1()
 		{
@@ -131,14 +123,14 @@ namespace Graphs
 			string path_to_data = "D:\\Repositories\\GitHub\\Graphs\\data.txt";
 			string path_to_data_Kin = "D:\\Repositories\\GitHub\\Graphs\\KinLa3.txt";
 
+			this.splitContainer1.Panel2Collapsed = true;
+
 			//заполнение таблицы из файла
 			readCSVtoDataGridView_Bentonit_La3(path_to_data, this.dataGridView_Bentonit_La3);
 
 			readCSVtoDataGridView_Kinetika_Sorb_La3(path_to_data_Kin, this.dataGridView_Kinetika_Sorb_La3);
 
-			//this.splitContainer1.Panel2Collapsed = false;
-
-
+			this.splitContainer1.Panel2Collapsed = false;
 			createGraphics();
 
 
