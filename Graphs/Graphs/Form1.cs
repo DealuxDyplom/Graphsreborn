@@ -1,5 +1,12 @@
-﻿using Microsoft.VisualBasic.Logging;
-using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Graphs
@@ -101,18 +108,21 @@ namespace Graphs
 
 		public void createGraphics()
 		{
-			pictureBox_Graphic.Image = new Bitmap(pictureBox_Graphic.Width, pictureBox_Graphic.Height);
-			Pen pen = new Pen(Color.Black, 3f);
-			using (Graphics g = Graphics.FromImage(pictureBox_Graphic.Image))
-			{
-				for (int i = 0; i < 6; i++)
-				{
-					double y = double.Parse(dataGridView_Kinetika_Sorb_La3["Column_Kin_log_qe_qt", i].Value.ToString());
-					g.DrawRectangle(new Pen(Color.Black, 4), i + 30*i, (int)y - 50* (int)y, 2, 2);
-				}
-				//g.DrawRectangle(new Pen(Color.Black, 4), 2, 2, 2, 2);
-				//g.DrawLine(new Pen(Color.Black, 4), 0, pictureBox_Graphic.Height / 2, pictureBox_Graphic.Width, pictureBox_Graphic.Height / 2);
-			}
+
+			//pictureBox_Graphic.Image = new Bitmap(pictureBox_Graphic.Width, pictureBox_Graphic.Height);
+			//Pen pen = new Pen(Color.Black, 3f);
+			//Graphics g = Graphics.FromImage(pictureBox_Graphic.Image);
+			//g.DrawRectangle(pen, pictureBox_Graphic.Image.Width / 2, pictureBox_Graphic.Image.Height / 2, 1, 1);
+			//using (Graphics g = Graphics.FromImage(pictureBox_Graphic.Image))
+			//{
+			//	for (int i = 0; i < 6; i++)
+			//	{
+			//		double y = double.Parse(dataGridView_Kinetika_Sorb_La3["Column_Kin_log_qe_qt", i].Value.ToString());
+			//		g.DrawRectangle(new Pen(Color.Black, 4), i + 30*i, (int)y - 50* (int)y, 2, 2);
+			//	}
+			//	//g.DrawRectangle(new Pen(Color.Black, 4), 2, 2, 2, 2);
+			//	//g.DrawLine(new Pen(Color.Black, 4), 0, pictureBox_Graphic.Height / 2, pictureBox_Graphic.Width, pictureBox_Graphic.Height / 2);
+			//}
 		}
 		public Form1()
 		{
@@ -131,26 +141,6 @@ namespace Graphs
 
 			createGraphics();
 
-
-		}
-
-		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void groupBox1_Enter(object sender, EventArgs e)
-		{
-
-		}
-
-		private void Form1_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-		{
 
 		}
 	}

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphs", "Graphs\Graphs.csproj", "{9717FAF9-230F-4BC9-9CEF-023BBAA5BBE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphs", "Graphs\Graphs.csproj", "{87E79FF8-BA54-4FD8-9241-19F7CF17AC44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9717FAF9-230F-4BC9-9CEF-023BBAA5BBE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9717FAF9-230F-4BC9-9CEF-023BBAA5BBE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9717FAF9-230F-4BC9-9CEF-023BBAA5BBE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9717FAF9-230F-4BC9-9CEF-023BBAA5BBE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87E79FF8-BA54-4FD8-9241-19F7CF17AC44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E79FF8-BA54-4FD8-9241-19F7CF17AC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E79FF8-BA54-4FD8-9241-19F7CF17AC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E79FF8-BA54-4FD8-9241-19F7CF17AC44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {66C7D797-F445-4C10-A968-4517F8F56788}
+		SolutionGuid = {6B6027C5-0B6D-4BD6-8C06-D3714AB78D84}
 	EndGlobalSection
 EndGlobal
