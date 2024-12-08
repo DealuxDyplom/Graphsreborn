@@ -17,6 +17,8 @@ namespace Graphs
 		OpenFileDialog openFileDialog;
 		SaveFileDialog saveFileDialog;
 
+		int pointIndex = -1; //индекс точки на графике
+
 		//функция начального заполнения таблицы из csv файла (чтобы они не пустовали при открытии)
 		public void Fill_DataGridView_Bentonit_La3(string path_to_csv, DataGridView table)
 		{
@@ -163,18 +165,18 @@ namespace Graphs
 		{
 			InitializeComponent();
 
-			string path_to_data = "D:\\Repositories\\GitHub\\Graphs\\data.txt";
-			string path_to_data_Kin = "D:\\Repositories\\GitHub\\Graphs\\KinLa3.txt";
+			//string path_to_data = "D:\\Repositories\\GitHub\\Graphs\\data.txt";
+			//string path_to_data_Kin = "D:\\Repositories\\GitHub\\Graphs\\KinLa3.txt";
 
 			this.splitContainer1.Panel2Collapsed = true;
 
 			//заполнение таблицы из файла
-			Fill_DataGridView_Bentonit_La3(path_to_data, this.dataGridView_Bentonit_La3);
+			//Fill_DataGridView_Bentonit_La3(path_to_data, this.dataGridView_Bentonit_La3);
 
-			Fill_DataGridView_Kinetika_Sorb_La3(path_to_data_Kin, this.dataGridView_Kinetika_Sorb_La3);
+			//Fill_DataGridView_Kinetika_Sorb_La3(path_to_data_Kin, this.dataGridView_Kinetika_Sorb_La3);
 
-			this.splitContainer1.Panel2Collapsed = false;
-			createGraphics();
+			//this.splitContainer1.Panel2Collapsed = false;
+			//createGraphics();
 
 
 		}
@@ -225,9 +227,15 @@ namespace Graphs
 
 			}
 
-			rowCount = this.dataGridView_Kinetika_Sorb_La3.RowCount;
 			table = this.dataGridView_Kinetika_Sorb_La3;
 			//заполнение таблицы Kinetika_Sorb_La3
+			table.Rows.Clear();
+			table.Refresh();
+			for (int i = 0; i < this.dataGridView_Bentonit_La3.RowCount - 1; i++)
+			{
+				table.Rows.Add();
+			}
+			rowCount = this.dataGridView_Kinetika_Sorb_La3.RowCount;
 			//заполнение столбца "обр\врем"
 			for (int i = 0; i < rowCount - 1; i++)
 			{
@@ -262,6 +270,7 @@ namespace Graphs
 			}
 
 			//перечерчиваем график
+			this.splitContainer1.Panel2Collapsed = false;
 			this.graph.Series[0].Points.Clear();
 			createGraphics();
 		}
@@ -290,6 +299,41 @@ namespace Graphs
 				}
 				sw.Close();
 			}
+		}
+
+		private void graph_Click(object sender, EventArgs e)
+		{
+		}
+
+		private void graph_MouseClick(object sender, MouseEventArgs e)
+		{
+			var res = graph.HitTest(e.X, e.Y);
+			if (res.Series != null)
+			{
+				if (pointIndex != -1) {
+					res.Series.Points[pointIndex].BorderColor = res.Series.Points[pointIndex].Color;
+				}
+				pointIndex = res.PointIndex;
+				res.Series.Points[pointIndex].BorderColor = Color.Red;
+
+				this.textBox_X_Value.Text = res.Series.Points[pointIndex].XValue.ToString();
+				this.textBox_Y_Value.Text = res.Series.Points[pointIndex].YValues[0].ToString();
+			}
+
+		}
+
+		private void button_Change_Point_Click(object sender, EventArgs e)
+		{
+			if (pointIndex == -1)
+			{
+				return;
+			}
+			double x = double.Parse(this.textBox_X_Value.Text);
+			double y = double.Parse(this.textBox_Y_Value.Text);
+			this.graph.Series[0].Points[pointIndex].SetValueXY(x, y);
+			this.graph.Series[0].Points[pointIndex].BorderColor = this.graph.Series[0].Points[pointIndex].Color;
+
+			pointIndex = -1;
 		}
 	}
 }
