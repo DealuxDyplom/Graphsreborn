@@ -152,6 +152,35 @@ namespace Graphs
 			}
 		}
 
+		public void drawTrendLine()
+		{
+			double X_mean = 0;
+			double Y_mean = 0;
+			double XY = 0;
+			double X2 = 0;
+			for (int i = 0; i < this.graph.Series[0].Points.Count; i++)
+			{
+				X_mean += this.graph.Series[0].Points[i].XValue;
+				Y_mean += this.graph.Series[0].Points[i].YValues[0];
+				XY += this.graph.Series[0].Points[i].XValue * this.graph.Series[0].Points[i].YValues[0];
+				X2 += this.graph.Series[0].Points[i].XValue * this.graph.Series[0].Points[i].XValue;
+			}
+			X_mean = X_mean / this.graph.Series[0].Points.Count;
+			Y_mean = Y_mean / this.graph.Series[0].Points.Count;
+
+			double b = (XY - this.graph.Series[0].Points.Count * X_mean * Y_mean) / (X2 - this.graph.Series[0].Points.Count * X_mean * X_mean);
+			double a = Y_mean - b*X_mean;
+
+			double x1 = this.graph.Series[0].Points[0].XValue;
+			double y1 = a + b * x1;
+			double x2 = this.graph.Series[0].Points[this.graph.Series[0].Points.Count - 1].XValue;
+			double y2 = a + b * x2;
+
+			this.graph.Series[1].Points.Clear();
+
+			this.graph.Series[1].Points.AddXY(x1, y1);
+			this.graph.Series[1].Points.AddXY(x2, y2);
+		}
 		public void createGraphics()
 		{
 			for (int i = 0; i < 6; i++)
@@ -160,6 +189,8 @@ namespace Graphs
 				double y = double.Parse(this.dataGridView_Kinetika_Sorb_La3["Column_Kin_log_qe_qt", i].Value.ToString());
 				this.graph.Series[0].Points.AddXY(x, y);
 			}
+
+			drawTrendLine();
 		}
 		public Form1()
 		{
@@ -334,6 +365,8 @@ namespace Graphs
 			this.graph.Series[0].Points[pointIndex].BorderColor = this.graph.Series[0].Points[pointIndex].Color;
 
 			pointIndex = -1;
+
+			drawTrendLine();
 		}
 	}
 }

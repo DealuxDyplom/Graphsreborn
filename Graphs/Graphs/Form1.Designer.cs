@@ -31,6 +31,7 @@
 			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
 			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
 			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.tableLayoutPanel_Tables = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel_Bentonit_La3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label_Bent = new System.Windows.Forms.Label();
@@ -307,7 +308,12 @@
 			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
 			series1.Legend = "Legend1";
 			series1.Name = "Series1";
+			series2.ChartArea = "ChartArea1";
+			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series2.Legend = "Legend1";
+			series2.Name = "TrendLine";
 			this.graph.Series.Add(series1);
+			this.graph.Series.Add(series2);
 			this.graph.Size = new System.Drawing.Size(482, 406);
 			this.graph.TabIndex = 0;
 			this.graph.Text = "График";
