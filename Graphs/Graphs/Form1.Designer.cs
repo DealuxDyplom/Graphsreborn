@@ -68,6 +68,13 @@
 			this.Button_Load = new System.Windows.Forms.Button();
 			this.button_Save = new System.Windows.Forms.Button();
 			this.button_Recalculate = new System.Windows.Forms.Button();
+			this.tableLayout_Trend_param = new System.Windows.Forms.TableLayoutPanel();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.textBox_Trend_equ = new System.Windows.Forms.TextBox();
+			this.label_Trend_equ = new System.Windows.Forms.Label();
+			this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+			this.label_R2 = new System.Windows.Forms.Label();
+			this.textBox_R2 = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel_Tables.SuspendLayout();
 			this.tableLayoutPanel_Bentonit_La3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Bentonit_La3)).BeginInit();
@@ -84,6 +91,15 @@
 			this.tableLayoutPanel_Y_Value.SuspendLayout();
 			this.tableLayoutPanel_Main.SuspendLayout();
 			this.tableLayoutPanel_Buttons.SuspendLayout();
+			this.tableLayout_Trend_param.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+			this.splitContainer3.Panel1.SuspendLayout();
+			this.splitContainer3.Panel2.SuspendLayout();
+			this.splitContainer3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel_Tables
@@ -283,13 +299,15 @@
 			this.tableLayoutPanel_Graph_with_buttons.ColumnCount = 1;
 			this.tableLayoutPanel_Graph_with_buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.graph, 0, 0);
-			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.tableLayoutPanel_text_for_graphs, 0, 1);
-			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.button_Change_Point, 0, 2);
+			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.tableLayoutPanel_text_for_graphs, 0, 2);
+			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.button_Change_Point, 0, 3);
+			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.tableLayout_Trend_param, 0, 1);
 			this.tableLayoutPanel_Graph_with_buttons.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel_Graph_with_buttons.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel_Graph_with_buttons.Name = "tableLayoutPanel_Graph_with_buttons";
-			this.tableLayoutPanel_Graph_with_buttons.RowCount = 3;
+			this.tableLayoutPanel_Graph_with_buttons.RowCount = 4;
 			this.tableLayoutPanel_Graph_with_buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel_Graph_with_buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.tableLayoutPanel_Graph_with_buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel_Graph_with_buttons.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel_Graph_with_buttons.Size = new System.Drawing.Size(488, 481);
@@ -314,7 +332,7 @@
 			series2.Name = "TrendLine";
 			this.graph.Series.Add(series1);
 			this.graph.Series.Add(series2);
-			this.graph.Size = new System.Drawing.Size(482, 406);
+			this.graph.Size = new System.Drawing.Size(482, 376);
 			this.graph.TabIndex = 0;
 			this.graph.Text = "График";
 			this.graph.Click += new System.EventHandler(this.graph_Click);
@@ -487,6 +505,91 @@
 			this.button_Recalculate.UseVisualStyleBackColor = true;
 			this.button_Recalculate.Click += new System.EventHandler(this.button_Recalculate_Click);
 			// 
+			// tableLayout_Trend_param
+			// 
+			this.tableLayout_Trend_param.ColumnCount = 2;
+			this.tableLayout_Trend_param.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayout_Trend_param.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayout_Trend_param.Controls.Add(this.splitContainer2, 0, 0);
+			this.tableLayout_Trend_param.Controls.Add(this.splitContainer3, 1, 0);
+			this.tableLayout_Trend_param.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayout_Trend_param.Location = new System.Drawing.Point(3, 385);
+			this.tableLayout_Trend_param.Name = "tableLayout_Trend_param";
+			this.tableLayout_Trend_param.RowCount = 1;
+			this.tableLayout_Trend_param.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayout_Trend_param.Size = new System.Drawing.Size(482, 24);
+			this.tableLayout_Trend_param.TabIndex = 3;
+			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.label_Trend_equ);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.textBox_Trend_equ);
+			this.splitContainer2.Size = new System.Drawing.Size(235, 18);
+			this.splitContainer2.SplitterDistance = 78;
+			this.splitContainer2.TabIndex = 0;
+			// 
+			// textBox_Trend_equ
+			// 
+			this.textBox_Trend_equ.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox_Trend_equ.Location = new System.Drawing.Point(0, 0);
+			this.textBox_Trend_equ.Name = "textBox_Trend_equ";
+			this.textBox_Trend_equ.Size = new System.Drawing.Size(153, 20);
+			this.textBox_Trend_equ.TabIndex = 0;
+			// 
+			// label_Trend_equ
+			// 
+			this.label_Trend_equ.AutoSize = true;
+			this.label_Trend_equ.Dock = System.Windows.Forms.DockStyle.Right;
+			this.label_Trend_equ.Location = new System.Drawing.Point(15, 0);
+			this.label_Trend_equ.Name = "label_Trend_equ";
+			this.label_Trend_equ.Size = new System.Drawing.Size(63, 13);
+			this.label_Trend_equ.TabIndex = 0;
+			this.label_Trend_equ.Text = "Уравнение";
+			// 
+			// splitContainer3
+			// 
+			this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer3.Location = new System.Drawing.Point(244, 3);
+			this.splitContainer3.Name = "splitContainer3";
+			// 
+			// splitContainer3.Panel1
+			// 
+			this.splitContainer3.Panel1.Controls.Add(this.label_R2);
+			// 
+			// splitContainer3.Panel2
+			// 
+			this.splitContainer3.Panel2.Controls.Add(this.textBox_R2);
+			this.splitContainer3.Size = new System.Drawing.Size(235, 18);
+			this.splitContainer3.SplitterDistance = 78;
+			this.splitContainer3.TabIndex = 1;
+			// 
+			// label_R2
+			// 
+			this.label_R2.AutoSize = true;
+			this.label_R2.Dock = System.Windows.Forms.DockStyle.Right;
+			this.label_R2.Location = new System.Drawing.Point(51, 0);
+			this.label_R2.Name = "label_R2";
+			this.label_R2.Size = new System.Drawing.Size(27, 13);
+			this.label_R2.TabIndex = 0;
+			this.label_R2.Text = "R^2";
+			// 
+			// textBox_R2
+			// 
+			this.textBox_R2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox_R2.Location = new System.Drawing.Point(0, 0);
+			this.textBox_R2.Name = "textBox_R2";
+			this.textBox_R2.Size = new System.Drawing.Size(153, 20);
+			this.textBox_R2.TabIndex = 0;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -517,6 +620,19 @@
 			this.tableLayoutPanel_Main.ResumeLayout(false);
 			this.tableLayoutPanel_Main.PerformLayout();
 			this.tableLayoutPanel_Buttons.ResumeLayout(false);
+			this.tableLayout_Trend_param.ResumeLayout(false);
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel1.PerformLayout();
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			this.splitContainer2.Panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+			this.splitContainer2.ResumeLayout(false);
+			this.splitContainer3.Panel1.ResumeLayout(false);
+			this.splitContainer3.Panel1.PerformLayout();
+			this.splitContainer3.Panel2.ResumeLayout(false);
+			this.splitContainer3.Panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+			this.splitContainer3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -559,6 +675,13 @@
 		private System.Windows.Forms.Label label_Y_Value;
 		private System.Windows.Forms.TextBox textBox_Y_Value;
 		private System.Windows.Forms.Button button_Change_Point;
+		private System.Windows.Forms.TableLayoutPanel tableLayout_Trend_param;
+		private System.Windows.Forms.SplitContainer splitContainer2;
+		private System.Windows.Forms.Label label_Trend_equ;
+		private System.Windows.Forms.TextBox textBox_Trend_equ;
+		private System.Windows.Forms.SplitContainer splitContainer3;
+		private System.Windows.Forms.Label label_R2;
+		private System.Windows.Forms.TextBox textBox_R2;
 	}
 }
 

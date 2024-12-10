@@ -152,6 +152,7 @@ namespace Graphs
 			}
 		}
 
+		// линия тренда рисуется по точкам на chart
 		public void drawTrendLine()
 		{
 			double X_mean = 0;
@@ -171,6 +172,8 @@ namespace Graphs
 			double b = (XY - this.graph.Series[0].Points.Count * X_mean * Y_mean) / (X2 - this.graph.Series[0].Points.Count * X_mean * X_mean);
 			double a = Y_mean - b*X_mean;
 
+			//уравнение линии тренда: y = a + bx
+
 			double x1 = this.graph.Series[0].Points[0].XValue;
 			double y1 = a + b * x1;
 			double x2 = this.graph.Series[0].Points[this.graph.Series[0].Points.Count - 1].XValue;
@@ -180,6 +183,33 @@ namespace Graphs
 
 			this.graph.Series[1].Points.AddXY(x1, y1);
 			this.graph.Series[1].Points.AddXY(x2, y2);
+
+			// выводим уравнение линии тренда на экран
+			string trend_equ = "y = " + a.ToString("0.0000") + " + (" + b.ToString("0.0000") + ") * x"; 
+			this.textBox_Trend_equ.Text = trend_equ;
+
+			// находим R^2 - коэффициент детерминации
+			// R^2 = SSE / SST
+
+			double SSE = 0;
+			double SSR = 0;
+			double Y_sum = 0;
+			for (int i = 0; i < this.graph.Series[0].Points.Count; i++)
+			{
+				Y_sum += a + b * this.graph.Series[0].Points[i].XValue;
+			}
+			for (int i = 0; i < this.graph.Series[0].Points.Count; i++)
+			{
+				double y_true = this.graph.Series[0].Points[i].YValues[0];
+				double y_get = a + b * this.graph.Series[0].Points[i].XValue;
+
+				SSE += Math.Pow((y_get - y_true), 2);
+				SSR += Math.Pow((y_get - Y_mean), 2);
+			}
+			double SST = SSE + SSR;
+			double R2 = 1 - SSE / SST;
+			this.textBox_R2.Text = R2.ToString("0.0000");
+
 		}
 		public void createGraphics()
 		{
