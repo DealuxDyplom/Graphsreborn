@@ -28,10 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.tableLayoutPanel_Tables = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel_Bentonit_La3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label_Bent = new System.Windows.Forms.Label();
@@ -63,18 +63,22 @@
 			this.label_Y_Value = new System.Windows.Forms.Label();
 			this.textBox_Y_Value = new System.Windows.Forms.TextBox();
 			this.button_Change_Point = new System.Windows.Forms.Button();
+			this.tableLayout_Trend_param = new System.Windows.Forms.TableLayoutPanel();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.label_Trend_equ = new System.Windows.Forms.Label();
+			this.textBox_Trend_equ = new System.Windows.Forms.TextBox();
+			this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+			this.label_R2 = new System.Windows.Forms.Label();
+			this.textBox_R2 = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
 			this.Button_Load = new System.Windows.Forms.Button();
 			this.button_Save = new System.Windows.Forms.Button();
 			this.button_Recalculate = new System.Windows.Forms.Button();
-			this.tableLayout_Trend_param = new System.Windows.Forms.TableLayoutPanel();
-			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-			this.textBox_Trend_equ = new System.Windows.Forms.TextBox();
-			this.label_Trend_equ = new System.Windows.Forms.Label();
-			this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-			this.label_R2 = new System.Windows.Forms.Label();
-			this.textBox_R2 = new System.Windows.Forms.TextBox();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.changeColumnMRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.changeColumnAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tableLayoutPanel_Tables.SuspendLayout();
 			this.tableLayoutPanel_Bentonit_La3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Bentonit_La3)).BeginInit();
@@ -89,8 +93,6 @@
 			this.tableLayoutPanel_text_for_graphs.SuspendLayout();
 			this.tableLayoutPanel_X_Value.SuspendLayout();
 			this.tableLayoutPanel_Y_Value.SuspendLayout();
-			this.tableLayoutPanel_Main.SuspendLayout();
-			this.tableLayoutPanel_Buttons.SuspendLayout();
 			this.tableLayout_Trend_param.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
@@ -100,6 +102,9 @@
 			this.splitContainer3.Panel1.SuspendLayout();
 			this.splitContainer3.Panel2.SuspendLayout();
 			this.splitContainer3.SuspendLayout();
+			this.tableLayoutPanel_Main.SuspendLayout();
+			this.tableLayoutPanel_Buttons.SuspendLayout();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel_Tables
@@ -116,7 +121,7 @@
 			this.tableLayoutPanel_Tables.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel_Tables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel_Tables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel_Tables.Size = new System.Drawing.Size(728, 481);
+			this.tableLayoutPanel_Tables.Size = new System.Drawing.Size(728, 457);
 			this.tableLayoutPanel_Tables.TabIndex = 0;
 			// 
 			// tableLayoutPanel_Bentonit_La3
@@ -131,7 +136,7 @@
 			this.tableLayoutPanel_Bentonit_La3.RowCount = 2;
 			this.tableLayoutPanel_Bentonit_La3.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel_Bentonit_La3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel_Bentonit_La3.Size = new System.Drawing.Size(722, 234);
+			this.tableLayoutPanel_Bentonit_La3.Size = new System.Drawing.Size(722, 222);
 			this.tableLayoutPanel_Bentonit_La3.TabIndex = 1;
 			// 
 			// label_Bent
@@ -160,7 +165,7 @@
 			this.dataGridView_Bentonit_La3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView_Bentonit_La3.Location = new System.Drawing.Point(3, 16);
 			this.dataGridView_Bentonit_La3.Name = "dataGridView_Bentonit_La3";
-			this.dataGridView_Bentonit_La3.Size = new System.Drawing.Size(716, 215);
+			this.dataGridView_Bentonit_La3.Size = new System.Drawing.Size(716, 203);
 			this.dataGridView_Bentonit_La3.TabIndex = 1;
 			// 
 			// Column_time
@@ -205,12 +210,12 @@
 			this.tableLayoutPanel_Kinetika_Sorb_La3.Controls.Add(this.label_Kinetika_Sorb_La3, 0, 0);
 			this.tableLayoutPanel_Kinetika_Sorb_La3.Controls.Add(this.dataGridView_Kinetika_Sorb_La3, 0, 1);
 			this.tableLayoutPanel_Kinetika_Sorb_La3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel_Kinetika_Sorb_La3.Location = new System.Drawing.Point(3, 243);
+			this.tableLayoutPanel_Kinetika_Sorb_La3.Location = new System.Drawing.Point(3, 231);
 			this.tableLayoutPanel_Kinetika_Sorb_La3.Name = "tableLayoutPanel_Kinetika_Sorb_La3";
 			this.tableLayoutPanel_Kinetika_Sorb_La3.RowCount = 2;
 			this.tableLayoutPanel_Kinetika_Sorb_La3.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel_Kinetika_Sorb_La3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel_Kinetika_Sorb_La3.Size = new System.Drawing.Size(722, 235);
+			this.tableLayoutPanel_Kinetika_Sorb_La3.Size = new System.Drawing.Size(722, 223);
 			this.tableLayoutPanel_Kinetika_Sorb_La3.TabIndex = 2;
 			// 
 			// label_Kinetika_Sorb_La3
@@ -237,7 +242,7 @@
 			this.dataGridView_Kinetika_Sorb_La3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView_Kinetika_Sorb_La3.Location = new System.Drawing.Point(3, 16);
 			this.dataGridView_Kinetika_Sorb_La3.Name = "dataGridView_Kinetika_Sorb_La3";
-			this.dataGridView_Kinetika_Sorb_La3.Size = new System.Drawing.Size(716, 216);
+			this.dataGridView_Kinetika_Sorb_La3.Size = new System.Drawing.Size(716, 204);
 			this.dataGridView_Kinetika_Sorb_La3.TabIndex = 1;
 			// 
 			// Column_Kin_time
@@ -290,7 +295,7 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel_Graph_with_buttons);
-			this.splitContainer1.Size = new System.Drawing.Size(1220, 481);
+			this.splitContainer1.Size = new System.Drawing.Size(1220, 457);
 			this.splitContainer1.SplitterDistance = 728;
 			this.splitContainer1.TabIndex = 1;
 			// 
@@ -300,8 +305,8 @@
 			this.tableLayoutPanel_Graph_with_buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.graph, 0, 0);
 			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.tableLayoutPanel_text_for_graphs, 0, 2);
-			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.button_Change_Point, 0, 3);
 			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.tableLayout_Trend_param, 0, 1);
+			this.tableLayoutPanel_Graph_with_buttons.Controls.Add(this.button_Change_Point, 0, 3);
 			this.tableLayoutPanel_Graph_with_buttons.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel_Graph_with_buttons.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel_Graph_with_buttons.Name = "tableLayoutPanel_Graph_with_buttons";
@@ -310,29 +315,29 @@
 			this.tableLayoutPanel_Graph_with_buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.tableLayoutPanel_Graph_with_buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel_Graph_with_buttons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel_Graph_with_buttons.Size = new System.Drawing.Size(488, 481);
+			this.tableLayoutPanel_Graph_with_buttons.Size = new System.Drawing.Size(488, 457);
 			this.tableLayoutPanel_Graph_with_buttons.TabIndex = 1;
 			// 
 			// graph
 			// 
-			chartArea1.Name = "ChartArea1";
-			this.graph.ChartAreas.Add(chartArea1);
+			chartArea2.Name = "ChartArea1";
+			this.graph.ChartAreas.Add(chartArea2);
 			this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
-			legend1.Name = "Legend1";
-			this.graph.Legends.Add(legend1);
+			legend2.Name = "Legend1";
+			this.graph.Legends.Add(legend2);
 			this.graph.Location = new System.Drawing.Point(3, 3);
 			this.graph.Name = "graph";
-			series1.ChartArea = "ChartArea1";
-			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-			series1.Legend = "Legend1";
-			series1.Name = "Series1";
-			series2.ChartArea = "ChartArea1";
-			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series2.Legend = "Legend1";
-			series2.Name = "TrendLine";
-			this.graph.Series.Add(series1);
-			this.graph.Series.Add(series2);
-			this.graph.Size = new System.Drawing.Size(482, 376);
+			series3.ChartArea = "ChartArea1";
+			series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+			series3.Legend = "Legend1";
+			series3.Name = "Series1";
+			series4.ChartArea = "ChartArea1";
+			series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series4.Legend = "Legend1";
+			series4.Name = "TrendLine";
+			this.graph.Series.Add(series3);
+			this.graph.Series.Add(series4);
+			this.graph.Size = new System.Drawing.Size(482, 352);
 			this.graph.TabIndex = 0;
 			this.graph.Text = "График";
 			this.graph.Click += new System.EventHandler(this.graph_Click);
@@ -346,7 +351,7 @@
 			this.tableLayoutPanel_text_for_graphs.Controls.Add(this.tableLayoutPanel_X_Value, 0, 0);
 			this.tableLayoutPanel_text_for_graphs.Controls.Add(this.tableLayoutPanel_Y_Value, 1, 0);
 			this.tableLayoutPanel_text_for_graphs.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel_text_for_graphs.Location = new System.Drawing.Point(3, 415);
+			this.tableLayoutPanel_text_for_graphs.Location = new System.Drawing.Point(3, 391);
 			this.tableLayoutPanel_text_for_graphs.Name = "tableLayoutPanel_text_for_graphs";
 			this.tableLayoutPanel_text_for_graphs.RowCount = 1;
 			this.tableLayoutPanel_text_for_graphs.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -427,13 +432,98 @@
 			// 
 			this.button_Change_Point.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.button_Change_Point.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.button_Change_Point.Location = new System.Drawing.Point(189, 455);
+			this.button_Change_Point.Location = new System.Drawing.Point(189, 431);
 			this.button_Change_Point.Name = "button_Change_Point";
 			this.button_Change_Point.Size = new System.Drawing.Size(109, 23);
 			this.button_Change_Point.TabIndex = 2;
 			this.button_Change_Point.Text = "Изменить";
 			this.button_Change_Point.UseVisualStyleBackColor = true;
 			this.button_Change_Point.Click += new System.EventHandler(this.button_Change_Point_Click);
+			// 
+			// tableLayout_Trend_param
+			// 
+			this.tableLayout_Trend_param.ColumnCount = 2;
+			this.tableLayout_Trend_param.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayout_Trend_param.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayout_Trend_param.Controls.Add(this.splitContainer2, 0, 0);
+			this.tableLayout_Trend_param.Controls.Add(this.splitContainer3, 1, 0);
+			this.tableLayout_Trend_param.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayout_Trend_param.Location = new System.Drawing.Point(3, 361);
+			this.tableLayout_Trend_param.Name = "tableLayout_Trend_param";
+			this.tableLayout_Trend_param.RowCount = 1;
+			this.tableLayout_Trend_param.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayout_Trend_param.Size = new System.Drawing.Size(482, 24);
+			this.tableLayout_Trend_param.TabIndex = 3;
+			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.label_Trend_equ);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.textBox_Trend_equ);
+			this.splitContainer2.Size = new System.Drawing.Size(235, 18);
+			this.splitContainer2.SplitterDistance = 78;
+			this.splitContainer2.TabIndex = 0;
+			// 
+			// label_Trend_equ
+			// 
+			this.label_Trend_equ.AutoSize = true;
+			this.label_Trend_equ.Dock = System.Windows.Forms.DockStyle.Right;
+			this.label_Trend_equ.Location = new System.Drawing.Point(15, 0);
+			this.label_Trend_equ.Name = "label_Trend_equ";
+			this.label_Trend_equ.Size = new System.Drawing.Size(63, 13);
+			this.label_Trend_equ.TabIndex = 0;
+			this.label_Trend_equ.Text = "Уравнение";
+			// 
+			// textBox_Trend_equ
+			// 
+			this.textBox_Trend_equ.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox_Trend_equ.Location = new System.Drawing.Point(0, 0);
+			this.textBox_Trend_equ.Name = "textBox_Trend_equ";
+			this.textBox_Trend_equ.Size = new System.Drawing.Size(153, 20);
+			this.textBox_Trend_equ.TabIndex = 0;
+			// 
+			// splitContainer3
+			// 
+			this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer3.Location = new System.Drawing.Point(244, 3);
+			this.splitContainer3.Name = "splitContainer3";
+			// 
+			// splitContainer3.Panel1
+			// 
+			this.splitContainer3.Panel1.Controls.Add(this.label_R2);
+			// 
+			// splitContainer3.Panel2
+			// 
+			this.splitContainer3.Panel2.Controls.Add(this.textBox_R2);
+			this.splitContainer3.Size = new System.Drawing.Size(235, 18);
+			this.splitContainer3.SplitterDistance = 78;
+			this.splitContainer3.TabIndex = 1;
+			// 
+			// label_R2
+			// 
+			this.label_R2.AutoSize = true;
+			this.label_R2.Dock = System.Windows.Forms.DockStyle.Right;
+			this.label_R2.Location = new System.Drawing.Point(51, 0);
+			this.label_R2.Name = "label_R2";
+			this.label_R2.Size = new System.Drawing.Size(27, 13);
+			this.label_R2.TabIndex = 0;
+			this.label_R2.Text = "R^2";
+			// 
+			// textBox_R2
+			// 
+			this.textBox_R2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBox_R2.Location = new System.Drawing.Point(0, 0);
+			this.textBox_R2.Name = "textBox_R2";
+			this.textBox_R2.Size = new System.Drawing.Size(153, 20);
+			this.textBox_R2.TabIndex = 0;
 			// 
 			// tableLayoutPanel_Main
 			// 
@@ -443,13 +533,13 @@
 			this.tableLayoutPanel_Main.Controls.Add(this.splitContainer1, 0, 1);
 			this.tableLayoutPanel_Main.Controls.Add(this.tableLayoutPanel_Buttons, 0, 2);
 			this.tableLayoutPanel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel_Main.Location = new System.Drawing.Point(0, 0);
+			this.tableLayoutPanel_Main.Location = new System.Drawing.Point(0, 24);
 			this.tableLayoutPanel_Main.Name = "tableLayoutPanel_Main";
 			this.tableLayoutPanel_Main.RowCount = 3;
 			this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-			this.tableLayoutPanel_Main.Size = new System.Drawing.Size(1226, 562);
+			this.tableLayoutPanel_Main.Size = new System.Drawing.Size(1226, 538);
 			this.tableLayoutPanel_Main.TabIndex = 2;
 			// 
 			// tableLayoutPanel_Buttons
@@ -462,7 +552,7 @@
 			this.tableLayoutPanel_Buttons.Controls.Add(this.button_Save, 2, 0);
 			this.tableLayoutPanel_Buttons.Controls.Add(this.button_Recalculate, 1, 0);
 			this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 515);
+			this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 491);
 			this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
 			this.tableLayoutPanel_Buttons.RowCount = 1;
 			this.tableLayoutPanel_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -505,90 +595,38 @@
 			this.button_Recalculate.UseVisualStyleBackColor = true;
 			this.button_Recalculate.Click += new System.EventHandler(this.button_Recalculate_Click);
 			// 
-			// tableLayout_Trend_param
+			// menuStrip1
 			// 
-			this.tableLayout_Trend_param.ColumnCount = 2;
-			this.tableLayout_Trend_param.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayout_Trend_param.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayout_Trend_param.Controls.Add(this.splitContainer2, 0, 0);
-			this.tableLayout_Trend_param.Controls.Add(this.splitContainer3, 1, 0);
-			this.tableLayout_Trend_param.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayout_Trend_param.Location = new System.Drawing.Point(3, 385);
-			this.tableLayout_Trend_param.Name = "tableLayout_Trend_param";
-			this.tableLayout_Trend_param.RowCount = 1;
-			this.tableLayout_Trend_param.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayout_Trend_param.Size = new System.Drawing.Size(482, 24);
-			this.tableLayout_Trend_param.TabIndex = 3;
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.менюToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(1226, 24);
+			this.menuStrip1.TabIndex = 3;
+			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// splitContainer2
+			// менюToolStripMenuItem
 			// 
-			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-			this.splitContainer2.Name = "splitContainer2";
+			this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeColumnMRToolStripMenuItem,
+            this.changeColumnAToolStripMenuItem});
+			this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
+			this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+			this.менюToolStripMenuItem.Text = "Меню";
 			// 
-			// splitContainer2.Panel1
+			// changeColumnMRToolStripMenuItem
 			// 
-			this.splitContainer2.Panel1.Controls.Add(this.label_Trend_equ);
+			this.changeColumnMRToolStripMenuItem.Name = "changeColumnMRToolStripMenuItem";
+			this.changeColumnMRToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+			this.changeColumnMRToolStripMenuItem.Text = "Изменить столец m, г";
+			this.changeColumnMRToolStripMenuItem.Click += new System.EventHandler(this.изменитьСтолбецMГToolStripMenuItem_Click);
 			// 
-			// splitContainer2.Panel2
+			// changeColumnAToolStripMenuItem
 			// 
-			this.splitContainer2.Panel2.Controls.Add(this.textBox_Trend_equ);
-			this.splitContainer2.Size = new System.Drawing.Size(235, 18);
-			this.splitContainer2.SplitterDistance = 78;
-			this.splitContainer2.TabIndex = 0;
-			// 
-			// textBox_Trend_equ
-			// 
-			this.textBox_Trend_equ.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox_Trend_equ.Location = new System.Drawing.Point(0, 0);
-			this.textBox_Trend_equ.Name = "textBox_Trend_equ";
-			this.textBox_Trend_equ.Size = new System.Drawing.Size(153, 20);
-			this.textBox_Trend_equ.TabIndex = 0;
-			// 
-			// label_Trend_equ
-			// 
-			this.label_Trend_equ.AutoSize = true;
-			this.label_Trend_equ.Dock = System.Windows.Forms.DockStyle.Right;
-			this.label_Trend_equ.Location = new System.Drawing.Point(15, 0);
-			this.label_Trend_equ.Name = "label_Trend_equ";
-			this.label_Trend_equ.Size = new System.Drawing.Size(63, 13);
-			this.label_Trend_equ.TabIndex = 0;
-			this.label_Trend_equ.Text = "Уравнение";
-			// 
-			// splitContainer3
-			// 
-			this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer3.Location = new System.Drawing.Point(244, 3);
-			this.splitContainer3.Name = "splitContainer3";
-			// 
-			// splitContainer3.Panel1
-			// 
-			this.splitContainer3.Panel1.Controls.Add(this.label_R2);
-			// 
-			// splitContainer3.Panel2
-			// 
-			this.splitContainer3.Panel2.Controls.Add(this.textBox_R2);
-			this.splitContainer3.Size = new System.Drawing.Size(235, 18);
-			this.splitContainer3.SplitterDistance = 78;
-			this.splitContainer3.TabIndex = 1;
-			// 
-			// label_R2
-			// 
-			this.label_R2.AutoSize = true;
-			this.label_R2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.label_R2.Location = new System.Drawing.Point(51, 0);
-			this.label_R2.Name = "label_R2";
-			this.label_R2.Size = new System.Drawing.Size(27, 13);
-			this.label_R2.TabIndex = 0;
-			this.label_R2.Text = "R^2";
-			// 
-			// textBox_R2
-			// 
-			this.textBox_R2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox_R2.Location = new System.Drawing.Point(0, 0);
-			this.textBox_R2.Name = "textBox_R2";
-			this.textBox_R2.Size = new System.Drawing.Size(153, 20);
-			this.textBox_R2.TabIndex = 0;
+			this.changeColumnAToolStripMenuItem.Name = "changeColumnAToolStripMenuItem";
+			this.changeColumnAToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+			this.changeColumnAToolStripMenuItem.Text = "Изменить столбец A";
+			this.changeColumnAToolStripMenuItem.Click += new System.EventHandler(this.changeColumnAToolStripMenuItem_Click);
 			// 
 			// Form1
 			// 
@@ -596,6 +634,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1226, 562);
 			this.Controls.Add(this.tableLayoutPanel_Main);
+			this.Controls.Add(this.menuStrip1);
+			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
 			this.Text = "Form1";
 			this.tableLayoutPanel_Tables.ResumeLayout(false);
@@ -617,9 +657,6 @@
 			this.tableLayoutPanel_X_Value.PerformLayout();
 			this.tableLayoutPanel_Y_Value.ResumeLayout(false);
 			this.tableLayoutPanel_Y_Value.PerformLayout();
-			this.tableLayoutPanel_Main.ResumeLayout(false);
-			this.tableLayoutPanel_Main.PerformLayout();
-			this.tableLayoutPanel_Buttons.ResumeLayout(false);
 			this.tableLayout_Trend_param.ResumeLayout(false);
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel1.PerformLayout();
@@ -633,7 +670,13 @@
 			this.splitContainer3.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
 			this.splitContainer3.ResumeLayout(false);
+			this.tableLayoutPanel_Main.ResumeLayout(false);
+			this.tableLayoutPanel_Main.PerformLayout();
+			this.tableLayoutPanel_Buttons.ResumeLayout(false);
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -682,6 +725,10 @@
 		private System.Windows.Forms.SplitContainer splitContainer3;
 		private System.Windows.Forms.Label label_R2;
 		private System.Windows.Forms.TextBox textBox_R2;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem changeColumnMRToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem changeColumnAToolStripMenuItem;
 	}
 }
 

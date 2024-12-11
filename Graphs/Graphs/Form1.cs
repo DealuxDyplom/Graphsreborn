@@ -17,6 +17,10 @@ namespace Graphs
 		OpenFileDialog openFileDialog;
 		SaveFileDialog saveFileDialog;
 
+		// 0 - меняем столбец m, r
+		// 1 - меняем столбец A
+		uint column_change = 0;
+
 		int pointIndex = -1; //индекс точки на графике
 
 		//функция начального заполнения таблицы из csv файла (чтобы они не пустовали при открытии)
@@ -152,6 +156,72 @@ namespace Graphs
 			}
 		}
 
+		public void changeTableFromGrpahic()
+		{
+			double x = 0.011005050817319;
+			double y = -1.95840794769216;
+			double log_x = Math.Log(x, 10);
+			double y_10 = Math.Pow(10, log_x);
+
+			// редактируем таблицу Kinetika_Sorb_La3
+			DataGridView table = this.dataGridView_Kinetika_Sorb_La3;
+			int rowCount = table.RowCount;
+			for (int i = 0; i < rowCount - 1; i++)
+			{
+				table["Column_Kin_log_qe_qt", i].Value = this.graph.Series[0].Points[i].YValues[0];
+			}
+			for (int i = 0; i < rowCount - 1; i++)
+			{
+				double column_kin_qe_qt_i = Math.Pow(10, double.Parse(table["Column_Kin_log_qe_qt", i].Value.ToString()));
+				table["Column_Kin_qe_qt", i].Value = column_kin_qe_qt_i;
+			}
+			double Qe1 = 0.362;
+			for (int i = 0; i < rowCount - 1; i++)
+			{
+				table["Column_Kin_qt_ml", i].Value = Qe1 - double.Parse(table["Column_Kin_qe_qt", i].Value.ToString());
+			}
+
+			// редактируем таблицу Bentonit_La3
+			table = this.dataGridView_Bentonit_La3;
+			rowCount = table.RowCount;
+			for (int i = 1; i < rowCount - 1; i++)
+			{
+				table["Column_qt_ml", i].Value = this.dataGridView_Kinetika_Sorb_La3["Column_Kin_qt_ml", i].Value;
+			}
+			for (int i = 1; i < rowCount - 1; i++)
+			{
+				table["Column_qt", i].Value = double.Parse(table["Column_qt_ml", i].Value.ToString()) * 1355;
+			}
+			if (column_change == 0)
+			{
+				double C_0 = double.Parse(table["Column_C", 0].Value.ToString());
+				for (int i = 1; i < rowCount - 1; i++)
+				{
+					double column_c_0 = double.Parse(table["Column_C", i].Value.ToString());
+					double column_qt_i = double.Parse(table["Column_qt", i].Value.ToString());
+					table["Column_m_r", i].Value = (C_0 - column_c_0) * 20 / column_qt_i;
+
+				}
+			}
+			else if (column_change == 1)
+			{
+				double C_0 = double.Parse(table["Column_C", 0].Value.ToString());
+				for (int i = 1; i < rowCount - 1; i++)
+				{
+					double column_qt_i = double.Parse(table["Column_qt", i].Value.ToString());
+					double column_m_r_i = double.Parse(table["Column_m_r", i].Value.ToString());
+					table["Column_C", i].Value = C_0 - (column_qt_i * column_m_r_i / 20);
+
+				}
+				for (int i = 1; i < rowCount - 1; i++)
+				{
+					table["Column_A", i].Value = double.Parse(table["Column_C", i].Value.ToString()) * 0.0158;
+
+				}
+			}
+
+		}
+
 		// линия тренда рисуется по точкам на chart
 		public void drawTrendLine()
 		{
@@ -230,6 +300,8 @@ namespace Graphs
 			//string path_to_data_Kin = "D:\\Repositories\\GitHub\\Graphs\\KinLa3.txt";
 
 			this.splitContainer1.Panel2Collapsed = true;
+
+			((ToolStripMenuItem)changeColumnMRToolStripMenuItem).Checked = true;
 
 			//заполнение таблицы из файла
 			//Fill_DataGridView_Bentonit_La3(path_to_data, this.dataGridView_Bentonit_La3);
@@ -397,6 +469,21 @@ namespace Graphs
 			pointIndex = -1;
 
 			drawTrendLine();
+			changeTableFromGrpahic();
+		}
+
+		private void изменитьСтолбецMГToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			((ToolStripMenuItem)changeColumnMRToolStripMenuItem).Checked = true;
+			((ToolStripMenuItem)changeColumnAToolStripMenuItem).Checked = false;
+			column_change = 0;
+		}
+
+		private void changeColumnAToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			((ToolStripMenuItem)changeColumnAToolStripMenuItem).Checked = true;
+			((ToolStripMenuItem)changeColumnMRToolStripMenuItem).Checked = false;
+			column_change = 1;
 		}
 	}
 }
