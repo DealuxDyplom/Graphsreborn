@@ -314,15 +314,6 @@ namespace Graphs
 
 		}
 
-		private void Button_Load_Click(object sender, EventArgs e)
-		{
-			openFileDialog = new OpenFileDialog();
-			if (openFileDialog.ShowDialog() == DialogResult.OK)
-			{
-				readCSVtoDataGridView_Bentonit_La3(openFileDialog.FileName, this.dataGridView_Bentonit_La3);
-			}
-		}
-
 		private void button_Recalculate_Click(object sender, EventArgs e)
 		{
 			int rowCount = this.dataGridView_Bentonit_La3.RowCount;
@@ -484,6 +475,51 @@ namespace Graphs
 			((ToolStripMenuItem)changeColumnAToolStripMenuItem).Checked = true;
 			((ToolStripMenuItem)changeColumnMRToolStripMenuItem).Checked = false;
 			column_change = 1;
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
+
+		private void Save_Table_ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			saveFileDialog = new SaveFileDialog();
+			if (saveFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				StreamWriter sw = new StreamWriter(saveFileDialog.FileName);
+				//string[] strings = new string[this.dataGridView_Bentonit_La3.RowCount];
+				string title = "time|m|A|C|qt|qtm|%";
+				sw.WriteLine(title);
+				//strings[0] = title;
+				for (int i = 0; i < this.dataGridView_Bentonit_La3.RowCount - 1; i++)
+				{
+					for (int j = 0; j < this.dataGridView_Bentonit_La3.ColumnCount; j++)
+					{
+						sw.Write(this.dataGridView_Bentonit_La3.Rows[i].Cells[j].Value);
+						if (j != this.dataGridView_Bentonit_La3.ColumnCount - 1)
+						{
+							sw.Write("|");
+						}
+					}
+					sw.WriteLine();
+				}
+				sw.Close();
+			}
+		}
+
+		private void Load_Table_ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			openFileDialog = new OpenFileDialog();
+			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				readCSVtoDataGridView_Bentonit_La3(openFileDialog.FileName, this.dataGridView_Bentonit_La3);
+			}
 		}
 	}
 }
