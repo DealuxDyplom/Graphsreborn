@@ -12,8 +12,11 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Graphs
 {
+
 	public partial class Form1 : Form
 	{
+		AddSubstance addSubstanceForm;
+
 		OpenFileDialog openFileDialog;
 		SaveFileDialog saveFileDialog;
 
@@ -521,5 +524,11 @@ namespace Graphs
 				readCSVtoDataGridView_Bentonit_La3(openFileDialog.FileName, this.dataGridView_Bentonit_La3);
 			}
 		}
-	}
+
+        private void button_AddSubstance_Click(object sender, EventArgs e)
+        {
+			addSubstanceForm = new AddSubstance();
+			addSubstanceForm.Show();
+        }
+    }
 }

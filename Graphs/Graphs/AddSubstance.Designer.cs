@@ -1,0 +1,131 @@
+﻿namespace Graphs
+{
+    partial class AddSubstance
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView_Substance = new System.Windows.Forms.DataGridView();
+            this.Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_m_r = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_Add = new System.Windows.Forms.Button();
+            this.tableLayoutPanelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Substance)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // tableLayoutPanelMain
+            // 
+            this.tableLayoutPanelMain.ColumnCount = 2;
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMain.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.dataGridView_Substance, 0, 1);
+            this.tableLayoutPanelMain.Controls.Add(this.button_Add, 0, 2);
+            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            this.tableLayoutPanelMain.RowCount = 3;
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(798, 486);
+            this.tableLayoutPanelMain.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Введите данные";
+            // 
+            // dataGridView_Substance
+            // 
+            this.dataGridView_Substance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Substance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_time,
+            this.Column_m_r,
+            this.Column_A});
+            this.dataGridView_Substance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_Substance.Location = new System.Drawing.Point(3, 164);
+            this.dataGridView_Substance.Name = "dataGridView_Substance";
+            this.dataGridView_Substance.Size = new System.Drawing.Size(393, 155);
+            this.dataGridView_Substance.TabIndex = 1;
+            // 
+            // Column_time
+            // 
+            this.Column_time.HeaderText = "обр\\врем";
+            this.Column_time.Name = "Column_time";
+            // 
+            // Column_m_r
+            // 
+            this.Column_m_r.HeaderText = "m, г";
+            this.Column_m_r.Name = "Column_m_r";
+            // 
+            // Column_A
+            // 
+            this.Column_A.HeaderText = "А";
+            this.Column_A.Name = "Column_A";
+            // 
+            // button_Add
+            // 
+            this.button_Add.Location = new System.Drawing.Point(3, 325);
+            this.button_Add.Name = "button_Add";
+            this.button_Add.Size = new System.Drawing.Size(75, 23);
+            this.button_Add.TabIndex = 2;
+            this.button_Add.Text = "Добавить";
+            this.button_Add.UseVisualStyleBackColor = true;
+            // 
+            // AddSubstance
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(798, 486);
+            this.Controls.Add(this.tableLayoutPanelMain);
+            this.Name = "AddSubstance";
+            this.Text = "AddSubstance";
+            this.tableLayoutPanelMain.ResumeLayout(false);
+            this.tableLayoutPanelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Substance)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView_Substance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_m_r;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_A;
+        private System.Windows.Forms.Button button_Add;
+    }
+}
