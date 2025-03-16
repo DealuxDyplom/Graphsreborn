@@ -8,15 +8,18 @@ namespace Graphs
 {
     struct Substance
     {
-        public float time;
-        public float m_r;
-        public float A;
-        public float C;
-        public float qt_mk;
-        public float qt_ml;
-        public float proc;
+        public double time;
+        public double concentration;
+        public double m_r;
+        public double A;
+        public double A_src;
+        public double C_mkmol_l_src;
+        public double C_mkmol_l;
+        public double Q_mr;
+        public double Q_ml;
+        public double proc;
     };
-    static class Data
+    static class DataBank
     {
         public static List<Substance> ListOfSubstance;
     }

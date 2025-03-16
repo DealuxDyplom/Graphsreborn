@@ -31,10 +31,16 @@
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_Substance = new System.Windows.Forms.DataGridView();
+            this.button_Add = new System.Windows.Forms.Button();
+            this.button_FillFromFile = new System.Windows.Forms.Button();
+            this.textBox_NameSubstance = new System.Windows.Forms.TextBox();
             this.Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.A_src = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_m_r = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button_Add = new System.Windows.Forms.Button();
+            this.Column_C_mkmol_l_src = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_C_mkmol_l = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_Q_ml = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Substance)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +53,8 @@
             this.tableLayoutPanelMain.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanelMain.Controls.Add(this.dataGridView_Substance, 0, 1);
             this.tableLayoutPanelMain.Controls.Add(this.button_Add, 0, 2);
+            this.tableLayoutPanelMain.Controls.Add(this.textBox_NameSubstance, 1, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.button_FillFromFile, 1, 2);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
@@ -54,7 +62,7 @@
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(798, 486);
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1224, 550);
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
             // label1
@@ -71,18 +79,54 @@
             this.dataGridView_Substance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Substance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_time,
+            this.A_src,
             this.Column_m_r,
-            this.Column_A});
+            this.Column_A,
+            this.Column_C_mkmol_l_src,
+            this.Column_C_mkmol_l,
+            this.Column_Q_ml});
+            this.tableLayoutPanelMain.SetColumnSpan(this.dataGridView_Substance, 2);
             this.dataGridView_Substance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_Substance.Location = new System.Drawing.Point(3, 164);
+            this.dataGridView_Substance.Location = new System.Drawing.Point(3, 186);
             this.dataGridView_Substance.Name = "dataGridView_Substance";
-            this.dataGridView_Substance.Size = new System.Drawing.Size(393, 155);
+            this.dataGridView_Substance.Size = new System.Drawing.Size(1218, 177);
             this.dataGridView_Substance.TabIndex = 1;
+            // 
+            // button_Add
+            // 
+            this.button_Add.Location = new System.Drawing.Point(3, 369);
+            this.button_Add.Name = "button_Add";
+            this.button_Add.Size = new System.Drawing.Size(75, 23);
+            this.button_Add.TabIndex = 2;
+            this.button_Add.Text = "Добавить";
+            this.button_Add.UseVisualStyleBackColor = true;
+            this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
+            // 
+            // button_FillFromFile
+            // 
+            this.button_FillFromFile.Location = new System.Drawing.Point(615, 369);
+            this.button_FillFromFile.Name = "button_FillFromFile";
+            this.button_FillFromFile.Size = new System.Drawing.Size(119, 23);
+            this.button_FillFromFile.TabIndex = 3;
+            this.button_FillFromFile.Text = "Заполнить из файла";
+            this.button_FillFromFile.UseVisualStyleBackColor = true;
+            // 
+            // textBox_NameSubstance
+            // 
+            this.textBox_NameSubstance.Location = new System.Drawing.Point(615, 3);
+            this.textBox_NameSubstance.Name = "textBox_NameSubstance";
+            this.textBox_NameSubstance.Size = new System.Drawing.Size(100, 20);
+            this.textBox_NameSubstance.TabIndex = 4;
             // 
             // Column_time
             // 
             this.Column_time.HeaderText = "обр\\врем";
             this.Column_time.Name = "Column_time";
+            // 
+            // A_src
+            // 
+            this.A_src.HeaderText = "A, исх";
+            this.A_src.Name = "A_src";
             // 
             // Column_m_r
             // 
@@ -94,20 +138,26 @@
             this.Column_A.HeaderText = "А";
             this.Column_A.Name = "Column_A";
             // 
-            // button_Add
+            // Column_C_mkmol_l_src
             // 
-            this.button_Add.Location = new System.Drawing.Point(3, 325);
-            this.button_Add.Name = "button_Add";
-            this.button_Add.Size = new System.Drawing.Size(75, 23);
-            this.button_Add.TabIndex = 2;
-            this.button_Add.Text = "Добавить";
-            this.button_Add.UseVisualStyleBackColor = true;
+            this.Column_C_mkmol_l_src.HeaderText = "С,мкмоль/л исх";
+            this.Column_C_mkmol_l_src.Name = "Column_C_mkmol_l_src";
+            // 
+            // Column_C_mkmol_l
+            // 
+            this.Column_C_mkmol_l.HeaderText = "С,мкмоль/л";
+            this.Column_C_mkmol_l.Name = "Column_C_mkmol_l";
+            // 
+            // Column_Q_ml
+            // 
+            this.Column_Q_ml.HeaderText = "Q, мкмоль/г";
+            this.Column_Q_ml.Name = "Column_Q_ml";
             // 
             // AddSubstance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 486);
+            this.ClientSize = new System.Drawing.Size(1224, 550);
             this.Controls.Add(this.tableLayoutPanelMain);
             this.Name = "AddSubstance";
             this.Text = "AddSubstance";
@@ -123,9 +173,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView_Substance;
+        private System.Windows.Forms.Button button_Add;
+        private System.Windows.Forms.Button button_FillFromFile;
+        private System.Windows.Forms.TextBox textBox_NameSubstance;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn A_src;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_m_r;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_A;
-        private System.Windows.Forms.Button button_Add;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_C_mkmol_l_src;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_C_mkmol_l;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_Q_ml;
     }
 }

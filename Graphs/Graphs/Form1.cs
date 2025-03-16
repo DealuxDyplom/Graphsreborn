@@ -314,6 +314,7 @@ namespace Graphs
 			//this.splitContainer1.Panel2Collapsed = false;
 			//createGraphics();
 
+			DataBank.ListOfSubstance = new List<Substance>();
 
 		}
 
@@ -527,8 +528,15 @@ namespace Graphs
 
         private void button_AddSubstance_Click(object sender, EventArgs e)
         {
-			addSubstanceForm = new AddSubstance();
-			addSubstanceForm.Show();
+			addSubstanceForm = new AddSubstance(this);
+			addSubstanceForm.ShowDialog();
+            MessageBox.Show("окно закрылось");
+			for (int i = 0; i < DataBank.ListOfSubstance.Count; i++)
+			{
+				dataGridView_TableOne.Rows[i].Cells[0].Value = DataBank.ListOfSubstance[i].concentration;
+                dataGridView_TableOne.Rows[i].Cells[1].Value = DataBank.ListOfSubstance[i].m_r;
+                dataGridView_TableOne.Rows[i].Cells[2].Value = DataBank.ListOfSubstance[i].A;
+            }
         }
     }
 }
