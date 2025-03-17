@@ -71,11 +71,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(271, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.Size = new System.Drawing.Size(133, 183);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Введите данные";
+            this.label1.Text = "Введите название:";
             // 
             // dataGridView_Substance
             // 
@@ -142,14 +144,15 @@
             // 
             // textBox_NameSubstance
             // 
-            this.textBox_NameSubstance.Location = new System.Drawing.Point(411, 3);
+            this.textBox_NameSubstance.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox_NameSubstance.Location = new System.Drawing.Point(410, 3);
             this.textBox_NameSubstance.Name = "textBox_NameSubstance";
-            this.textBox_NameSubstance.Size = new System.Drawing.Size(100, 20);
+            this.textBox_NameSubstance.Size = new System.Drawing.Size(401, 20);
             this.textBox_NameSubstance.TabIndex = 4;
             // 
             // button_FillFromFile
             // 
-            this.button_FillFromFile.Location = new System.Drawing.Point(819, 369);
+            this.button_FillFromFile.Location = new System.Drawing.Point(817, 369);
             this.button_FillFromFile.Name = "button_FillFromFile";
             this.button_FillFromFile.Size = new System.Drawing.Size(119, 23);
             this.button_FillFromFile.TabIndex = 3;
@@ -159,7 +162,7 @@
             // 
             // button_Calculate
             // 
-            this.button_Calculate.Location = new System.Drawing.Point(411, 369);
+            this.button_Calculate.Location = new System.Drawing.Point(410, 369);
             this.button_Calculate.Name = "button_Calculate";
             this.button_Calculate.Size = new System.Drawing.Size(75, 23);
             this.button_Calculate.TabIndex = 5;

@@ -534,9 +534,11 @@ namespace Graphs
 			for (int i = 0; i < DataBank.ListOfSubstance.Count; i++)
 			{
 				//dataGridView_TableOne.Rows[i].Cells[0].Value = DataBank.ListOfSubstance[i].concentration;
-    //            dataGridView_TableOne.Rows[i].Cells[1].Value = DataBank.ListOfSubstance[i].m_r;
-    //            dataGridView_TableOne.Rows[i].Cells[2].Value = DataBank.ListOfSubstance[i].A;
-                string[] row = new string[] { DataBank.ListOfSubstance[i].concentration.ToString(), DataBank.ListOfSubstance[i].m_r.ToString(), DataBank.ListOfSubstance[i].A.ToString() };
+				//            dataGridView_TableOne.Rows[i].Cells[1].Value = DataBank.ListOfSubstance[i].m_r;
+				//            dataGridView_TableOne.Rows[i].Cells[2].Value = DataBank.ListOfSubstance[i].A;
+				//            string[] row = new string[] { DataBank.ListOfSubstance[i].concentration.ToString(), DataBank.ListOfSubstance[i].m_r.ToString(), DataBank.ListOfSubstance[i].A.ToString() };
+				//dataGridView_TableOne.Rows.Add(row);
+				string[] row = new string[] { DataBank.ListOfSubstance[i].name };
 				dataGridView_TableOne.Rows.Add(row);
             }
         }

@@ -14,6 +14,7 @@ namespace Graphs
     public partial class AddSubstance: Form
     {
         OpenFileDialog openFileDialog;
+        SubstanceData substanceData;
         Substance substance;
         public AddSubstance(Form1 owner)
         {
@@ -22,23 +23,26 @@ namespace Graphs
 
         private void button_Add_Click(object sender, EventArgs e)
         {
+
             for (int i = 0; i < dataGridView_Substance.RowCount - 1; i++)
             {
-                substance.concentration = double.Parse(dataGridView_Substance.Rows[i].Cells[0].Value.ToString());
-                substance.A_src = double.Parse(dataGridView_Substance.Rows[i].Cells[1].Value.ToString());
-                substance.m_r = double.Parse(dataGridView_Substance.Rows[i].Cells[2].Value.ToString());
-                substance.A = double.Parse(dataGridView_Substance.Rows[i].Cells[3].Value.ToString());
+                substanceData.concentration = double.Parse(dataGridView_Substance.Rows[i].Cells[0].Value.ToString());
+                substanceData.A_src = double.Parse(dataGridView_Substance.Rows[i].Cells[1].Value.ToString());
+                substanceData.m_r = double.Parse(dataGridView_Substance.Rows[i].Cells[2].Value.ToString());
+                substanceData.A = double.Parse(dataGridView_Substance.Rows[i].Cells[3].Value.ToString());
 
-                substance.C_mkmol_l_src = ((substance.A_src / 0.0157) / 1355.38) * 1000;
-                substance.C_mkmol_l = (((substance.A / 0.0157) / 1355.38)) * 1000;
-                substance.Q_ml = (substance.C_mkmol_l_src - substance.C_mkmol_l) * 0.02 / substance.m_r;
+                substanceData.C_mkmol_l_src = ((substanceData.A_src / 0.0157) / 1355.38) * 1000;
+                substanceData.C_mkmol_l = (((substanceData.A / 0.0157) / 1355.38)) * 1000;
+                substanceData.Q_ml = (substanceData.C_mkmol_l_src - substanceData.C_mkmol_l) * 0.02 / substanceData.m_r;
 
-                dataGridView_Substance.Rows[i].Cells[4].Value = substance.C_mkmol_l_src;
-                dataGridView_Substance.Rows[i].Cells[5].Value = substance.C_mkmol_l;
-                dataGridView_Substance.Rows[i].Cells[6].Value = substance.Q_ml;
-
-                DataBank.ListOfSubstance.Add(substance);
-            } 
+                dataGridView_Substance.Rows[i].Cells[4].Value = substanceData.C_mkmol_l_src;
+                dataGridView_Substance.Rows[i].Cells[5].Value = substanceData.C_mkmol_l;
+                dataGridView_Substance.Rows[i].Cells[6].Value = substanceData.Q_ml;
+                substance.data = new List<SubstanceData>();
+                substance.data.Add(substanceData);
+            }
+            substance.name = textBox_NameSubstance.Text;
+            DataBank.ListOfSubstance.Add(substance);
         }
 
         private void button_FillFromFile_Click(object sender, EventArgs e)
