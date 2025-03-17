@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Graphs
 {
     public partial class AddSubstance: Form
     {
+        OpenFileDialog openFileDialog;
         Substance substance;
         public AddSubstance(Form1 owner)
         {
@@ -37,6 +39,36 @@ namespace Graphs
 
                 DataBank.ListOfSubstance.Add(substance);
             } 
+        }
+
+        private void button_FillFromFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //очищаем таблицу
+                dataGridView_Substance.Rows.Clear();
+                dataGridView_Substance.Refresh();
+
+                //чтение данных
+                string path_to_csv = openFileDialog.FileName;
+                string[] rows = File.ReadAllLines(path_to_csv);
+
+                for (int i = 1; i < rows.Length; i++)
+                {
+                    string[] columns = rows[i].Split('|');
+                    dataGridView_Substance.Rows.Add();
+                    for (int j = 0; j < columns.Length; j++)
+                    {
+                        dataGridView_Substance.Rows[i - 1].Cells[j].Value = columns[j];
+                    }
+                }
+            }
+        }
+
+        private void button_Calculate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
