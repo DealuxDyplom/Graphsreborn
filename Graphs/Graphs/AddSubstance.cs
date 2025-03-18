@@ -43,6 +43,7 @@ namespace Graphs
             }
             substance.name = textBox_NameSubstance.Text;
             DataBank.ListOfSubstance.Add(substance);
+            this.Close();
         }
 
         private void button_FillFromFile_Click(object sender, EventArgs e)

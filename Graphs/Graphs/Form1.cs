@@ -530,8 +530,13 @@ namespace Graphs
         {
 			addSubstanceForm = new AddSubstance(this);
 			addSubstanceForm.ShowDialog();
-            MessageBox.Show("окно закрылось");
-			for (int i = 0; i < DataBank.ListOfSubstance.Count; i++)
+            //MessageBox.Show("окно закрылось");
+            dataGridView_TableOne.Rows.Clear();
+            dataGridView_TableOne.Refresh();
+            dataGridView_TableTwo.Rows.Clear();
+            dataGridView_TableTwo.Refresh();
+
+            for (int i = 0; i < DataBank.ListOfSubstance.Count; i++)
 			{
 				//dataGridView_TableOne.Rows[i].Cells[0].Value = DataBank.ListOfSubstance[i].concentration;
 				//            dataGridView_TableOne.Rows[i].Cells[1].Value = DataBank.ListOfSubstance[i].m_r;
@@ -540,6 +545,7 @@ namespace Graphs
 				//dataGridView_TableOne.Rows.Add(row);
 				string[] row = new string[] { DataBank.ListOfSubstance[i].name };
 				dataGridView_TableOne.Rows.Add(row);
+                dataGridView_TableTwo.Rows.Add(row);
             }
         }
     }

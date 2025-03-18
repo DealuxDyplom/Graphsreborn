@@ -28,10 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label_Bent = new System.Windows.Forms.Label();
             this.dataGridView_Bentonit_La3 = new System.Windows.Forms.DataGridView();
             this.Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,15 +75,14 @@
             this.tabPage_Graphs = new System.Windows.Forms.TabPage();
             this.tabPage_Comparison = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView_TableOne = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_TableTwo = new System.Windows.Forms.DataGridView();
             this.button_AddSubstance = new System.Windows.Forms.Button();
             this.button_Compare = new System.Windows.Forms.Button();
             this.button_Clear = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView_TableOne = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTableTwoColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Bentonit_La3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Kinetika_Sorb_La3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
@@ -99,8 +98,8 @@
             this.tabPage_Graphs.SuspendLayout();
             this.tabPage_Comparison.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableOne)).BeginInit();
             this.SuspendLayout();
             // 
             // label_Bent
@@ -233,24 +232,24 @@
             // 
             // graph
             // 
-            chartArea2.Name = "ChartArea1";
-            this.graph.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.graph.ChartAreas.Add(chartArea4);
             this.tableLayoutPanel_Graphs.SetColumnSpan(this.graph, 4);
             this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.graph.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            this.graph.Legends.Add(legend4);
             this.graph.Location = new System.Drawing.Point(3, 3);
             this.graph.Name = "graph";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "TrendLine";
-            this.graph.Series.Add(series3);
-            this.graph.Series.Add(series4);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "TrendLine";
+            this.graph.Series.Add(series7);
+            this.graph.Series.Add(series8);
             this.graph.Size = new System.Drawing.Size(498, 386);
             this.graph.TabIndex = 0;
             this.graph.Text = "График";
@@ -550,39 +549,17 @@
             this.tableLayoutPanelMain.Size = new System.Drawing.Size(1212, 506);
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
-            // dataGridView_TableOne
-            // 
-            this.dataGridView_TableOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_TableOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.dataGridView_TableOne.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView_TableOne.Name = "dataGridView_TableOne";
-            this.dataGridView_TableOne.Size = new System.Drawing.Size(297, 180);
-            this.dataGridView_TableOne.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "обр\\врем";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "m, г";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "А";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
             // dataGridView_TableTwo
             // 
+            this.dataGridView_TableTwo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_TableTwo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_TableTwo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTableTwoColumn1});
+            this.dataGridView_TableTwo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_TableTwo.Location = new System.Drawing.Point(609, 3);
             this.dataGridView_TableTwo.Name = "dataGridView_TableTwo";
-            this.dataGridView_TableTwo.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView_TableTwo.ReadOnly = true;
+            this.dataGridView_TableTwo.Size = new System.Drawing.Size(297, 237);
             this.dataGridView_TableTwo.TabIndex = 1;
             // 
             // button_AddSubstance
@@ -622,6 +599,31 @@
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // dataGridView_TableOne
+            // 
+            this.dataGridView_TableOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_TableOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_TableOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.dataGridView_TableOne.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_TableOne.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView_TableOne.Name = "dataGridView_TableOne";
+            this.dataGridView_TableOne.ReadOnly = true;
+            this.dataGridView_TableOne.Size = new System.Drawing.Size(297, 237);
+            this.dataGridView_TableOne.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Название вещества";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTableTwoColumn1
+            // 
+            this.dataGridViewTableTwoColumn1.HeaderText = "Название вещества";
+            this.dataGridViewTableTwoColumn1.Name = "dataGridViewTableTwoColumn1";
+            this.dataGridViewTableTwoColumn1.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -652,8 +654,8 @@
             this.tabPage_Graphs.ResumeLayout(false);
             this.tabPage_Comparison.ResumeLayout(false);
             this.tableLayoutPanelMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableOne)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,8 +712,7 @@
         private System.Windows.Forms.Button button_Clear;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTableTwoColumn1;
     }
 }
 
