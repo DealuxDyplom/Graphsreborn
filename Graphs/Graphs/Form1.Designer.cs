@@ -28,10 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label_Bent = new System.Windows.Forms.Label();
             this.dataGridView_Bentonit_La3 = new System.Windows.Forms.DataGridView();
             this.Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,8 +85,11 @@
             this.button_Clear = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView_TableOne = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTableTwoColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStripForTable = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.свойстваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dataGridViewTextBox_SubstanceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTableTwo_SubstanceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Bentonit_La3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Kinetika_Sorb_La3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
@@ -100,6 +107,8 @@
             this.tableLayoutPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableTwo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableOne)).BeginInit();
+            this.contextMenuStripForTable.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // label_Bent
@@ -232,24 +241,24 @@
             // 
             // graph
             // 
-            chartArea4.Name = "ChartArea1";
-            this.graph.ChartAreas.Add(chartArea4);
+            chartArea3.Name = "ChartArea1";
+            this.graph.ChartAreas.Add(chartArea3);
             this.tableLayoutPanel_Graphs.SetColumnSpan(this.graph, 4);
             this.graph.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.graph.Legends.Add(legend4);
+            legend3.Name = "Legend1";
+            this.graph.Legends.Add(legend3);
             this.graph.Location = new System.Drawing.Point(3, 3);
             this.graph.Name = "graph";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Legend = "Legend1";
-            series8.Name = "TrendLine";
-            this.graph.Series.Add(series7);
-            this.graph.Series.Add(series8);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "TrendLine";
+            this.graph.Series.Add(series4);
+            this.graph.Series.Add(series5);
             this.graph.Size = new System.Drawing.Size(498, 386);
             this.graph.TabIndex = 0;
             this.graph.Text = "График";
@@ -539,12 +548,14 @@
             this.tableLayoutPanelMain.Controls.Add(this.button_Clear, 2, 1);
             this.tableLayoutPanelMain.Controls.Add(this.button4, 3, 1);
             this.tableLayoutPanelMain.Controls.Add(this.dataGridView_TableOne, 0, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.chart1, 0, 2);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 3;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelMain.Size = new System.Drawing.Size(1212, 506);
             this.tableLayoutPanelMain.TabIndex = 0;
@@ -554,17 +565,17 @@
             this.dataGridView_TableTwo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_TableTwo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_TableTwo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTableTwoColumn1});
+            this.dataGridViewTableTwo_SubstanceName});
             this.dataGridView_TableTwo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_TableTwo.Location = new System.Drawing.Point(609, 3);
             this.dataGridView_TableTwo.Name = "dataGridView_TableTwo";
             this.dataGridView_TableTwo.ReadOnly = true;
-            this.dataGridView_TableTwo.Size = new System.Drawing.Size(297, 237);
+            this.dataGridView_TableTwo.Size = new System.Drawing.Size(297, 162);
             this.dataGridView_TableTwo.TabIndex = 1;
             // 
             // button_AddSubstance
             // 
-            this.button_AddSubstance.Location = new System.Drawing.Point(3, 246);
+            this.button_AddSubstance.Location = new System.Drawing.Point(3, 171);
             this.button_AddSubstance.Name = "button_AddSubstance";
             this.button_AddSubstance.Size = new System.Drawing.Size(75, 23);
             this.button_AddSubstance.TabIndex = 2;
@@ -574,16 +585,17 @@
             // 
             // button_Compare
             // 
-            this.button_Compare.Location = new System.Drawing.Point(306, 246);
+            this.button_Compare.Location = new System.Drawing.Point(306, 171);
             this.button_Compare.Name = "button_Compare";
             this.button_Compare.Size = new System.Drawing.Size(75, 23);
             this.button_Compare.TabIndex = 3;
             this.button_Compare.Text = "Сравнить";
             this.button_Compare.UseVisualStyleBackColor = true;
+            this.button_Compare.Click += new System.EventHandler(this.button_Compare_Click);
             // 
             // button_Clear
             // 
-            this.button_Clear.Location = new System.Drawing.Point(609, 246);
+            this.button_Clear.Location = new System.Drawing.Point(609, 171);
             this.button_Clear.Name = "button_Clear";
             this.button_Clear.Size = new System.Drawing.Size(75, 23);
             this.button_Clear.TabIndex = 4;
@@ -592,7 +604,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(912, 246);
+            this.button4.Location = new System.Drawing.Point(912, 171);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 5;
@@ -604,25 +616,59 @@
             this.dataGridView_TableOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_TableOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_TableOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
+            this.dataGridViewTextBox_SubstanceName});
+            this.dataGridView_TableOne.ContextMenuStrip = this.contextMenuStripForTable;
             this.dataGridView_TableOne.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_TableOne.Location = new System.Drawing.Point(3, 3);
             this.dataGridView_TableOne.Name = "dataGridView_TableOne";
             this.dataGridView_TableOne.ReadOnly = true;
-            this.dataGridView_TableOne.Size = new System.Drawing.Size(297, 237);
+            this.dataGridView_TableOne.Size = new System.Drawing.Size(297, 162);
             this.dataGridView_TableOne.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn1
+            // contextMenuStripForTable
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Название вещества";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.contextMenuStripForTable.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.свойстваToolStripMenuItem});
+            this.contextMenuStripForTable.Name = "contextMenuStripForTable";
+            this.contextMenuStripForTable.Size = new System.Drawing.Size(126, 26);
+            this.contextMenuStripForTable.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripForTable_Opening);
             // 
-            // dataGridViewTableTwoColumn1
+            // свойстваToolStripMenuItem
             // 
-            this.dataGridViewTableTwoColumn1.HeaderText = "Название вещества";
-            this.dataGridViewTableTwoColumn1.Name = "dataGridViewTableTwoColumn1";
-            this.dataGridViewTableTwoColumn1.ReadOnly = true;
+            this.свойстваToolStripMenuItem.Name = "свойстваToolStripMenuItem";
+            this.свойстваToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.свойстваToolStripMenuItem.Text = "Свойства";
+            this.свойстваToolStripMenuItem.Click += new System.EventHandler(this.свойстваToolStripMenuItem_Click);
+            // 
+            // chart1
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            this.tableLayoutPanelMain.SetColumnSpan(this.chart1, 4);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
+            this.chart1.Location = new System.Drawing.Point(3, 339);
+            this.chart1.Name = "chart1";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart1.Series.Add(series6);
+            this.chart1.Size = new System.Drawing.Size(1206, 164);
+            this.chart1.TabIndex = 6;
+            this.chart1.Text = "chart1";
+            // 
+            // dataGridViewTextBox_SubstanceName
+            // 
+            this.dataGridViewTextBox_SubstanceName.HeaderText = "Название вещества";
+            this.dataGridViewTextBox_SubstanceName.Name = "dataGridViewTextBox_SubstanceName";
+            this.dataGridViewTextBox_SubstanceName.ReadOnly = true;
+            // 
+            // dataGridViewTableTwo_SubstanceName
+            // 
+            this.dataGridViewTableTwo_SubstanceName.HeaderText = "Название вещества";
+            this.dataGridViewTableTwo_SubstanceName.Name = "dataGridViewTableTwo_SubstanceName";
+            this.dataGridViewTableTwo_SubstanceName.ReadOnly = true;
             // 
             // Form1
             // 
@@ -656,6 +702,8 @@
             this.tableLayoutPanelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableTwo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TableOne)).EndInit();
+            this.contextMenuStripForTable.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -711,8 +759,11 @@
         private System.Windows.Forms.Button button_Compare;
         private System.Windows.Forms.Button button_Clear;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTableTwoColumn1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripForTable;
+        private System.Windows.Forms.ToolStripMenuItem свойстваToolStripMenuItem;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTableTwo_SubstanceName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBox_SubstanceName;
     }
 }
 

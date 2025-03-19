@@ -23,7 +23,7 @@ namespace Graphs
 
         private void button_Add_Click(object sender, EventArgs e)
         {
-
+            substance.data = new List<SubstanceData>();
             for (int i = 0; i < dataGridView_Substance.RowCount - 1; i++)
             {
                 substanceData.concentration = double.Parse(dataGridView_Substance.Rows[i].Cells[0].Value.ToString());
@@ -38,7 +38,6 @@ namespace Graphs
                 dataGridView_Substance.Rows[i].Cells[4].Value = substanceData.C_mkmol_l_src;
                 dataGridView_Substance.Rows[i].Cells[5].Value = substanceData.C_mkmol_l;
                 dataGridView_Substance.Rows[i].Cells[6].Value = substanceData.Q_ml;
-                substance.data = new List<SubstanceData>();
                 substance.data.Add(substanceData);
             }
             substance.name = textBox_NameSubstance.Text;

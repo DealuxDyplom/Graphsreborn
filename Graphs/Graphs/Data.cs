@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
-    struct SubstanceData
+    public struct SubstanceData
     {
         public double time;
         public double concentration;
@@ -19,7 +19,7 @@ namespace Graphs
         public double Q_ml;
         public double proc;
     }
-    struct Substance
+    public struct Substance
     {
         public string name;
         public List<SubstanceData> data;

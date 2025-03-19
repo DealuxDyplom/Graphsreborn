@@ -16,6 +16,7 @@ namespace Graphs
 	public partial class Form1 : Form
 	{
 		AddSubstance addSubstanceForm;
+		Propertys propertysForm;
 
 		OpenFileDialog openFileDialog;
 		SaveFileDialog saveFileDialog;
@@ -546,6 +547,44 @@ namespace Graphs
 				string[] row = new string[] { DataBank.ListOfSubstance[i].name };
 				dataGridView_TableOne.Rows.Add(row);
                 dataGridView_TableTwo.Rows.Add(row);
+            }
+        }
+
+        private void свойстваToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var point = dataGridView_TableOne.PointToClient(contextMenuStripForTable.Bounds.Location);
+            var info = dataGridView_TableOne.HitTest(point.X, point.Y);
+
+			string Substance_name = dataGridView_TableOne.Rows[info.RowIndex].Cells[0].Value.ToString();
+
+			for (int i = 0; i < DataBank.ListOfSubstance.Count; i++)
+			{
+				if (DataBank.ListOfSubstance[i].name == Substance_name)
+				{
+					propertysForm = new Propertys(DataBank.ListOfSubstance[i]);
+					propertysForm.Show();
+				}
+			}
+
+        }
+
+        private void button_Compare_Click(object sender, EventArgs e)
+        {
+            int index_TableOne = dataGridView_TableOne.CurrentCell.RowIndex;
+            int index_TableTwo = dataGridView_TableTwo.CurrentCell.RowIndex;
+
+
+        }
+
+        private void contextMenuStripForTable_Opening(object sender, CancelEventArgs e)
+        {
+			var point = dataGridView_TableOne.PointToClient(contextMenuStripForTable.Bounds.Location);
+			var info = dataGridView_TableOne.HitTest(point.X, point.Y);
+
+            // Отменяем показ контекстного меню, если клик был не на ячейке
+            if (info.RowIndex == -1 || info.ColumnIndex == -1)
+            {
+                e.Cancel = true;
             }
         }
     }
