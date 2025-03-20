@@ -17,5 +17,13 @@ namespace Graphs
             InitializeComponent();
         }
 
+        #region [ Kinetics ]
+        private void button_AddSubstance_Click(object sender, EventArgs e)
+        {
+            AddSubstance addSubstanceForm = new AddSubstance();
+            addSubstanceForm.ShowDialog();
+        }
+
+        #endregion
     }
 }
