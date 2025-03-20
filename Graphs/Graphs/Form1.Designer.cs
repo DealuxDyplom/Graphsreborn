@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button_AddSubstance = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.button_Compare = new System.Windows.Forms.Button();
+            this.chart_Graphs = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -60,6 +66,35 @@
             this.tabPage1.Text = "Кинетика";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button_Compare, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.chart_Graphs, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button_AddSubstance, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 418);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // button_AddSubstance
+            // 
+            this.button_AddSubstance.Location = new System.Drawing.Point(396, 103);
+            this.button_AddSubstance.Name = "button_AddSubstance";
+            this.button_AddSubstance.Size = new System.Drawing.Size(182, 44);
+            this.button_AddSubstance.TabIndex = 0;
+            this.button_AddSubstance.Text = "Добавить новый раствор";
+            this.button_AddSubstance.UseVisualStyleBackColor = true;
+            this.button_AddSubstance.Click += new System.EventHandler(this.button_AddSubstance_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -70,30 +105,38 @@
             this.tabPage2.Text = "Изотермы";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // flowLayoutPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.button_AddSubstance, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 418);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(387, 94);
+            this.flowLayoutPanel.TabIndex = 1;
             // 
-            // button_AddSubstance
+            // button_Compare
             // 
-            this.button_AddSubstance.Location = new System.Drawing.Point(3, 3);
-            this.button_AddSubstance.Name = "button_AddSubstance";
-            this.button_AddSubstance.Size = new System.Drawing.Size(182, 52);
-            this.button_AddSubstance.TabIndex = 0;
-            this.button_AddSubstance.Text = "Добавить новйы раствор";
-            this.button_AddSubstance.UseVisualStyleBackColor = true;
-            this.button_AddSubstance.Click += new System.EventHandler(this.button_AddSubstance_Click);
+            this.button_Compare.Location = new System.Drawing.Point(3, 103);
+            this.button_Compare.Name = "button_Compare";
+            this.button_Compare.Size = new System.Drawing.Size(182, 44);
+            this.button_Compare.TabIndex = 2;
+            this.button_Compare.Text = "Сравнить";
+            this.button_Compare.UseVisualStyleBackColor = true;
+            this.button_Compare.Click += new System.EventHandler(this.button_Compare_Click);
+            // 
+            // chart_Graphs
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart_Graphs.ChartAreas.Add(chartArea1);
+            this.tableLayoutPanel1.SetColumnSpan(this.chart_Graphs, 2);
+            this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart_Graphs.Legends.Add(legend1);
+            this.chart_Graphs.Location = new System.Drawing.Point(3, 153);
+            this.chart_Graphs.Name = "chart_Graphs";
+            this.chart_Graphs.Size = new System.Drawing.Size(780, 262);
+            this.chart_Graphs.TabIndex = 3;
+            this.chart_Graphs.Text = "chart1";
             // 
             // Form1
             // 
@@ -106,6 +149,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -117,6 +161,9 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button_AddSubstance;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+        private System.Windows.Forms.Button button_Compare;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart_Graphs;
     }
 }
 

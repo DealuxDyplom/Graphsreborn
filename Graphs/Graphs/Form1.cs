@@ -12,10 +12,13 @@ namespace Graphs
 {
     public partial class Form1: Form
     {
+        List<CheckBox> checkBoxes;
         public Form1()
         {
             InitializeComponent();
             Databank.substances = new List<Substance>();
+            checkBoxes = new List<CheckBox>();
+            chart_Graphs.Hide();
         }
 
         #region [ Kinetics ]
@@ -23,7 +26,42 @@ namespace Graphs
         {
             AddSubstance addSubstanceForm = new AddSubstance();
             addSubstanceForm.ShowDialog();
-            MessageBox.Show("Имя добавленного раствора: " + Databank.substances[0].name);
+
+            CheckBox checkBox = new CheckBox();
+            checkBox.Text = Databank.substances[Databank.substances.Count - 1].name;
+            flowLayoutPanel.Controls.Add(checkBox);
+            checkBoxes.Add(checkBox);
+        }
+
+        private void button_Compare_Click(object sender, EventArgs e)
+        {
+            chart_Graphs.Show();
+            chart_Graphs.Series.Clear();
+
+            for (int i = 0; i < checkBoxes.Count; i++)
+            {
+                if (checkBoxes[i].Checked)
+                {
+                    chart_Graphs.Series.Add(checkBoxes[i].Text);
+                    chart_Graphs.Series[chart_Graphs.Series.Count - 1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    
+                    //search substance name
+                    for (int j = 0; j < Databank.substances.Count; j++)
+                    {
+                        if (Databank.substances[j].name == checkBoxes[i].Text)
+                        {
+                            for (int k = 0; k < Databank.substances[j].data.Count; k++)
+                            {
+                                double x = Databank.substances[j].data[k].time;
+                                double y = Databank.substances[j].data[k].C_mkmol;
+                                chart_Graphs.Series[chart_Graphs.Series.Count - 1].Points.AddXY(x, y);
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         #endregion
