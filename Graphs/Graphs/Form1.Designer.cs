@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -38,9 +38,11 @@
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.button_Compare = new System.Windows.Forms.Button();
             this.chart_Graphs = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,6 +109,7 @@
             // 
             // flowLayoutPanel
             // 
+            this.flowLayoutPanel.Controls.Add(this.label1);
             this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel.Location = new System.Drawing.Point(3, 3);
@@ -126,17 +129,26 @@
             // 
             // chart_Graphs
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart_Graphs.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart_Graphs.ChartAreas.Add(chartArea2);
             this.tableLayoutPanel1.SetColumnSpan(this.chart_Graphs, 2);
             this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart_Graphs.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart_Graphs.Legends.Add(legend2);
             this.chart_Graphs.Location = new System.Drawing.Point(3, 153);
             this.chart_Graphs.Name = "chart_Graphs";
             this.chart_Graphs.Size = new System.Drawing.Size(780, 262);
             this.chart_Graphs.TabIndex = 3;
             this.chart_Graphs.Text = "chart1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Список растворов:";
             // 
             // Form1
             // 
@@ -149,6 +161,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel.ResumeLayout(false);
+            this.flowLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).EndInit();
             this.ResumeLayout(false);
 
@@ -164,6 +178,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Button button_Compare;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Graphs;
+        private System.Windows.Forms.Label label1;
     }
 }
 

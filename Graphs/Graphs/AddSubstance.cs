@@ -14,6 +14,7 @@ namespace Graphs
     public partial class AddSubstance: Form
     {
         Substance substance;
+        bool Recalulate_done = false;
 
         public AddSubstance()
         {
@@ -109,6 +110,33 @@ namespace Graphs
 
         private void button_Recalculate_Click(object sender, EventArgs e)
         {
+            //error handling
+            if (textBox_OpticDens.Text == "")
+            {
+                MessageBox.Show("Оптическая плотность раствора не указана", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (textBox_OpticDens.Text.Any(c => char.IsLetter(c)))
+            {
+                MessageBox.Show("Оптическая плотность не должна содержать буквы", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (label_SubstanceName.Text == "")
+            {
+                MessageBox.Show("Название раствора не указано", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (dataGridView1.Rows.Count - 1 == 0)
+            {
+                MessageBox.Show("Градуировка не заполнена", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (dataGridView_ExprData.Rows.Count - 1 == 0)
+            {
+                MessageBox.Show("Экспериментальные данные не указаны", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
 
             //clear and fill grad table and graph
             chart1.Series[0].Points.Clear();
@@ -198,10 +226,28 @@ namespace Graphs
 
                 substance.data.Add(substanceData);
             }
+
+            Recalulate_done = true;
         }
 
         private void button_AddSubstance_Click(object sender, EventArgs e)
         {
+            //error handling
+            if (!Recalulate_done)
+            {
+                MessageBox.Show("Выполните перерасчет", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            for (int i = 0; i < Databank.substances.Count; i++)
+            {
+                if (Databank.substances[i].name == textBox_SubstanceName.Text)
+                {
+                    MessageBox.Show("Раствор с таким названием уже есть", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            //add substance to list
             substance.name = textBox_SubstanceName.Text;
             Databank.substances.Add(substance);
             this.Close();

@@ -27,10 +27,15 @@ namespace Graphs
             AddSubstance addSubstanceForm = new AddSubstance();
             addSubstanceForm.ShowDialog();
 
-            CheckBox checkBox = new CheckBox();
-            checkBox.Text = Databank.substances[Databank.substances.Count - 1].name;
-            flowLayoutPanel.Controls.Add(checkBox);
-            checkBoxes.Add(checkBox);
+            flowLayoutPanel.Controls.Clear();
+            checkBoxes.Clear();
+
+            for (int i = 0; i < Databank.substances.Count; i++)
+            {
+                checkBoxes.Add(new CheckBox());
+                checkBoxes[checkBoxes.Count - 1].Text = Databank.substances[i].name;
+                flowLayoutPanel.Controls.Add(checkBoxes[checkBoxes.Count - 1]);
+            }
         }
 
         private void button_Compare_Click(object sender, EventArgs e)
