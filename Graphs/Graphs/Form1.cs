@@ -28,6 +28,9 @@ namespace Graphs
             addSubstanceForm.ShowDialog();
 
             flowLayoutPanel.Controls.Clear();
+            Label label_listSubstances = new Label();
+            label_listSubstances.Text = "Список растворов:";
+            flowLayoutPanel.Controls.Add(label_listSubstances);
             checkBoxes.Clear();
 
             for (int i = 0; i < Databank.substances.Count; i++)
