@@ -18,8 +18,13 @@ namespace Graphs
         public double m_r;
         public double A;
         public double C_mkmol;
-        public double qt_mk;
+        public double qt_mr;
         public double q_ml;
         public double proc;
+    }
+
+    static public class Databank
+    {
+        static public List<Substance> substances;
     }
 }

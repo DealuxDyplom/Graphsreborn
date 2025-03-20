@@ -13,9 +13,14 @@ namespace Graphs
 {
     public partial class AddSubstance: Form
     {
+        Substance substance;
+
         public AddSubstance()
         {
             InitializeComponent();
+
+            substance = new Substance();
+            substance.data = new List<SubstanceData>();
 
             //fill dataGridView
             string[] row1 = {"5", "0,089" };
@@ -104,10 +109,8 @@ namespace Graphs
 
         private void button_Recalculate_Click(object sender, EventArgs e)
         {
-            //clear and fill grad table and graph
-            //dataGridView1.Rows.Clear();
-            //dataGridView1.Refresh();
 
+            //clear and fill grad table and graph
             chart1.Series[0].Points.Clear();
             chart1.Series[1].Points.Clear();
 
@@ -179,10 +182,29 @@ namespace Graphs
                     dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString(),
                     C_mkmol.ToString(),
                     qt_mr.ToString(),
-                    qt_ml.ToString()
+                    qt_ml.ToString(),
+                    proc.ToString()
                 };
                 dataGridView_Data.Rows.Add(rows);
+
+                SubstanceData substanceData = new SubstanceData();
+                substanceData.time = Convert.ToDouble(dataGridView_ExprData["Column_time", i].Value);
+                substanceData.m_r = Convert.ToDouble(dataGridView_ExprData["Column_m_r", i].Value);
+                substanceData.A = Convert.ToDouble(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value);
+                substanceData.C_mkmol = C_mkmol;
+                substanceData.qt_mr = qt_mr;
+                substanceData.q_ml = qt_ml;
+                substanceData.proc = proc;
+
+                substance.data.Add(substanceData);
             }
+        }
+
+        private void button_AddSubstance_Click(object sender, EventArgs e)
+        {
+            substance.name = textBox_SubstanceName.Text;
+            Databank.substances.Add(substance);
+            this.Close();
         }
     }
 }

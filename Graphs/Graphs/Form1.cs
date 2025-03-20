@@ -15,6 +15,7 @@ namespace Graphs
         public Form1()
         {
             InitializeComponent();
+            Databank.substances = new List<Substance>();
         }
 
         #region [ Kinetics ]
@@ -22,6 +23,7 @@ namespace Graphs
         {
             AddSubstance addSubstanceForm = new AddSubstance();
             addSubstanceForm.ShowDialog();
+            MessageBox.Show("Имя добавленного раствора: " + Databank.substances[0].name);
         }
 
         #endregion
