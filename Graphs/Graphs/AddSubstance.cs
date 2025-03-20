@@ -62,6 +62,24 @@ namespace Graphs
             double x2_trendline = chart1.Series[0].Points[chart1.Series[0].Points.Count - 1].XValue;
             double y2_trendline = k1 + k2 * x2_trendline;
             this.chart1.Series[1].Points.AddXY(x2_trendline, y2_trendline);
+
+            textBox_Coef.Text = k2.ToString();
+
+            //find out determination
+            double SS_tot = 0;
+            double SS_res = 0;
+            double SS_reg = 0;
+            for (int i = 0; i < chart1.Series[0].Points.Count; i++)
+            {
+                double y_res = k1 + k2 * chart1.Series[0].Points[i].XValue;
+                SS_res += (chart1.Series[0].Points[i].YValues[0] - y_res) * (chart1.Series[0].Points[i].YValues[0] - y_res);
+                SS_reg += (y_res - y_srd) * (y_res - y_srd);
+            }
+
+            SS_tot = SS_reg + SS_res;
+
+            double determination = SS_reg / SS_tot;
+            textBox_Detr.Text = determination.ToString();
         }
     }
 }
