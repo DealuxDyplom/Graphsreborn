@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Newtonsoft.Json;
 
 namespace Graphs
 {
@@ -46,14 +48,15 @@ namespace Graphs
         {
             chart_Graphs.Show();
             chart_Graphs.Series.Clear();
-
+            Random rand = new Random();
             for (int i = 0; i < checkBoxes.Count; i++)
             {
                 if (checkBoxes[i].Checked)
                 {
                     Series added_series = chart_Graphs.Series.Add(checkBoxes[i].Text);
                     added_series.ChartType = SeriesChartType.Spline;
-                    added_series.Color = Color.Black;
+                    added_series.Color = Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
+                    added_series.BorderWidth = 3;
 
                     Series series_with_visible_points = chart_Graphs.Series.Add(i.ToString());
                     series_with_visible_points.ChartType = SeriesChartType.Point;
@@ -79,7 +82,61 @@ namespace Graphs
                             break;
                         }
                     }
+
+                    //paint points
+                    for (int j = 0; j < series_with_visible_points.Points.Count; j++)
+                    {
+                        series_with_visible_points.Points[j].MarkerSize = 10;
+                        series_with_visible_points.Points[j].MarkerBorderColor = Color.Black;
+                    }
                 }
+            }
+        }
+
+        #endregion
+
+        #region [Menu]
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var json = JsonConvert.SerializeObject(Databank.substances);
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (var writer = new StreamWriter(saveFileDialog.FileName, true))
+                {
+                    writer.WriteLine(json);
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader reader = new StreamReader(openFileDialog.FileName);
+                string json = reader.ReadToEnd();
+                Console.Write(json);
+                Databank.substances.Clear();
+                Databank.substances = JsonConvert.DeserializeObject<List<Substance>>(json);
+
+                //add new checkboxes
+                flowLayoutPanel.Controls.Clear();
+                Label label_listSubstances = new Label();
+                label_listSubstances.Text = "Список растворов:";
+                flowLayoutPanel.Controls.Add(label_listSubstances);
+                checkBoxes.Clear();
+
+                for (int i = 0; i < Databank.substances.Count; i++)
+                {
+                    checkBoxes.Add(new CheckBox());
+                    checkBoxes[checkBoxes.Count - 1].Text = Databank.substances[i].name;
+                    flowLayoutPanel.Controls.Add(checkBoxes[checkBoxes.Count - 1]);
+                }
+
             }
         }
 
