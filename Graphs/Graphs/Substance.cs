@@ -19,7 +19,7 @@ namespace Graphs
         public double A;
         public double C_mkmol;
         public double qt_mr;
-        public double q_ml;
+        public double qt_ml;
         public double proc;
     }
 

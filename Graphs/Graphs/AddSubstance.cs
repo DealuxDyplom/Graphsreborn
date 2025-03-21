@@ -60,17 +60,16 @@ namespace Graphs
             double x_2_srd = x_2_sum / chart1.Series[0].Points.Count;
             double xy_srd = xy_sum / chart1.Series[0].Points.Count;
 
-            double k2 = (xy_srd - x_srd * y_srd) / (x_2_srd - x_srd * x_srd);
-            double k1 = y_srd - k2*x_srd;
+            double k = (xy_sum) / x_2_sum;
 
             double x1_trendline = chart1.Series[0].Points[0].XValue;
-            double y1_trendline = k1 + k2 * x1_trendline;
+            double y1_trendline = k * x1_trendline;
             this.chart1.Series[1].Points.AddXY(x1_trendline, y1_trendline);
             double x2_trendline = chart1.Series[0].Points[chart1.Series[0].Points.Count - 1].XValue;
-            double y2_trendline = k1 + k2 * x2_trendline;
+            double y2_trendline = k * x2_trendline;
             this.chart1.Series[1].Points.AddXY(x2_trendline, y2_trendline);
 
-            textBox_Coef.Text = k2.ToString();
+            textBox_Coef.Text = k.ToString();
 
             //find out determination
             double SS_tot = 0;
@@ -78,7 +77,7 @@ namespace Graphs
             double SS_reg = 0;
             for (int i = 0; i < chart1.Series[0].Points.Count; i++)
             {
-                double y_res = k1 + k2 * chart1.Series[0].Points[i].XValue;
+                double y_res = k * chart1.Series[0].Points[i].XValue;
                 SS_res += (chart1.Series[0].Points[i].YValues[0] - y_res) * (chart1.Series[0].Points[i].YValues[0] - y_res);
                 SS_reg += (y_res - y_srd) * (y_res - y_srd);
             }
@@ -137,6 +136,9 @@ namespace Graphs
                 return;
             }
 
+            //clear substance data
+            substance = new Substance();
+            substance.data = new List<SubstanceData>();
 
             //clear and fill grad table and graph
             chart1.Series[0].Points.Clear();
@@ -167,17 +169,16 @@ namespace Graphs
             double x_2_srd = x_2_sum / chart1.Series[0].Points.Count;
             double xy_srd = xy_sum / chart1.Series[0].Points.Count;
 
-            double k2 = (xy_srd - x_srd * y_srd) / (x_2_srd - x_srd * x_srd);
-            double k1 = y_srd - k2 * x_srd;
+            double k = (xy_sum) / x_2_sum;
 
             double x1_trendline = chart1.Series[0].Points[0].XValue;
-            double y1_trendline = k1 + k2 * x1_trendline;
+            double y1_trendline = k * x1_trendline;
             this.chart1.Series[1].Points.AddXY(x1_trendline, y1_trendline);
             double x2_trendline = chart1.Series[0].Points[chart1.Series[0].Points.Count - 1].XValue;
-            double y2_trendline = k1 + k2 * x2_trendline;
+            double y2_trendline = k * x2_trendline;
             this.chart1.Series[1].Points.AddXY(x2_trendline, y2_trendline);
 
-            textBox_Coef.Text = k2.ToString();
+            textBox_Coef.Text = k.ToString();
 
             //find out determination
             double SS_tot = 0;
@@ -185,7 +186,7 @@ namespace Graphs
             double SS_reg = 0;
             for (int i = 0; i < chart1.Series[0].Points.Count; i++)
             {
-                double y_res = k1 + k2 * chart1.Series[0].Points[i].XValue;
+                double y_res = k * chart1.Series[0].Points[i].XValue;
                 SS_res += (chart1.Series[0].Points[i].YValues[0] - y_res) * (chart1.Series[0].Points[i].YValues[0] - y_res);
                 SS_reg += (y_res - y_srd) * (y_res - y_srd);
             }
@@ -196,11 +197,14 @@ namespace Graphs
             textBox_Detr.Text = determination.ToString();
 
             //fill dataGridView_Data
+            dataGridView_Data.Rows.Clear();
+            dataGridView_Data.Refresh();
+
             double OpticDens = double.Parse(textBox_OpticDens.Text);
-            double C_from_OpticDens = OpticDens / k2;
+            double C_from_OpticDens = OpticDens / k;
             for (int i = 0; i < dataGridView_ExprData.Rows.Count - 1; i++)
             {
-                double C_mkmol = double.Parse(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString()) / k2;
+                double C_mkmol = double.Parse(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString()) / k;
                 double qt_mr = (C_from_OpticDens - C_mkmol) * 20 / (double.Parse(dataGridView_ExprData["Column_m_r", i].Value.ToString()));
                 double qt_ml = qt_mr / 1355; //??? что такое 1355
                 double proc = (C_from_OpticDens - C_mkmol) / C_from_OpticDens * 100;
@@ -221,7 +225,7 @@ namespace Graphs
                 substanceData.A = Convert.ToDouble(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value);
                 substanceData.C_mkmol = C_mkmol;
                 substanceData.qt_mr = qt_mr;
-                substanceData.q_ml = qt_ml;
+                substanceData.qt_ml = qt_ml;
                 substanceData.proc = proc;
 
                 substance.data.Add(substanceData);

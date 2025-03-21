@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button_AddSubstance = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.button_Compare = new System.Windows.Forms.Button();
             this.chart_Graphs = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button_AddSubstance = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -87,6 +87,49 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 418);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.Controls.Add(this.label1);
+            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(387, 94);
+            this.flowLayoutPanel.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Список растворов:";
+            // 
+            // button_Compare
+            // 
+            this.button_Compare.Location = new System.Drawing.Point(3, 103);
+            this.button_Compare.Name = "button_Compare";
+            this.button_Compare.Size = new System.Drawing.Size(182, 44);
+            this.button_Compare.TabIndex = 2;
+            this.button_Compare.Text = "Сравнить";
+            this.button_Compare.UseVisualStyleBackColor = true;
+            this.button_Compare.Click += new System.EventHandler(this.button_Compare_Click);
+            // 
+            // chart_Graphs
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart_Graphs.ChartAreas.Add(chartArea1);
+            this.tableLayoutPanel1.SetColumnSpan(this.chart_Graphs, 2);
+            this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart_Graphs.Legends.Add(legend1);
+            this.chart_Graphs.Location = new System.Drawing.Point(3, 153);
+            this.chart_Graphs.Name = "chart_Graphs";
+            this.chart_Graphs.Size = new System.Drawing.Size(780, 262);
+            this.chart_Graphs.TabIndex = 3;
+            this.chart_Graphs.Text = "chart1";
+            // 
             // button_AddSubstance
             // 
             this.button_AddSubstance.Location = new System.Drawing.Point(396, 103);
@@ -106,49 +149,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Изотермы";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel
-            // 
-            this.flowLayoutPanel.Controls.Add(this.label1);
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(387, 94);
-            this.flowLayoutPanel.TabIndex = 1;
-            // 
-            // button_Compare
-            // 
-            this.button_Compare.Location = new System.Drawing.Point(3, 103);
-            this.button_Compare.Name = "button_Compare";
-            this.button_Compare.Size = new System.Drawing.Size(182, 44);
-            this.button_Compare.TabIndex = 2;
-            this.button_Compare.Text = "Сравнить";
-            this.button_Compare.UseVisualStyleBackColor = true;
-            this.button_Compare.Click += new System.EventHandler(this.button_Compare_Click);
-            // 
-            // chart_Graphs
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.chart_Graphs.ChartAreas.Add(chartArea2);
-            this.tableLayoutPanel1.SetColumnSpan(this.chart_Graphs, 2);
-            this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart_Graphs.Legends.Add(legend2);
-            this.chart_Graphs.Location = new System.Drawing.Point(3, 153);
-            this.chart_Graphs.Name = "chart_Graphs";
-            this.chart_Graphs.Size = new System.Drawing.Size(780, 262);
-            this.chart_Graphs.TabIndex = 3;
-            this.chart_Graphs.Text = "chart1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Список растворов:";
             // 
             // Form1
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Graphs
 {
@@ -50,9 +51,19 @@ namespace Graphs
             {
                 if (checkBoxes[i].Checked)
                 {
-                    chart_Graphs.Series.Add(checkBoxes[i].Text);
-                    chart_Graphs.Series[chart_Graphs.Series.Count - 1].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                    
+                    Series added_series = chart_Graphs.Series.Add(checkBoxes[i].Text);
+                    added_series.ChartType = SeriesChartType.Spline;
+                    added_series.Color = Color.Black;
+
+                    Series series_with_visible_points = chart_Graphs.Series.Add(i.ToString());
+                    series_with_visible_points.ChartType = SeriesChartType.Point;
+                    series_with_visible_points.IsVisibleInLegend = false;
+                    series_with_visible_points.Color = added_series.Color;
+
+                    //add null data into series
+                    added_series.Points.AddXY(0, 0);
+                    series_with_visible_points.Points.AddXY(0, 0);
+
                     //search substance name
                     for (int j = 0; j < Databank.substances.Count; j++)
                     {
@@ -61,10 +72,10 @@ namespace Graphs
                             for (int k = 0; k < Databank.substances[j].data.Count; k++)
                             {
                                 double x = Databank.substances[j].data[k].time;
-                                double y = Databank.substances[j].data[k].C_mkmol;
-                                chart_Graphs.Series[chart_Graphs.Series.Count - 1].Points.AddXY(x, y);
+                                double y = Databank.substances[j].data[k].qt_ml;
+                                added_series.Points.AddXY(x, y);
+                                series_with_visible_points.Points.AddXY(x, y);
                             }
-
                             break;
                         }
                     }
