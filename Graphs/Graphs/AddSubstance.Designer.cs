@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column_C_ml = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,30 +142,30 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.tableLayoutPanel_Graph.SetColumnSpan(this.chart1, 2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.Name = "Градуировка";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Линия тренда";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Legend = "Legend1";
+            series3.Name = "Градуировка";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "Линия тренда";
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(420, 128);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
-            title1.Name = "Title1";
-            title1.Text = "Градуировка";
-            this.chart1.Titles.Add(title1);
+            title2.Name = "Title1";
+            title2.Text = "Градуировка";
+            this.chart1.Titles.Add(title2);
             // 
             // textBox_Coef
             // 
@@ -417,6 +417,7 @@
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Name = "AddSubstance";
             this.Text = "AddSubstance";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddSubstance_FormClosed);
             this.tableLayoutPanel_Main.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel_Graph.ResumeLayout(false);

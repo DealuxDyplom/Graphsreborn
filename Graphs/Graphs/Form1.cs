@@ -25,11 +25,9 @@ namespace Graphs
         }
 
         #region [ Kinetics ]
-        private void button_AddSubstance_Click(object sender, EventArgs e)
-        {
-            AddSubstance addSubstanceForm = new AddSubstance();
-            addSubstanceForm.Show();
 
+        public void updateflowLayoutPanel()
+        {
             flowLayoutPanel.Controls.Clear();
             Label label_listSubstances = new Label();
             label_listSubstances.Text = "Список растворов:";
@@ -42,6 +40,25 @@ namespace Graphs
                 checkBoxes[checkBoxes.Count - 1].Text = Databank.substances[i].name;
                 flowLayoutPanel.Controls.Add(checkBoxes[checkBoxes.Count - 1]);
             }
+        }
+
+        private void button_AddSubstance_Click(object sender, EventArgs e)
+        {
+            AddSubstance addSubstanceForm = new AddSubstance(this);
+            addSubstanceForm.Show();
+
+            //flowLayoutPanel.Controls.Clear();
+            //Label label_listSubstances = new Label();
+            //label_listSubstances.Text = "Список растворов:";
+            //flowLayoutPanel.Controls.Add(label_listSubstances);
+            //checkBoxes.Clear();
+
+            //for (int i = 0; i < Databank.substances.Count; i++)
+            //{
+            //    checkBoxes.Add(new CheckBox());
+            //    checkBoxes[checkBoxes.Count - 1].Text = Databank.substances[i].name;
+            //    flowLayoutPanel.Controls.Add(checkBoxes[checkBoxes.Count - 1]);
+            //}
         }
 
         private void button_Compare_Click(object sender, EventArgs e)

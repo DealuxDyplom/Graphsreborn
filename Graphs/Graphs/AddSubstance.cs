@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Graphs
 {
@@ -15,10 +16,13 @@ namespace Graphs
     {
         Substance substance;
         bool Recalulate_done = false;
+        Form1 parent;
 
-        public AddSubstance()
+        public AddSubstance(Form1 owner)
         {
             InitializeComponent();
+
+            parent = owner;
 
             substance = new Substance();
             substance.data = new List<SubstanceData>();
@@ -255,6 +259,11 @@ namespace Graphs
             substance.name = textBox_SubstanceName.Text;
             Databank.substances.Add(substance);
             this.Close();
+        }
+
+        private void AddSubstance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            parent.updateflowLayoutPanel();
         }
     }
 }
