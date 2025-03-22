@@ -94,12 +94,13 @@
             // 
             // flowLayoutPanel
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel, 2);
             this.flowLayoutPanel.Controls.Add(this.label1);
             this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(387, 94);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(780, 94);
             this.flowLayoutPanel.TabIndex = 1;
             // 
             // label1
@@ -138,7 +139,8 @@
             // 
             // button_AddSubstance
             // 
-            this.button_AddSubstance.Location = new System.Drawing.Point(396, 103);
+            this.button_AddSubstance.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_AddSubstance.Location = new System.Drawing.Point(498, 103);
             this.button_AddSubstance.Name = "button_AddSubstance";
             this.button_AddSubstance.Size = new System.Drawing.Size(182, 44);
             this.button_AddSubstance.TabIndex = 0;
@@ -151,7 +153,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 424);
+            this.tabPage2.Size = new System.Drawing.Size(792, 400);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Изотермы";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -178,14 +180,14 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // загрузитьToolStripMenuItem
             // 
             this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 

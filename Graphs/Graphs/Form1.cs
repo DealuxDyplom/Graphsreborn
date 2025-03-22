@@ -28,7 +28,7 @@ namespace Graphs
         private void button_AddSubstance_Click(object sender, EventArgs e)
         {
             AddSubstance addSubstanceForm = new AddSubstance();
-            addSubstanceForm.ShowDialog();
+            addSubstanceForm.Show();
 
             flowLayoutPanel.Controls.Clear();
             Label label_listSubstances = new Label();
