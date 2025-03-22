@@ -110,6 +110,12 @@ namespace Graphs
             }
         }
 
+        private void button_EditSubstance_Click(object sender, EventArgs e)
+        {
+            EditSubstance editSubstanceForm = new EditSubstance();
+            editSubstanceForm.Show();
+        }
+
         #endregion
 
         #region [Menu]

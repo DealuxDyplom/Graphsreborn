@@ -32,7 +32,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.button_Compare = new System.Windows.Forms.Button();
@@ -43,12 +43,15 @@
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
+            this.button_EditSubstance = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel_Main.SuspendLayout();
             this.flowLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.tableLayoutPanel_Buttons.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -59,48 +62,46 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 426);
+            this.tabControl1.Size = new System.Drawing.Size(911, 520);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage1.Controls.Add(this.tableLayoutPanel_Main);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 400);
+            this.tabPage1.Size = new System.Drawing.Size(903, 494);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Кинетика";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel_Main
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button_Compare, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.chart_Graphs, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button_AddSubstance, 1, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 394);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel_Main.ColumnCount = 1;
+            this.tableLayoutPanel_Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Main.Controls.Add(this.flowLayoutPanel, 0, 0);
+            this.tableLayoutPanel_Main.Controls.Add(this.chart_Graphs, 0, 2);
+            this.tableLayoutPanel_Main.Controls.Add(this.tableLayoutPanel_Buttons, 0, 1);
+            this.tableLayoutPanel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_Main.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel_Main.Name = "tableLayoutPanel_Main";
+            this.tableLayoutPanel_Main.RowCount = 3;
+            this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(897, 488);
+            this.tableLayoutPanel_Main.TabIndex = 0;
             // 
             // flowLayoutPanel
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel, 2);
+            this.tableLayoutPanel_Main.SetColumnSpan(this.flowLayoutPanel, 2);
             this.flowLayoutPanel.Controls.Add(this.label1);
             this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(780, 94);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(891, 94);
             this.flowLayoutPanel.TabIndex = 1;
             // 
             // label1
@@ -115,7 +116,7 @@
             // button_Compare
             // 
             this.button_Compare.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Compare.Location = new System.Drawing.Point(105, 103);
+            this.button_Compare.Location = new System.Drawing.Point(57, 10);
             this.button_Compare.Name = "button_Compare";
             this.button_Compare.Size = new System.Drawing.Size(182, 44);
             this.button_Compare.TabIndex = 2;
@@ -127,20 +128,20 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chart_Graphs.ChartAreas.Add(chartArea1);
-            this.tableLayoutPanel1.SetColumnSpan(this.chart_Graphs, 2);
+            this.tableLayoutPanel_Main.SetColumnSpan(this.chart_Graphs, 2);
             this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart_Graphs.Legends.Add(legend1);
-            this.chart_Graphs.Location = new System.Drawing.Point(3, 153);
+            this.chart_Graphs.Location = new System.Drawing.Point(3, 173);
             this.chart_Graphs.Name = "chart_Graphs";
-            this.chart_Graphs.Size = new System.Drawing.Size(780, 238);
+            this.chart_Graphs.Size = new System.Drawing.Size(891, 312);
             this.chart_Graphs.TabIndex = 3;
             this.chart_Graphs.Text = "chart1";
             // 
             // button_AddSubstance
             // 
             this.button_AddSubstance.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_AddSubstance.Location = new System.Drawing.Point(498, 103);
+            this.button_AddSubstance.Location = new System.Drawing.Point(353, 10);
             this.button_AddSubstance.Name = "button_AddSubstance";
             this.button_AddSubstance.Size = new System.Drawing.Size(182, 44);
             this.button_AddSubstance.TabIndex = 0;
@@ -164,7 +165,7 @@
             this.менюToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(911, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -191,11 +192,39 @@
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
+            // tableLayoutPanel_Buttons
+            // 
+            this.tableLayoutPanel_Buttons.ColumnCount = 3;
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_Compare, 0, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_AddSubstance, 1, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_EditSubstance, 2, 0);
+            this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 103);
+            this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
+            this.tableLayoutPanel_Buttons.RowCount = 1;
+            this.tableLayoutPanel_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(891, 64);
+            this.tableLayoutPanel_Buttons.TabIndex = 4;
+            // 
+            // button_EditSubstance
+            // 
+            this.button_EditSubstance.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_EditSubstance.Location = new System.Drawing.Point(656, 10);
+            this.button_EditSubstance.Name = "button_EditSubstance";
+            this.button_EditSubstance.Size = new System.Drawing.Size(170, 44);
+            this.button_EditSubstance.TabIndex = 3;
+            this.button_EditSubstance.Text = "Редактировать раствор";
+            this.button_EditSubstance.UseVisualStyleBackColor = true;
+            this.button_EditSubstance.Click += new System.EventHandler(this.button_EditSubstance_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(911, 544);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -203,12 +232,13 @@
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel_Main.ResumeLayout(false);
             this.flowLayoutPanel.ResumeLayout(false);
             this.flowLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tableLayoutPanel_Buttons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,7 +249,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Main;
         private System.Windows.Forms.Button button_AddSubstance;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
         private System.Windows.Forms.Button button_Compare;
@@ -229,6 +259,8 @@
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Buttons;
+        private System.Windows.Forms.Button button_EditSubstance;
     }
 }
 
