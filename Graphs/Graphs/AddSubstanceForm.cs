@@ -27,69 +27,13 @@ namespace Graphs
             substance = new Substance();
             substance.data = new List<SubstanceData>();
 
-            //fill dataGridView
-            string[] row1 = {"5", "0,089" };
-            string[] row2 = { "10", "0,165" };
-            string[] row3 = { "20", "0,318" };
-            string[] row4 = { "30", "0,471" };
-            dataGridView1.Rows.Add(row1);
-            dataGridView1.Rows.Add(row2);
-            dataGridView1.Rows.Add(row3);
-            dataGridView1.Rows.Add(row4);
-
-            //create graph on chart
-            //add points into graph
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            foreach (Graduation graduation in Databank.graduations)
             {
-                double x = double.Parse(this.dataGridView1["Column_C_ml", i].Value.ToString());
-                double y = double.Parse(this.dataGridView1["Column_A", i].Value.ToString());
-                this.chart1.Series[0].Points.AddXY(x, y);
+                comboBox_Graduation.Items.Add(graduation.name);
             }
 
-            //create trend line
-            double y_sum = 0;
-            double x_sum = 0;
-            double x_2_sum = 0;
-            double xy_sum = 0;
-            for (int i = 0; i < chart1.Series[0].Points.Count; i++)
-            {
-                y_sum += chart1.Series[0].Points[i].YValues[0];
-                x_sum += chart1.Series[0].Points[i].XValue;
-                x_2_sum += chart1.Series[0].Points[i].XValue * chart1.Series[0].Points[i].XValue;
-                xy_sum += chart1.Series[0].Points[i].YValues[0] * chart1.Series[0].Points[i].XValue;
-            }
-
-            double y_srd = y_sum / chart1.Series[0].Points.Count;
-            double x_srd = x_sum / chart1.Series[0].Points.Count;
-            double x_2_srd = x_2_sum / chart1.Series[0].Points.Count;
-            double xy_srd = xy_sum / chart1.Series[0].Points.Count;
-
-            double k = (xy_sum) / x_2_sum;
-
-            double x1_trendline = chart1.Series[0].Points[0].XValue;
-            double y1_trendline = k * x1_trendline;
-            this.chart1.Series[1].Points.AddXY(x1_trendline, y1_trendline);
-            double x2_trendline = chart1.Series[0].Points[chart1.Series[0].Points.Count - 1].XValue;
-            double y2_trendline = k * x2_trendline;
-            this.chart1.Series[1].Points.AddXY(x2_trendline, y2_trendline);
-
-            textBox_Coef.Text = k.ToString();
-
-            //find out determination
-            double SS_tot = 0;
-            double SS_res = 0;
-            double SS_reg = 0;
-            for (int i = 0; i < chart1.Series[0].Points.Count; i++)
-            {
-                double y_res = k * chart1.Series[0].Points[i].XValue;
-                SS_res += (chart1.Series[0].Points[i].YValues[0] - y_res) * (chart1.Series[0].Points[i].YValues[0] - y_res);
-                SS_reg += (y_res - y_srd) * (y_res - y_srd);
-            }
-
-            SS_tot = SS_reg + SS_res;
-
-            double determination = SS_reg / SS_tot;
-            textBox_Detr.Text = determination.ToString();
+            // при изменнеии comboBox_Graduation.SelectedIndex вызовется функция comboBox_Graduation_SelectedIndexChanged
+            comboBox_Graduation.SelectedIndex = 0;
         }
 
         private void button_FillFromFileExprData_Click(object sender, EventArgs e)
@@ -264,6 +208,75 @@ namespace Graphs
         private void AddSubstance_FormClosed(object sender, FormClosedEventArgs e)
         {
             parent.updateflowLayoutPanel();
+        }
+
+        private void comboBox_Graduation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
+
+            for (int i = 0; i < Databank.graduations[comboBox_Graduation.SelectedIndex].data.Count; i++)
+            {
+                string[] row = { Databank.graduations[comboBox_Graduation.SelectedIndex].data[i].C_mkmol.ToString(),
+                    Databank.graduations[comboBox_Graduation.SelectedIndex].data[i].A.ToString() };
+                dataGridView1.Rows.Add(row);
+            }
+
+            //create graph on chart
+            //add points into graph
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                double x = double.Parse(this.dataGridView1["Column_C_ml", i].Value.ToString());
+                double y = double.Parse(this.dataGridView1["Column_A", i].Value.ToString());
+                this.chart1.Series[0].Points.AddXY(x, y);
+            }
+
+            //create trend line
+            double y_sum = 0;
+            double x_sum = 0;
+            double x_2_sum = 0;
+            double xy_sum = 0;
+            for (int i = 0; i < chart1.Series[0].Points.Count; i++)
+            {
+                y_sum += chart1.Series[0].Points[i].YValues[0];
+                x_sum += chart1.Series[0].Points[i].XValue;
+                x_2_sum += chart1.Series[0].Points[i].XValue * chart1.Series[0].Points[i].XValue;
+                xy_sum += chart1.Series[0].Points[i].YValues[0] * chart1.Series[0].Points[i].XValue;
+            }
+
+            double y_srd = y_sum / chart1.Series[0].Points.Count;
+            double x_srd = x_sum / chart1.Series[0].Points.Count;
+            double x_2_srd = x_2_sum / chart1.Series[0].Points.Count;
+            double xy_srd = xy_sum / chart1.Series[0].Points.Count;
+
+            double k = (xy_sum) / x_2_sum;
+
+            double x1_trendline = chart1.Series[0].Points[0].XValue;
+            double y1_trendline = k * x1_trendline;
+            this.chart1.Series[1].Points.AddXY(x1_trendline, y1_trendline);
+            double x2_trendline = chart1.Series[0].Points[chart1.Series[0].Points.Count - 1].XValue;
+            double y2_trendline = k * x2_trendline;
+            this.chart1.Series[1].Points.AddXY(x2_trendline, y2_trendline);
+
+            textBox_Coef.Text = k.ToString();
+
+            //find out determination
+            double SS_tot = 0;
+            double SS_res = 0;
+            double SS_reg = 0;
+            for (int i = 0; i < chart1.Series[0].Points.Count; i++)
+            {
+                double y_res = k * chart1.Series[0].Points[i].XValue;
+                SS_res += (chart1.Series[0].Points[i].YValues[0] - y_res) * (chart1.Series[0].Points[i].YValues[0] - y_res);
+                SS_reg += (y_res - y_srd) * (y_res - y_srd);
+            }
+
+            SS_tot = SS_reg + SS_res;
+
+            double determination = SS_reg / SS_tot;
+            textBox_Detr.Text = determination.ToString();
         }
     }
 }
