@@ -199,6 +199,35 @@ namespace Graphs
             }
         }
 
+        private void сохранитьГрадуировкуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var json = JsonConvert.SerializeObject(Databank.graduations);
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (var writer = new StreamWriter(saveFileDialog.FileName, true))
+                {
+                    writer.WriteLine(json);
+                }
+            }
+        }
+
+        private void загрузитьГрадуировкуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader reader = new StreamReader(openFileDialog.FileName);
+                string json = reader.ReadToEnd();
+                Console.Write(json);
+                Databank.graduations.Clear();
+                Databank.graduations = JsonConvert.DeserializeObject<List<Graduation>>(json);
+            }
+        }
+
         #endregion
 
     }

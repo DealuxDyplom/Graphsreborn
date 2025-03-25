@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
@@ -46,6 +46,9 @@
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_GraduationList = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.сохранитьГрадуировкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьГрадуировкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
@@ -116,12 +119,12 @@
             // 
             // chart_Graphs
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart_Graphs.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.chart_Graphs.ChartAreas.Add(chartArea4);
             this.tableLayoutPanel_Main.SetColumnSpan(this.chart_Graphs, 2);
             this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart_Graphs.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            this.chart_Graphs.Legends.Add(legend4);
             this.chart_Graphs.Location = new System.Drawing.Point(3, 173);
             this.chart_Graphs.Name = "chart_Graphs";
             this.chart_Graphs.Size = new System.Drawing.Size(891, 312);
@@ -204,7 +207,10 @@
             // 
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem,
-            this.загрузитьToolStripMenuItem});
+            this.загрузитьToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.сохранитьГрадуировкуToolStripMenuItem,
+            this.загрузитьГрадуировкуToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
@@ -233,6 +239,25 @@
             this.button_GraduationList.Text = "Открыть список градуировок";
             this.button_GraduationList.UseVisualStyleBackColor = true;
             this.button_GraduationList.Click += new System.EventHandler(this.button_GraduationList_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(201, 6);
+            // 
+            // сохранитьГрадуировкуToolStripMenuItem
+            // 
+            this.сохранитьГрадуировкуToolStripMenuItem.Name = "сохранитьГрадуировкуToolStripMenuItem";
+            this.сохранитьГрадуировкуToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.сохранитьГрадуировкуToolStripMenuItem.Text = "Сохранить градуировку";
+            this.сохранитьГрадуировкуToolStripMenuItem.Click += new System.EventHandler(this.сохранитьГрадуировкуToolStripMenuItem_Click);
+            // 
+            // загрузитьГрадуировкуToolStripMenuItem
+            // 
+            this.загрузитьГрадуировкуToolStripMenuItem.Name = "загрузитьГрадуировкуToolStripMenuItem";
+            this.загрузитьГрадуировкуToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.загрузитьГрадуировкуToolStripMenuItem.Text = "Загрузить градуировку";
+            this.загрузитьГрадуировкуToolStripMenuItem.Click += new System.EventHandler(this.загрузитьГрадуировкуToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -276,6 +301,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Buttons;
         private System.Windows.Forms.Button button_EditSubstance;
         private System.Windows.Forms.Button button_GraduationList;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьГрадуировкуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьГрадуировкуToolStripMenuItem;
     }
 }
 
