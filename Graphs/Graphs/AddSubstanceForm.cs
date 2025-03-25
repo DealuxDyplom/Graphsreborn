@@ -12,13 +12,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Graphs
 {
-    public partial class AddSubstance: Form
+    public partial class AddSubstanceForm: Form
     {
         Substance substance;
         bool Recalulate_done = false;
         Form1 parent;
 
-        public AddSubstance(Form1 owner)
+        public AddSubstanceForm(Form1 owner)
         {
             InitializeComponent();
 

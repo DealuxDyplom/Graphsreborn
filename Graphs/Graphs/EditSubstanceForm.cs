@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Graphs
 {
-    public partial class EditSubstance: Form
+    public partial class EditSubstanceForm: Form
     {
-        public EditSubstance()
+        public EditSubstanceForm()
         {
             InitializeComponent();
 

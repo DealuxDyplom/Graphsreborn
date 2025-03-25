@@ -1,6 +1,6 @@
 ﻿namespace Graphs
 {
-    partial class EditSubstance
+    partial class EditSubstanceForm
     {
         /// <summary>
         /// Required designer variable.
@@ -177,13 +177,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Выберите раствор:";
             // 
-            // EditSubstance
+            // EditSubstanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 362);
             this.Controls.Add(this.tableLayoutPanel_Main);
-            this.Name = "EditSubstance";
+            this.Name = "EditSubstanceForm";
             this.Text = "EditSubstance";
             this.tableLayoutPanel_Main.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Data)).EndInit();

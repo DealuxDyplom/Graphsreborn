@@ -28,30 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.button_Compare = new System.Windows.Forms.Button();
             this.chart_Graphs = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
+            this.button_Compare = new System.Windows.Forms.Button();
             this.button_AddSubstance = new System.Windows.Forms.Button();
+            this.button_EditSubstance = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
-            this.button_EditSubstance = new System.Windows.Forms.Button();
+            this.button_GraduationList = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.flowLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel_Buttons.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -113,10 +114,43 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Список растворов:";
             // 
+            // chart_Graphs
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chart_Graphs.ChartAreas.Add(chartArea2);
+            this.tableLayoutPanel_Main.SetColumnSpan(this.chart_Graphs, 2);
+            this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Name = "Legend1";
+            this.chart_Graphs.Legends.Add(legend2);
+            this.chart_Graphs.Location = new System.Drawing.Point(3, 173);
+            this.chart_Graphs.Name = "chart_Graphs";
+            this.chart_Graphs.Size = new System.Drawing.Size(891, 312);
+            this.chart_Graphs.TabIndex = 3;
+            this.chart_Graphs.Text = "chart1";
+            // 
+            // tableLayoutPanel_Buttons
+            // 
+            this.tableLayoutPanel_Buttons.ColumnCount = 4;
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_Compare, 0, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_AddSubstance, 1, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_EditSubstance, 2, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_GraduationList, 3, 0);
+            this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 103);
+            this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
+            this.tableLayoutPanel_Buttons.RowCount = 1;
+            this.tableLayoutPanel_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(891, 64);
+            this.tableLayoutPanel_Buttons.TabIndex = 4;
+            // 
             // button_Compare
             // 
             this.button_Compare.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Compare.Location = new System.Drawing.Point(57, 10);
+            this.button_Compare.Location = new System.Drawing.Point(7, 10);
             this.button_Compare.Name = "button_Compare";
             this.button_Compare.Size = new System.Drawing.Size(182, 44);
             this.button_Compare.TabIndex = 2;
@@ -124,24 +158,10 @@
             this.button_Compare.UseVisualStyleBackColor = true;
             this.button_Compare.Click += new System.EventHandler(this.button_Compare_Click);
             // 
-            // chart_Graphs
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart_Graphs.ChartAreas.Add(chartArea1);
-            this.tableLayoutPanel_Main.SetColumnSpan(this.chart_Graphs, 2);
-            this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart_Graphs.Legends.Add(legend1);
-            this.chart_Graphs.Location = new System.Drawing.Point(3, 173);
-            this.chart_Graphs.Name = "chart_Graphs";
-            this.chart_Graphs.Size = new System.Drawing.Size(891, 312);
-            this.chart_Graphs.TabIndex = 3;
-            this.chart_Graphs.Text = "chart1";
-            // 
             // button_AddSubstance
             // 
             this.button_AddSubstance.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_AddSubstance.Location = new System.Drawing.Point(353, 10);
+            this.button_AddSubstance.Location = new System.Drawing.Point(205, 10);
             this.button_AddSubstance.Name = "button_AddSubstance";
             this.button_AddSubstance.Size = new System.Drawing.Size(182, 44);
             this.button_AddSubstance.TabIndex = 0;
@@ -149,12 +169,23 @@
             this.button_AddSubstance.UseVisualStyleBackColor = true;
             this.button_AddSubstance.Click += new System.EventHandler(this.button_AddSubstance_Click);
             // 
+            // button_EditSubstance
+            // 
+            this.button_EditSubstance.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_EditSubstance.Location = new System.Drawing.Point(408, 10);
+            this.button_EditSubstance.Name = "button_EditSubstance";
+            this.button_EditSubstance.Size = new System.Drawing.Size(170, 44);
+            this.button_EditSubstance.TabIndex = 3;
+            this.button_EditSubstance.Text = "Редактировать раствор";
+            this.button_EditSubstance.UseVisualStyleBackColor = true;
+            this.button_EditSubstance.Click += new System.EventHandler(this.button_EditSubstance_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 400);
+            this.tabPage2.Size = new System.Drawing.Size(903, 494);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Изотермы";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -181,44 +212,27 @@
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // загрузитьToolStripMenuItem
             // 
             this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
-            // tableLayoutPanel_Buttons
+            // button_GraduationList
             // 
-            this.tableLayoutPanel_Buttons.ColumnCount = 3;
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_Compare, 0, 0);
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_AddSubstance, 1, 0);
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_EditSubstance, 2, 0);
-            this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 103);
-            this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
-            this.tableLayoutPanel_Buttons.RowCount = 1;
-            this.tableLayoutPanel_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(891, 64);
-            this.tableLayoutPanel_Buttons.TabIndex = 4;
-            // 
-            // button_EditSubstance
-            // 
-            this.button_EditSubstance.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_EditSubstance.Location = new System.Drawing.Point(656, 10);
-            this.button_EditSubstance.Name = "button_EditSubstance";
-            this.button_EditSubstance.Size = new System.Drawing.Size(170, 44);
-            this.button_EditSubstance.TabIndex = 3;
-            this.button_EditSubstance.Text = "Редактировать раствор";
-            this.button_EditSubstance.UseVisualStyleBackColor = true;
-            this.button_EditSubstance.Click += new System.EventHandler(this.button_EditSubstance_Click);
+            this.button_GraduationList.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_GraduationList.Location = new System.Drawing.Point(643, 10);
+            this.button_GraduationList.Name = "button_GraduationList";
+            this.button_GraduationList.Size = new System.Drawing.Size(197, 44);
+            this.button_GraduationList.TabIndex = 4;
+            this.button_GraduationList.Text = "Открыть список градуировок";
+            this.button_GraduationList.UseVisualStyleBackColor = true;
+            this.button_GraduationList.Click += new System.EventHandler(this.button_GraduationList_Click);
             // 
             // Form1
             // 
@@ -236,9 +250,9 @@
             this.flowLayoutPanel.ResumeLayout(false);
             this.flowLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).EndInit();
+            this.tableLayoutPanel_Buttons.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tableLayoutPanel_Buttons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,6 +275,7 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Buttons;
         private System.Windows.Forms.Button button_EditSubstance;
+        private System.Windows.Forms.Button button_GraduationList;
     }
 }
 

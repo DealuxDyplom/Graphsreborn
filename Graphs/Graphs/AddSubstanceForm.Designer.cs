@@ -1,6 +1,6 @@
 ﻿namespace Graphs
 {
-    partial class AddSubstance
+    partial class AddSubstanceForm
     {
         /// <summary>
         /// Required designer variable.
@@ -409,13 +409,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // AddSubstance
+            // AddSubstanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 591);
             this.Controls.Add(this.tableLayoutPanel_Main);
-            this.Name = "AddSubstance";
+            this.Name = "AddSubstanceForm";
             this.Text = "AddSubstance";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddSubstance_FormClosed);
             this.tableLayoutPanel_Main.ResumeLayout(false);

@@ -23,8 +23,21 @@ namespace Graphs
         public double proc;
     }
 
+    public class Graduation
+    {
+        public string name;
+        public List<GraduationData> data;
+    }
+
+    public class GraduationData
+    {
+        public double C_mkmol;
+        public double A;
+    }
+
     static public class Databank
     {
         static public List<Substance> substances;
+        static public List<Graduation> graduations;
     }
 }

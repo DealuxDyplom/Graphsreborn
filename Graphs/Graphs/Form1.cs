@@ -20,6 +20,36 @@ namespace Graphs
         {
             InitializeComponent();
             Databank.substances = new List<Substance>();
+            Databank.graduations = new List<Graduation>();
+
+            Graduation graduation = new Graduation();
+            graduation.data = new List<GraduationData>();
+
+
+            GraduationData graduationData = new GraduationData();
+            graduationData.C_mkmol = 5;
+            graduationData.A = 0.089;
+            graduation.data.Add(graduationData);
+
+            graduationData = new GraduationData();
+            graduationData.C_mkmol = 10;
+            graduationData.A = 0.165;
+            graduation.data.Add(graduationData);
+
+            graduationData = new GraduationData();
+            graduationData.C_mkmol = 20;
+            graduationData.A = 0.318;
+            graduation.data.Add(graduationData);
+
+            graduationData = new GraduationData();
+            graduationData.C_mkmol = 30;
+            graduationData.A = 0.471;
+            graduation.data.Add(graduationData);
+
+            graduation.name = "Градуировка В12/H2O";
+
+            Databank.graduations.Add(graduation);
+
             checkBoxes = new List<CheckBox>();
             chart_Graphs.Hide();
         }
@@ -44,7 +74,7 @@ namespace Graphs
 
         private void button_AddSubstance_Click(object sender, EventArgs e)
         {
-            AddSubstance addSubstanceForm = new AddSubstance(this);
+            AddSubstanceForm addSubstanceForm = new AddSubstanceForm(this);
             addSubstanceForm.Show();
 
             //flowLayoutPanel.Controls.Clear();
@@ -112,8 +142,14 @@ namespace Graphs
 
         private void button_EditSubstance_Click(object sender, EventArgs e)
         {
-            EditSubstance editSubstanceForm = new EditSubstance();
+            EditSubstanceForm editSubstanceForm = new EditSubstanceForm();
             editSubstanceForm.Show();
+        }
+
+        private void button_GraduationList_Click(object sender, EventArgs e)
+        {
+            GraduationForm graduationForm = new GraduationForm();
+            graduationForm.Show();
         }
 
         #endregion
@@ -164,5 +200,6 @@ namespace Graphs
         }
 
         #endregion
+
     }
 }
