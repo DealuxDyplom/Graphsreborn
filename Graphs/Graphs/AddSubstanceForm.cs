@@ -88,11 +88,21 @@ namespace Graphs
             substance = new Substance();
             substance.data = new List<SubstanceData>();
 
-            //clear and fill grad table and graph
+            //clear graduations taable and chart
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
             chart1.Series[0].Points.Clear();
             chart1.Series[1].Points.Clear();
 
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            for (int i = 0; i < Databank.graduations[comboBox_Graduation.SelectedIndex].data.Count; i++)
+            {
+                string[] row = { Databank.graduations[comboBox_Graduation.SelectedIndex].data[i].C_mkmol.ToString(),
+                    Databank.graduations[comboBox_Graduation.SelectedIndex].data[i].A.ToString() };
+                dataGridView1.Rows.Add(row);
+            }
+
+            //add points into graph
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 double x = double.Parse(this.dataGridView1["Column_C_ml", i].Value.ToString());
                 double y = double.Parse(this.dataGridView1["Column_A", i].Value.ToString());
@@ -157,16 +167,6 @@ namespace Graphs
                 double qt_ml = qt_mr / 1355; //??? что такое 1355
                 double proc = (C_from_OpticDens - C_mkmol) / C_from_OpticDens * 100;
 
-                string[] rows = { dataGridView_ExprData["Column_time", i].Value.ToString(),
-                    dataGridView_ExprData["Column_m_r", i].Value.ToString(),
-                    dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString(),
-                    C_mkmol.ToString(),
-                    qt_mr.ToString(),
-                    qt_ml.ToString(),
-                    proc.ToString()
-                };
-                dataGridView_Data.Rows.Add(rows);
-
                 SubstanceData substanceData = new SubstanceData();
                 substanceData.time = Convert.ToDouble(dataGridView_ExprData["Column_time", i].Value);
                 substanceData.m_r = Convert.ToDouble(dataGridView_ExprData["Column_m_r", i].Value);
@@ -176,7 +176,33 @@ namespace Graphs
                 substanceData.qt_ml = qt_ml;
                 substanceData.proc = proc;
 
+                substanceData.Qe1 = 0.362;
+                substanceData.qe_qt = substanceData.Qe1 - substanceData.qt_ml;
+                substanceData.log_qe_qt = Math.Log10(substanceData.qe_qt);
+                if (substanceData.qt_ml != 0)
+                {
+                    substanceData.t_qt = substanceData.time / substanceData.qt_ml;
+                }
+                else
+                {
+                    substanceData.t_qt = 0;
+                }
+
                 substance.data.Add(substanceData);
+
+                string[] rows = { dataGridView_ExprData["Column_time", i].Value.ToString(),
+                    dataGridView_ExprData["Column_m_r", i].Value.ToString(),
+                    dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString(),
+                    substanceData.C_mkmol.ToString(),
+                    substanceData.qt_mr.ToString(),
+                    substanceData.qt_ml.ToString(),
+                    substanceData.proc.ToString(),
+                    substanceData.qe_qt.ToString(),
+                    substanceData.log_qe_qt.ToString(),
+                    substanceData.t_qt.ToString(),
+                };
+
+                dataGridView_Data.Rows.Add(rows);
             }
 
             Recalulate_done = true;

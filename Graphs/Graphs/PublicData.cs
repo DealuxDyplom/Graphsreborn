@@ -21,6 +21,11 @@ namespace Graphs
         public double qt_mr;
         public double qt_ml;
         public double proc;
+
+        public double Qe1;
+        public double qe_qt;
+        public double log_qe_qt;
+        public double t_qt;
     }
 
     public class Graduation

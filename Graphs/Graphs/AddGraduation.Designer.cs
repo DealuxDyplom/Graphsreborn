@@ -34,8 +34,8 @@
             this.textBox_GraduationName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
             this.button_FillFromFile = new System.Windows.Forms.Button();
-            this.dataGridView_GraduationData = new System.Windows.Forms.DataGridView();
             this.button_AddGraduation = new System.Windows.Forms.Button();
+            this.dataGridView_GraduationData = new System.Windows.Forms.DataGridView();
             this.dataGridView_GraduationData_Column_C_mkmol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_GraduationData_Column_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel_Main.SuspendLayout();
@@ -120,6 +120,17 @@
             this.button_FillFromFile.UseVisualStyleBackColor = true;
             this.button_FillFromFile.Click += new System.EventHandler(this.button_FillFromFile_Click);
             // 
+            // button_AddGraduation
+            // 
+            this.button_AddGraduation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_AddGraduation.Location = new System.Drawing.Point(306, 56);
+            this.button_AddGraduation.Name = "button_AddGraduation";
+            this.button_AddGraduation.Size = new System.Drawing.Size(175, 28);
+            this.button_AddGraduation.TabIndex = 1;
+            this.button_AddGraduation.Text = "Добавить градуировку";
+            this.button_AddGraduation.UseVisualStyleBackColor = true;
+            this.button_AddGraduation.Click += new System.EventHandler(this.button_AddGraduation_Click);
+            // 
             // dataGridView_GraduationData
             // 
             this.dataGridView_GraduationData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -132,17 +143,6 @@
             this.dataGridView_GraduationData.Name = "dataGridView_GraduationData";
             this.dataGridView_GraduationData.Size = new System.Drawing.Size(788, 177);
             this.dataGridView_GraduationData.TabIndex = 2;
-            // 
-            // button_AddGraduation
-            // 
-            this.button_AddGraduation.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_AddGraduation.Location = new System.Drawing.Point(306, 56);
-            this.button_AddGraduation.Name = "button_AddGraduation";
-            this.button_AddGraduation.Size = new System.Drawing.Size(175, 28);
-            this.button_AddGraduation.TabIndex = 1;
-            this.button_AddGraduation.Text = "Добавить градуировку";
-            this.button_AddGraduation.UseVisualStyleBackColor = true;
-            this.button_AddGraduation.Click += new System.EventHandler(this.button_AddGraduation_Click);
             // 
             // dataGridView_GraduationData_Column_C_mkmol
             // 

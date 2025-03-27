@@ -93,6 +93,7 @@ namespace Graphs
 
         private void button_Compare_Click(object sender, EventArgs e)
         {
+            //create Graphs
             chart_Graphs.Show();
             chart_Graphs.Series.Clear();
             Random rand = new Random();
@@ -138,6 +139,7 @@ namespace Graphs
                     }
                 }
             }
+
         }
 
         private void button_EditSubstance_Click(object sender, EventArgs e)
@@ -150,6 +152,25 @@ namespace Graphs
         {
             GraduationForm graduationForm = new GraduationForm();
             graduationForm.Show();
+        }
+
+        private void button_PsevdoGraphs_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkBoxes.Count; i++)
+            {
+                if (checkBoxes[i].Checked)
+                {
+                    for (int j = 0; j < Databank.substances.Count; j++)
+                    {
+                        if (checkBoxes[i].Text == Databank.substances[j].name)
+                        {
+                            PsevdoGraphsForm psevdoGraphsForm = new PsevdoGraphsForm(Databank.substances[j]);
+                            psevdoGraphsForm.Show();
+                        }
+                    }
+
+                }
+            }
         }
 
         #endregion
