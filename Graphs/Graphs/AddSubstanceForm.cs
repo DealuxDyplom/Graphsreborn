@@ -234,6 +234,7 @@ namespace Graphs
         private void AddSubstance_FormClosed(object sender, FormClosedEventArgs e)
         {
             parent.updateflowLayoutPanel();
+            parent.Show();
         }
 
         private void comboBox_Graduation_SelectedIndexChanged(object sender, EventArgs e)

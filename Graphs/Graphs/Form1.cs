@@ -74,6 +74,7 @@ namespace Graphs
 
         private void button_AddSubstance_Click(object sender, EventArgs e)
         {
+            this.Hide();
             AddSubstanceForm addSubstanceForm = new AddSubstanceForm(this);
             addSubstanceForm.Show();
 
@@ -144,13 +145,15 @@ namespace Graphs
 
         private void button_EditSubstance_Click(object sender, EventArgs e)
         {
-            EditSubstanceForm editSubstanceForm = new EditSubstanceForm();
+            this.Hide();
+            EditSubstanceForm editSubstanceForm = new EditSubstanceForm(this);
             editSubstanceForm.Show();
         }
 
         private void button_GraduationList_Click(object sender, EventArgs e)
         {
-            GraduationForm graduationForm = new GraduationForm();
+            this.Hide();
+            GraduationForm graduationForm = new GraduationForm(this);
             graduationForm.Show();
         }
 

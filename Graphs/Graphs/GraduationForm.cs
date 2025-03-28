@@ -14,11 +14,13 @@ namespace Graphs
 {
     public partial class GraduationForm: Form
     {
+        Form1 parent;
         List<RadioButton> radioButtons;
-        public GraduationForm()
+        public GraduationForm(Form1 owner)
         {
             radioButtons = new List<RadioButton>();
             InitializeComponent();
+            parent = owner;
 
             foreach (Graduation graduation in Databank.graduations)
             {
@@ -35,6 +37,7 @@ namespace Graphs
 
         private void button_AddGraduation_Click(object sender, EventArgs e)
         {
+            this.Hide();
             AddGraduation addGraduationForm = new AddGraduation(this);
             addGraduationForm.Show();
         }
@@ -104,6 +107,11 @@ namespace Graphs
             }
             MessageBox.Show("Ни одна градуировка не выбрана", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
+        }
+
+        private void GraduationForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            parent.Show();
         }
     }
 }

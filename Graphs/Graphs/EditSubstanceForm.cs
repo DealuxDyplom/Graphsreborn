@@ -12,9 +12,11 @@ namespace Graphs
 {
     public partial class EditSubstanceForm: Form
     {
-        public EditSubstanceForm()
+        Form1 parent;
+        public EditSubstanceForm(Form1 owner)
         {
             InitializeComponent();
+            parent = owner;
 
             foreach (Substance substance in Databank.substances)
             {
@@ -65,6 +67,11 @@ namespace Graphs
                 Databank.substances[comboBox1.SelectedIndex].data.Add(substanceData);
             }
             this.Close();
+        }
+
+        private void EditSubstanceForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            parent.Show();
         }
     }
 }

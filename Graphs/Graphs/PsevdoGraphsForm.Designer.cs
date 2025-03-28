@@ -36,15 +36,13 @@
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_PsevdoGraphs = new System.Windows.Forms.TableLayoutPanel();
-            this.chart_PsevdoGraph_1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tableLayoutPanel_Labels = new System.Windows.Forms.TableLayoutPanel();
-            this.label_Main = new System.Windows.Forms.Label();
+            this.tableLayoutPanel_PsevdoGraphs_1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Parameters_1 = new System.Windows.Forms.TableLayoutPanel();
             this.label_Equation = new System.Windows.Forms.Label();
             this.label_Determination = new System.Windows.Forms.Label();
             this.textBox_Equation_1 = new System.Windows.Forms.TextBox();
             this.textBox_Determination_1 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel_PsevdoGraphs_1 = new System.Windows.Forms.TableLayoutPanel();
+            this.chart_PsevdoGraph_1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel_PsevdoGraphs_2 = new System.Windows.Forms.TableLayoutPanel();
             this.chart_PsevdoGraph_2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel_Parameters_2 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,15 +50,17 @@
             this.label_Determination_2 = new System.Windows.Forms.Label();
             this.textBox_Equation_2 = new System.Windows.Forms.TextBox();
             this.textBox_Determination_2 = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel_Labels = new System.Windows.Forms.TableLayoutPanel();
+            this.label_Main = new System.Windows.Forms.Label();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel_PsevdoGraphs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_PsevdoGraph_1)).BeginInit();
-            this.tableLayoutPanel_Labels.SuspendLayout();
-            this.tableLayoutPanel_Parameters_1.SuspendLayout();
             this.tableLayoutPanel_PsevdoGraphs_1.SuspendLayout();
+            this.tableLayoutPanel_Parameters_1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_PsevdoGraph_1)).BeginInit();
             this.tableLayoutPanel_PsevdoGraphs_2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_PsevdoGraph_2)).BeginInit();
             this.tableLayoutPanel_Parameters_2.SuspendLayout();
+            this.tableLayoutPanel_Labels.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel_Main
@@ -94,45 +94,21 @@
             this.tableLayoutPanel_PsevdoGraphs.Size = new System.Drawing.Size(794, 414);
             this.tableLayoutPanel_PsevdoGraphs.TabIndex = 0;
             // 
-            // chart_PsevdoGraph_1
+            // tableLayoutPanel_PsevdoGraphs_1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart_PsevdoGraph_1.ChartAreas.Add(chartArea1);
-            this.chart_PsevdoGraph_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart_PsevdoGraph_1.Legends.Add(legend1);
-            this.chart_PsevdoGraph_1.Location = new System.Drawing.Point(3, 3);
-            this.chart_PsevdoGraph_1.Name = "chart_PsevdoGraph_1";
-            this.chart_PsevdoGraph_1.Size = new System.Drawing.Size(782, 165);
-            this.chart_PsevdoGraph_1.TabIndex = 0;
-            this.chart_PsevdoGraph_1.Text = "Psevdo_1";
-            title1.Name = "Title1";
-            title1.Text = "Псевдо 1";
-            this.chart_PsevdoGraph_1.Titles.Add(title1);
-            // 
-            // tableLayoutPanel_Labels
-            // 
-            this.tableLayoutPanel_Labels.ColumnCount = 1;
-            this.tableLayoutPanel_Labels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Labels.Controls.Add(this.label_Main, 0, 0);
-            this.tableLayoutPanel_Labels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Labels.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel_Labels.Name = "tableLayoutPanel_Labels";
-            this.tableLayoutPanel_Labels.RowCount = 1;
-            this.tableLayoutPanel_Labels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Labels.Size = new System.Drawing.Size(794, 24);
-            this.tableLayoutPanel_Labels.TabIndex = 1;
-            // 
-            // label_Main
-            // 
-            this.label_Main.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label_Main.AutoSize = true;
-            this.label_Main.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Main.Location = new System.Drawing.Point(371, 2);
-            this.label_Main.Name = "label_Main";
-            this.label_Main.Size = new System.Drawing.Size(51, 20);
-            this.label_Main.TabIndex = 0;
-            this.label_Main.Text = "label1";
+            this.tableLayoutPanel_PsevdoGraphs_1.ColumnCount = 1;
+            this.tableLayoutPanel_PsevdoGraphs_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_PsevdoGraphs_1.Controls.Add(this.tableLayoutPanel_Parameters_1, 0, 1);
+            this.tableLayoutPanel_PsevdoGraphs_1.Controls.Add(this.chart_PsevdoGraph_1, 0, 0);
+            this.tableLayoutPanel_PsevdoGraphs_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_PsevdoGraphs_1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel_PsevdoGraphs_1.Name = "tableLayoutPanel_PsevdoGraphs_1";
+            this.tableLayoutPanel_PsevdoGraphs_1.RowCount = 2;
+            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_PsevdoGraphs_1.Size = new System.Drawing.Size(788, 201);
+            this.tableLayoutPanel_PsevdoGraphs_1.TabIndex = 0;
             // 
             // tableLayoutPanel_Parameters_1
             // 
@@ -191,21 +167,21 @@
             this.textBox_Determination_1.Size = new System.Drawing.Size(155, 20);
             this.textBox_Determination_1.TabIndex = 3;
             // 
-            // tableLayoutPanel_PsevdoGraphs_1
+            // chart_PsevdoGraph_1
             // 
-            this.tableLayoutPanel_PsevdoGraphs_1.ColumnCount = 1;
-            this.tableLayoutPanel_PsevdoGraphs_1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_PsevdoGraphs_1.Controls.Add(this.tableLayoutPanel_Parameters_1, 0, 1);
-            this.tableLayoutPanel_PsevdoGraphs_1.Controls.Add(this.chart_PsevdoGraph_1, 0, 0);
-            this.tableLayoutPanel_PsevdoGraphs_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_PsevdoGraphs_1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel_PsevdoGraphs_1.Name = "tableLayoutPanel_PsevdoGraphs_1";
-            this.tableLayoutPanel_PsevdoGraphs_1.RowCount = 2;
-            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_PsevdoGraphs_1.Size = new System.Drawing.Size(788, 201);
-            this.tableLayoutPanel_PsevdoGraphs_1.TabIndex = 0;
+            chartArea1.Name = "ChartArea1";
+            this.chart_PsevdoGraph_1.ChartAreas.Add(chartArea1);
+            this.chart_PsevdoGraph_1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart_PsevdoGraph_1.Legends.Add(legend1);
+            this.chart_PsevdoGraph_1.Location = new System.Drawing.Point(3, 3);
+            this.chart_PsevdoGraph_1.Name = "chart_PsevdoGraph_1";
+            this.chart_PsevdoGraph_1.Size = new System.Drawing.Size(782, 165);
+            this.chart_PsevdoGraph_1.TabIndex = 0;
+            this.chart_PsevdoGraph_1.Text = "Psevdo_1";
+            title1.Name = "Title1";
+            title1.Text = "Псевдо 1";
+            this.chart_PsevdoGraph_1.Titles.Add(title1);
             // 
             // tableLayoutPanel_PsevdoGraphs_2
             // 
@@ -295,6 +271,30 @@
             this.textBox_Determination_2.Size = new System.Drawing.Size(155, 20);
             this.textBox_Determination_2.TabIndex = 3;
             // 
+            // tableLayoutPanel_Labels
+            // 
+            this.tableLayoutPanel_Labels.ColumnCount = 1;
+            this.tableLayoutPanel_Labels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Labels.Controls.Add(this.label_Main, 0, 0);
+            this.tableLayoutPanel_Labels.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_Labels.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel_Labels.Name = "tableLayoutPanel_Labels";
+            this.tableLayoutPanel_Labels.RowCount = 1;
+            this.tableLayoutPanel_Labels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Labels.Size = new System.Drawing.Size(794, 24);
+            this.tableLayoutPanel_Labels.TabIndex = 1;
+            // 
+            // label_Main
+            // 
+            this.label_Main.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label_Main.AutoSize = true;
+            this.label_Main.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_Main.Location = new System.Drawing.Point(371, 2);
+            this.label_Main.Name = "label_Main";
+            this.label_Main.Size = new System.Drawing.Size(51, 20);
+            this.label_Main.TabIndex = 0;
+            this.label_Main.Text = "label1";
+            // 
             // PsevdoGraphsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,16 +305,16 @@
             this.Text = "PsevdoGraphsForm";
             this.tableLayoutPanel_Main.ResumeLayout(false);
             this.tableLayoutPanel_PsevdoGraphs.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart_PsevdoGraph_1)).EndInit();
-            this.tableLayoutPanel_Labels.ResumeLayout(false);
-            this.tableLayoutPanel_Labels.PerformLayout();
+            this.tableLayoutPanel_PsevdoGraphs_1.ResumeLayout(false);
             this.tableLayoutPanel_Parameters_1.ResumeLayout(false);
             this.tableLayoutPanel_Parameters_1.PerformLayout();
-            this.tableLayoutPanel_PsevdoGraphs_1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_PsevdoGraph_1)).EndInit();
             this.tableLayoutPanel_PsevdoGraphs_2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_PsevdoGraph_2)).EndInit();
             this.tableLayoutPanel_Parameters_2.ResumeLayout(false);
             this.tableLayoutPanel_Parameters_2.PerformLayout();
+            this.tableLayoutPanel_Labels.ResumeLayout(false);
+            this.tableLayoutPanel_Labels.PerformLayout();
             this.ResumeLayout(false);
 
         }

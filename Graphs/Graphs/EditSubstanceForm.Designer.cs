@@ -185,6 +185,7 @@
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Name = "EditSubstanceForm";
             this.Text = "EditSubstance";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditSubstanceForm_FormClosed);
             this.tableLayoutPanel_Main.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Data)).EndInit();
             this.tableLayoutPanel_Buttons.ResumeLayout(false);

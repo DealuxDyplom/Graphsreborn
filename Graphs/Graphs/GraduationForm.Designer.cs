@@ -33,11 +33,11 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel_GraduationData = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView_GraduationData = new System.Windows.Forms.DataGridView();
+            this.dataGridView_GraduationData_Column_C_mkmol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_GraduationData_Column_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
             this.button_AddGraduation = new System.Windows.Forms.Button();
             this.button_EditGraduation = new System.Windows.Forms.Button();
-            this.dataGridView_GraduationData_Column_C_mkmol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView_GraduationData_Column_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.groupBox_GraduationList.SuspendLayout();
             this.tableLayoutPanel_GraduationData.SuspendLayout();
@@ -108,6 +108,16 @@
             this.dataGridView_GraduationData.Size = new System.Drawing.Size(788, 138);
             this.dataGridView_GraduationData.TabIndex = 0;
             // 
+            // dataGridView_GraduationData_Column_C_mkmol
+            // 
+            this.dataGridView_GraduationData_Column_C_mkmol.HeaderText = "С,мкг/мл";
+            this.dataGridView_GraduationData_Column_C_mkmol.Name = "dataGridView_GraduationData_Column_C_mkmol";
+            // 
+            // dataGridView_GraduationData_Column_A
+            // 
+            this.dataGridView_GraduationData_Column_A.HeaderText = "A";
+            this.dataGridView_GraduationData_Column_A.Name = "dataGridView_GraduationData_Column_A";
+            // 
             // tableLayoutPanel_Buttons
             // 
             this.tableLayoutPanel_Buttons.ColumnCount = 2;
@@ -145,16 +155,6 @@
             this.button_EditGraduation.UseVisualStyleBackColor = true;
             this.button_EditGraduation.Click += new System.EventHandler(this.button_EditGraduation_Click);
             // 
-            // dataGridView_GraduationData_Column_C_mkmol
-            // 
-            this.dataGridView_GraduationData_Column_C_mkmol.HeaderText = "С,мкг/мл";
-            this.dataGridView_GraduationData_Column_C_mkmol.Name = "dataGridView_GraduationData_Column_C_mkmol";
-            // 
-            // dataGridView_GraduationData_Column_A
-            // 
-            this.dataGridView_GraduationData_Column_A.HeaderText = "A";
-            this.dataGridView_GraduationData_Column_A.Name = "dataGridView_GraduationData_Column_A";
-            // 
             // GraduationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,6 +163,7 @@
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Name = "GraduationForm";
             this.Text = "Graduation";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GraduationForm_FormClosed);
             this.tableLayoutPanel_Main.ResumeLayout(false);
             this.groupBox_GraduationList.ResumeLayout(false);
             this.tableLayoutPanel_GraduationData.ResumeLayout(false);

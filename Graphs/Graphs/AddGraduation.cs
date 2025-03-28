@@ -75,6 +75,7 @@ namespace Graphs
         private void AddGraduation_FormClosed(object sender, FormClosedEventArgs e)
         {
             parentForm.updateGroupBoxwithRadioButtons();
+            parentForm.Show();
         }
     }
 }
