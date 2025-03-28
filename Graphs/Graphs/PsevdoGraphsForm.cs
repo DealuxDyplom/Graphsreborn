@@ -33,6 +33,8 @@ namespace Graphs
                 double y_local = substance.data[i].log_qe_qt;
                 added_series_psevdo_1.Points.AddXY(x_local, y_local);
                 added_series_psevdo_1.Points[i].MarkerSize = 10;
+                added_series_psevdo_1.Points[i].MarkerStyle = MarkerStyle.Circle;
+                added_series_psevdo_1.Points[i].BorderColor = Color.Black;
             }
 
             //create trend line
@@ -96,6 +98,8 @@ namespace Graphs
                 double y_local = substance.data[i].t_qt;
                 added_series_psevdo_2.Points.AddXY(x_local, y_local);
                 added_series_psevdo_2.Points[i].MarkerSize = 10;
+                added_series_psevdo_2.Points[i].MarkerStyle = MarkerStyle.Circle;
+                added_series_psevdo_2.Points[i].BorderColor = Color.Black;
             }
 
             //create trend line

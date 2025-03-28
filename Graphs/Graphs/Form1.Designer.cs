@@ -30,6 +30,10 @@
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
@@ -40,6 +44,7 @@
             this.button_AddSubstance = new System.Windows.Forms.Button();
             this.button_EditSubstance = new System.Windows.Forms.Button();
             this.button_GraduationList = new System.Windows.Forms.Button();
+            this.button_PsevdoGraphs = new System.Windows.Forms.Button();
             this.tableLayoutPanel_Graphs = new System.Windows.Forms.TableLayoutPanel();
             this.chart_Graphs = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -50,7 +55,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.сохранитьГрадуировкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьГрадуировкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button_PsevdoGraphs = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
@@ -186,6 +190,17 @@
             this.button_GraduationList.UseVisualStyleBackColor = true;
             this.button_GraduationList.Click += new System.EventHandler(this.button_GraduationList_Click);
             // 
+            // button_PsevdoGraphs
+            // 
+            this.button_PsevdoGraphs.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_PsevdoGraphs.Location = new System.Drawing.Point(675, 8);
+            this.button_PsevdoGraphs.Name = "button_PsevdoGraphs";
+            this.button_PsevdoGraphs.Size = new System.Drawing.Size(131, 47);
+            this.button_PsevdoGraphs.TabIndex = 5;
+            this.button_PsevdoGraphs.Text = "Показать псевдографики";
+            this.button_PsevdoGraphs.UseVisualStyleBackColor = true;
+            this.button_PsevdoGraphs.Click += new System.EventHandler(this.button_PsevdoGraphs_Click);
+            // 
             // tableLayoutPanel_Graphs
             // 
             this.tableLayoutPanel_Graphs.ColumnCount = 1;
@@ -210,6 +225,20 @@
             this.chart_Graphs.Legends.Add(legend1);
             this.chart_Graphs.Location = new System.Drawing.Point(3, 3);
             this.chart_Graphs.Name = "chart_Graphs";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series1.Legend = "Legend1";
+            series1.MarkerSize = 10;
+            series1.Name = "Series1";
+            dataPoint1.MarkerSize = 5;
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            this.chart_Graphs.Series.Add(series1);
+            this.chart_Graphs.Series.Add(series2);
             this.chart_Graphs.Size = new System.Drawing.Size(885, 306);
             this.chart_Graphs.TabIndex = 3;
             this.chart_Graphs.Text = "chart1";
@@ -278,17 +307,6 @@
             this.загрузитьГрадуировкуToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.загрузитьГрадуировкуToolStripMenuItem.Text = "Загрузить градуировку";
             this.загрузитьГрадуировкуToolStripMenuItem.Click += new System.EventHandler(this.загрузитьГрадуировкуToolStripMenuItem_Click);
-            // 
-            // button_PsevdoGraphs
-            // 
-            this.button_PsevdoGraphs.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_PsevdoGraphs.Location = new System.Drawing.Point(675, 8);
-            this.button_PsevdoGraphs.Name = "button_PsevdoGraphs";
-            this.button_PsevdoGraphs.Size = new System.Drawing.Size(131, 47);
-            this.button_PsevdoGraphs.TabIndex = 5;
-            this.button_PsevdoGraphs.Text = "Показать псевдографики";
-            this.button_PsevdoGraphs.UseVisualStyleBackColor = true;
-            this.button_PsevdoGraphs.Click += new System.EventHandler(this.button_PsevdoGraphs_Click);
             // 
             // Form1
             // 

@@ -137,6 +137,7 @@ namespace Graphs
                     {
                         series_with_visible_points.Points[j].MarkerSize = 10;
                         series_with_visible_points.Points[j].MarkerBorderColor = Color.Black;
+                        series_with_visible_points.Points[j].MarkerStyle = MarkerStyle.Circle;
                     }
                 }
             }
