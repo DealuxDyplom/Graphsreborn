@@ -30,6 +30,11 @@
         {
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView_Data = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
+            this.button_SaveEdits = new System.Windows.Forms.Button();
+            this.tableLayoutPanel_ListSubstances = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_Data_Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_m_r = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,11 +42,9 @@
             this.dataGridView_Data_Column_qt_mr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_qt_ml = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_proc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
-            this.button_SaveEdits = new System.Windows.Forms.Button();
-            this.tableLayoutPanel_ListSubstances = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView_Data_Column_qe_qt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_Data_Column_log_qe_qt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_Data_Column_t_qt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Data)).BeginInit();
             this.tableLayoutPanel_Buttons.SuspendLayout();
@@ -76,47 +79,15 @@
             this.dataGridView_Data_Column_C_mkmol,
             this.dataGridView_Data_Column_qt_mr,
             this.dataGridView_Data_Column_qt_ml,
-            this.dataGridView_Data_Column_proc});
+            this.dataGridView_Data_Column_proc,
+            this.dataGridView_Data_Column_qe_qt,
+            this.dataGridView_Data_Column_log_qe_qt,
+            this.dataGridView_Data_Column_t_qt});
             this.dataGridView_Data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_Data.Location = new System.Drawing.Point(3, 33);
             this.dataGridView_Data.Name = "dataGridView_Data";
             this.dataGridView_Data.Size = new System.Drawing.Size(795, 276);
             this.dataGridView_Data.TabIndex = 1;
-            // 
-            // dataGridView_Data_Column_time
-            // 
-            this.dataGridView_Data_Column_time.HeaderText = "обр/врем";
-            this.dataGridView_Data_Column_time.Name = "dataGridView_Data_Column_time";
-            // 
-            // dataGridView_Data_Column_m_r
-            // 
-            this.dataGridView_Data_Column_m_r.HeaderText = "m, г";
-            this.dataGridView_Data_Column_m_r.Name = "dataGridView_Data_Column_m_r";
-            // 
-            // dataGridView_Data_Column_A
-            // 
-            this.dataGridView_Data_Column_A.HeaderText = "A";
-            this.dataGridView_Data_Column_A.Name = "dataGridView_Data_Column_A";
-            // 
-            // dataGridView_Data_Column_C_mkmol
-            // 
-            this.dataGridView_Data_Column_C_mkmol.HeaderText = "С,мкг/мл";
-            this.dataGridView_Data_Column_C_mkmol.Name = "dataGridView_Data_Column_C_mkmol";
-            // 
-            // dataGridView_Data_Column_qt_mr
-            // 
-            this.dataGridView_Data_Column_qt_mr.HeaderText = "qt, мкг/г";
-            this.dataGridView_Data_Column_qt_mr.Name = "dataGridView_Data_Column_qt_mr";
-            // 
-            // dataGridView_Data_Column_qt_ml
-            // 
-            this.dataGridView_Data_Column_qt_ml.HeaderText = "qt, μмоль/г";
-            this.dataGridView_Data_Column_qt_ml.Name = "dataGridView_Data_Column_qt_ml";
-            // 
-            // dataGridView_Data_Column_proc
-            // 
-            this.dataGridView_Data_Column_proc.HeaderText = "%";
-            this.dataGridView_Data_Column_proc.Name = "dataGridView_Data_Column_proc";
             // 
             // tableLayoutPanel_Buttons
             // 
@@ -177,6 +148,56 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Выберите раствор:";
             // 
+            // dataGridView_Data_Column_time
+            // 
+            this.dataGridView_Data_Column_time.HeaderText = "обр/врем";
+            this.dataGridView_Data_Column_time.Name = "dataGridView_Data_Column_time";
+            // 
+            // dataGridView_Data_Column_m_r
+            // 
+            this.dataGridView_Data_Column_m_r.HeaderText = "m, г";
+            this.dataGridView_Data_Column_m_r.Name = "dataGridView_Data_Column_m_r";
+            // 
+            // dataGridView_Data_Column_A
+            // 
+            this.dataGridView_Data_Column_A.HeaderText = "A";
+            this.dataGridView_Data_Column_A.Name = "dataGridView_Data_Column_A";
+            // 
+            // dataGridView_Data_Column_C_mkmol
+            // 
+            this.dataGridView_Data_Column_C_mkmol.HeaderText = "С,мкг/мл";
+            this.dataGridView_Data_Column_C_mkmol.Name = "dataGridView_Data_Column_C_mkmol";
+            // 
+            // dataGridView_Data_Column_qt_mr
+            // 
+            this.dataGridView_Data_Column_qt_mr.HeaderText = "qt, мкг/г";
+            this.dataGridView_Data_Column_qt_mr.Name = "dataGridView_Data_Column_qt_mr";
+            // 
+            // dataGridView_Data_Column_qt_ml
+            // 
+            this.dataGridView_Data_Column_qt_ml.HeaderText = "qt, μмоль/г";
+            this.dataGridView_Data_Column_qt_ml.Name = "dataGridView_Data_Column_qt_ml";
+            // 
+            // dataGridView_Data_Column_proc
+            // 
+            this.dataGridView_Data_Column_proc.HeaderText = "%";
+            this.dataGridView_Data_Column_proc.Name = "dataGridView_Data_Column_proc";
+            // 
+            // dataGridView_Data_Column_qe_qt
+            // 
+            this.dataGridView_Data_Column_qe_qt.HeaderText = "qe-qt";
+            this.dataGridView_Data_Column_qe_qt.Name = "dataGridView_Data_Column_qe_qt";
+            // 
+            // dataGridView_Data_Column_log_qe_qt
+            // 
+            this.dataGridView_Data_Column_log_qe_qt.HeaderText = "log(qe-qt)";
+            this.dataGridView_Data_Column_log_qe_qt.Name = "dataGridView_Data_Column_log_qe_qt";
+            // 
+            // dataGridView_Data_Column_t_qt
+            // 
+            this.dataGridView_Data_Column_t_qt.HeaderText = "t\\qt";
+            this.dataGridView_Data_Column_t_qt.Name = "dataGridView_Data_Column_t_qt";
+            // 
             // EditSubstanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +220,11 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Main;
         private System.Windows.Forms.DataGridView dataGridView_Data;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Buttons;
+        private System.Windows.Forms.Button button_SaveEdits;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_ListSubstances;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_m_r;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_A;
@@ -206,10 +232,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_qt_mr;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_qt_ml;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_proc;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Buttons;
-        private System.Windows.Forms.Button button_SaveEdits;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_ListSubstances;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_qe_qt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_log_qe_qt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_t_qt;
     }
 }
