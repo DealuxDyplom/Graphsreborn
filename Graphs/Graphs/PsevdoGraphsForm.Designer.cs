@@ -52,6 +52,14 @@
             this.textBox_Determination_2 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Labels = new System.Windows.Forms.TableLayoutPanel();
             this.label_Main = new System.Windows.Forms.Label();
+            this.label_Qe1 = new System.Windows.Forms.Label();
+            this.label_k1 = new System.Windows.Forms.Label();
+            this.textBox_Qe1 = new System.Windows.Forms.TextBox();
+            this.textBox_K1 = new System.Windows.Forms.TextBox();
+            this.label_Qe2 = new System.Windows.Forms.Label();
+            this.label_K2 = new System.Windows.Forms.Label();
+            this.textBox_Qe2 = new System.Windows.Forms.TextBox();
+            this.textBox_K2 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel_PsevdoGraphs.SuspendLayout();
             this.tableLayoutPanel_PsevdoGraphs_1.SuspendLayout();
@@ -105,8 +113,7 @@
             this.tableLayoutPanel_PsevdoGraphs_1.Name = "tableLayoutPanel_PsevdoGraphs_1";
             this.tableLayoutPanel_PsevdoGraphs_1.RowCount = 2;
             this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_PsevdoGraphs_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel_PsevdoGraphs_1.Size = new System.Drawing.Size(788, 201);
             this.tableLayoutPanel_PsevdoGraphs_1.TabIndex = 0;
             // 
@@ -121,19 +128,24 @@
             this.tableLayoutPanel_Parameters_1.Controls.Add(this.label_Determination, 2, 0);
             this.tableLayoutPanel_Parameters_1.Controls.Add(this.textBox_Equation_1, 1, 0);
             this.tableLayoutPanel_Parameters_1.Controls.Add(this.textBox_Determination_1, 3, 0);
+            this.tableLayoutPanel_Parameters_1.Controls.Add(this.label_Qe1, 0, 1);
+            this.tableLayoutPanel_Parameters_1.Controls.Add(this.label_k1, 2, 1);
+            this.tableLayoutPanel_Parameters_1.Controls.Add(this.textBox_Qe1, 1, 1);
+            this.tableLayoutPanel_Parameters_1.Controls.Add(this.textBox_K1, 3, 1);
             this.tableLayoutPanel_Parameters_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Parameters_1.Location = new System.Drawing.Point(3, 174);
+            this.tableLayoutPanel_Parameters_1.Location = new System.Drawing.Point(3, 144);
             this.tableLayoutPanel_Parameters_1.Name = "tableLayoutPanel_Parameters_1";
-            this.tableLayoutPanel_Parameters_1.RowCount = 1;
-            this.tableLayoutPanel_Parameters_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Parameters_1.Size = new System.Drawing.Size(782, 24);
+            this.tableLayoutPanel_Parameters_1.RowCount = 2;
+            this.tableLayoutPanel_Parameters_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Parameters_1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Parameters_1.Size = new System.Drawing.Size(782, 54);
             this.tableLayoutPanel_Parameters_1.TabIndex = 1;
             // 
             // label_Equation
             // 
             this.label_Equation.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label_Equation.AutoSize = true;
-            this.label_Equation.Location = new System.Drawing.Point(166, 5);
+            this.label_Equation.Location = new System.Drawing.Point(166, 7);
             this.label_Equation.Name = "label_Equation";
             this.label_Equation.Size = new System.Drawing.Size(26, 13);
             this.label_Equation.TabIndex = 0;
@@ -143,7 +155,7 @@
             // 
             this.label_Determination.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label_Determination.AutoSize = true;
-            this.label_Determination.Location = new System.Drawing.Point(493, 5);
+            this.label_Determination.Location = new System.Drawing.Point(493, 7);
             this.label_Determination.Name = "label_Determination";
             this.label_Determination.Size = new System.Drawing.Size(89, 13);
             this.label_Determination.TabIndex = 1;
@@ -176,7 +188,7 @@
             this.chart_PsevdoGraph_1.Legends.Add(legend1);
             this.chart_PsevdoGraph_1.Location = new System.Drawing.Point(3, 3);
             this.chart_PsevdoGraph_1.Name = "chart_PsevdoGraph_1";
-            this.chart_PsevdoGraph_1.Size = new System.Drawing.Size(782, 165);
+            this.chart_PsevdoGraph_1.Size = new System.Drawing.Size(782, 135);
             this.chart_PsevdoGraph_1.TabIndex = 0;
             this.chart_PsevdoGraph_1.Text = "Psevdo_1";
             title1.Name = "Title1";
@@ -194,7 +206,7 @@
             this.tableLayoutPanel_PsevdoGraphs_2.Name = "tableLayoutPanel_PsevdoGraphs_2";
             this.tableLayoutPanel_PsevdoGraphs_2.RowCount = 2;
             this.tableLayoutPanel_PsevdoGraphs_2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_PsevdoGraphs_2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel_PsevdoGraphs_2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel_PsevdoGraphs_2.Size = new System.Drawing.Size(788, 201);
             this.tableLayoutPanel_PsevdoGraphs_2.TabIndex = 1;
             // 
@@ -207,7 +219,7 @@
             this.chart_PsevdoGraph_2.Legends.Add(legend2);
             this.chart_PsevdoGraph_2.Location = new System.Drawing.Point(3, 3);
             this.chart_PsevdoGraph_2.Name = "chart_PsevdoGraph_2";
-            this.chart_PsevdoGraph_2.Size = new System.Drawing.Size(782, 165);
+            this.chart_PsevdoGraph_2.Size = new System.Drawing.Size(782, 135);
             this.chart_PsevdoGraph_2.TabIndex = 0;
             this.chart_PsevdoGraph_2.Text = "chart1";
             title2.Name = "Title1";
@@ -225,19 +237,24 @@
             this.tableLayoutPanel_Parameters_2.Controls.Add(this.label_Determination_2, 2, 0);
             this.tableLayoutPanel_Parameters_2.Controls.Add(this.textBox_Equation_2, 1, 0);
             this.tableLayoutPanel_Parameters_2.Controls.Add(this.textBox_Determination_2, 3, 0);
+            this.tableLayoutPanel_Parameters_2.Controls.Add(this.label_Qe2, 0, 1);
+            this.tableLayoutPanel_Parameters_2.Controls.Add(this.label_K2, 2, 1);
+            this.tableLayoutPanel_Parameters_2.Controls.Add(this.textBox_Qe2, 1, 1);
+            this.tableLayoutPanel_Parameters_2.Controls.Add(this.textBox_K2, 3, 1);
             this.tableLayoutPanel_Parameters_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Parameters_2.Location = new System.Drawing.Point(3, 174);
+            this.tableLayoutPanel_Parameters_2.Location = new System.Drawing.Point(3, 144);
             this.tableLayoutPanel_Parameters_2.Name = "tableLayoutPanel_Parameters_2";
-            this.tableLayoutPanel_Parameters_2.RowCount = 1;
-            this.tableLayoutPanel_Parameters_2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Parameters_2.Size = new System.Drawing.Size(782, 24);
+            this.tableLayoutPanel_Parameters_2.RowCount = 2;
+            this.tableLayoutPanel_Parameters_2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Parameters_2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Parameters_2.Size = new System.Drawing.Size(782, 54);
             this.tableLayoutPanel_Parameters_2.TabIndex = 1;
             // 
             // label_Equation_2
             // 
             this.label_Equation_2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label_Equation_2.AutoSize = true;
-            this.label_Equation_2.Location = new System.Drawing.Point(166, 5);
+            this.label_Equation_2.Location = new System.Drawing.Point(166, 7);
             this.label_Equation_2.Name = "label_Equation_2";
             this.label_Equation_2.Size = new System.Drawing.Size(26, 13);
             this.label_Equation_2.TabIndex = 0;
@@ -247,7 +264,7 @@
             // 
             this.label_Determination_2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label_Determination_2.AutoSize = true;
-            this.label_Determination_2.Location = new System.Drawing.Point(493, 5);
+            this.label_Determination_2.Location = new System.Drawing.Point(493, 7);
             this.label_Determination_2.Name = "label_Determination_2";
             this.label_Determination_2.Size = new System.Drawing.Size(89, 13);
             this.label_Determination_2.TabIndex = 1;
@@ -295,6 +312,82 @@
             this.label_Main.TabIndex = 0;
             this.label_Main.Text = "label1";
             // 
+            // label_Qe1
+            // 
+            this.label_Qe1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_Qe1.AutoSize = true;
+            this.label_Qe1.Location = new System.Drawing.Point(153, 34);
+            this.label_Qe1.Name = "label_Qe1";
+            this.label_Qe1.Size = new System.Drawing.Size(39, 13);
+            this.label_Qe1.TabIndex = 4;
+            this.label_Qe1.Text = "Qe1 = ";
+            // 
+            // label_k1
+            // 
+            this.label_k1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_k1.AutoSize = true;
+            this.label_k1.Location = new System.Drawing.Point(550, 34);
+            this.label_k1.Name = "label_k1";
+            this.label_k1.Size = new System.Drawing.Size(32, 13);
+            this.label_k1.TabIndex = 5;
+            this.label_k1.Text = "K1 = ";
+            // 
+            // textBox_Qe1
+            // 
+            this.textBox_Qe1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_Qe1.Location = new System.Drawing.Point(198, 30);
+            this.textBox_Qe1.Name = "textBox_Qe1";
+            this.textBox_Qe1.ReadOnly = true;
+            this.textBox_Qe1.Size = new System.Drawing.Size(176, 20);
+            this.textBox_Qe1.TabIndex = 6;
+            // 
+            // textBox_K1
+            // 
+            this.textBox_K1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_K1.Location = new System.Drawing.Point(588, 30);
+            this.textBox_K1.Name = "textBox_K1";
+            this.textBox_K1.ReadOnly = true;
+            this.textBox_K1.Size = new System.Drawing.Size(155, 20);
+            this.textBox_K1.TabIndex = 7;
+            // 
+            // label_Qe2
+            // 
+            this.label_Qe2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_Qe2.AutoSize = true;
+            this.label_Qe2.Location = new System.Drawing.Point(153, 34);
+            this.label_Qe2.Name = "label_Qe2";
+            this.label_Qe2.Size = new System.Drawing.Size(39, 13);
+            this.label_Qe2.TabIndex = 4;
+            this.label_Qe2.Text = "Qe2 = ";
+            // 
+            // label_K2
+            // 
+            this.label_K2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_K2.AutoSize = true;
+            this.label_K2.Location = new System.Drawing.Point(550, 34);
+            this.label_K2.Name = "label_K2";
+            this.label_K2.Size = new System.Drawing.Size(32, 13);
+            this.label_K2.TabIndex = 5;
+            this.label_K2.Text = "K2 = ";
+            // 
+            // textBox_Qe2
+            // 
+            this.textBox_Qe2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_Qe2.Location = new System.Drawing.Point(198, 30);
+            this.textBox_Qe2.Name = "textBox_Qe2";
+            this.textBox_Qe2.ReadOnly = true;
+            this.textBox_Qe2.Size = new System.Drawing.Size(176, 20);
+            this.textBox_Qe2.TabIndex = 6;
+            // 
+            // textBox_K2
+            // 
+            this.textBox_K2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_K2.Location = new System.Drawing.Point(588, 30);
+            this.textBox_K2.Name = "textBox_K2";
+            this.textBox_K2.ReadOnly = true;
+            this.textBox_K2.Size = new System.Drawing.Size(155, 20);
+            this.textBox_K2.TabIndex = 7;
+            // 
             // PsevdoGraphsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,5 +432,13 @@
         private System.Windows.Forms.Label label_Determination_2;
         private System.Windows.Forms.TextBox textBox_Equation_2;
         private System.Windows.Forms.TextBox textBox_Determination_2;
+        private System.Windows.Forms.Label label_Qe1;
+        private System.Windows.Forms.Label label_k1;
+        private System.Windows.Forms.TextBox textBox_Qe1;
+        private System.Windows.Forms.TextBox textBox_K1;
+        private System.Windows.Forms.Label label_Qe2;
+        private System.Windows.Forms.Label label_K2;
+        private System.Windows.Forms.TextBox textBox_Qe2;
+        private System.Windows.Forms.TextBox textBox_K2;
     }
 }

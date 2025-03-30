@@ -87,6 +87,13 @@ namespace Graphs
             double determination = SS_reg / SS_tot;
             textBox_Determination_1.Text = Math.Round(determination, 5).ToString();
 
+            //find out Qe1
+            textBox_Qe1.Text = substance.data[0].Qe1.ToString();
+
+            //find out K1
+            double k1 = -(b * 2.303);
+            textBox_K1.Text = k1.ToString();
+
             //create psevdo graph 2
             Series added_series_psevdo_2 = chart_PsevdoGraph_2.Series.Add("Psevdo_2");
             added_series_psevdo_2.ChartType = SeriesChartType.Point;
@@ -151,6 +158,14 @@ namespace Graphs
 
             determination = SS_reg / SS_tot;
             textBox_Determination_2.Text = Math.Round(determination, 2).ToString();
+
+            //find out Qe1
+            double Qe2 = 1 / b;
+            textBox_Qe2.Text = Qe2.ToString();
+
+            //find out K1
+            double k2 = 1 / (0.16 / (1/ (Qe2 * Qe2)));
+            textBox_K2.Text = k2.ToString();
         }
     }
 }

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+using MathNet.Numerics.Optimization;
 
 namespace Graphs
 {
@@ -34,6 +37,53 @@ namespace Graphs
 
             // при изменнеии comboBox_Graduation.SelectedIndex вызовется функция comboBox_Graduation_SelectedIndexChanged
             comboBox_Graduation.SelectedIndex = 0;
+        }
+
+        // Модель псевдо-первого порядка
+        static double PseudoFirstOrder(double t, double qe, double k1)
+        {
+            return qe * (1 - Math.Exp(-k1 * t));
+        }
+
+        // Функция сгенерирована ChatGPT
+        static double getQe(double[] time, double[] qt_exp)
+        {
+            ////Экспериментальные данные
+            //double[] time = { 0, 5, 10, 20, 40, 60 };  // Время в минутах
+            //double[] qt_exp = { 0, 0.3544, 0.3509, 0.3542, 0.3617, 0.3562 };  // Экспериментальные данные
+
+            // Функция ошибки (минимизируемая)
+            Func<double, double, double> errorFunc = (qe_local, k1_local) =>
+            {
+                double error = 0.0;
+                for (int i = 0; i < time.Length; i++)
+                {
+                    double model = PseudoFirstOrder(time[i], qe_local, k1_local);
+                    error += Math.Pow(model - qt_exp[i], 2);
+                }
+                return error;
+            };
+
+            // Начальные значения
+            double qe = 0.1;
+            double k1 = 0.1;
+            int iterations = 5; // Количество итераций поочерёдной минимизации
+
+            var minimizer = new GoldenSectionMinimizer(1e-9, 100);
+
+            for (int iter = 0; iter < iterations; iter++)
+            {
+                // Минимизация по qe (фиксируем k1)
+                var resultQe = minimizer.FindMinimum(ObjectiveFunction.ScalarValue(q => errorFunc(q, k1)), 0, 1);
+                qe = resultQe.MinimizingPoint;
+
+                // Минимизация по k1 (фиксируем qe)
+                var resultK1 = minimizer.FindMinimum(ObjectiveFunction.ScalarValue(k => errorFunc(qe, k)), 0, 1);
+                k1 = resultK1.MinimizingPoint;
+            }
+
+            //Console.WriteLine($"Подобранные параметры: qe = {qe}, k1 = {k1}");
+            return qe * 1.02;
         }
 
         private void button_FillFromFileExprData_Click(object sender, EventArgs e)
@@ -176,30 +226,70 @@ namespace Graphs
                 substanceData.qt_ml = qt_ml;
                 substanceData.proc = proc;
 
-                substanceData.Qe1 = 0.362;
-                substanceData.qe_qt = substanceData.Qe1 - substanceData.qt_ml;
-                substanceData.log_qe_qt = Math.Log10(substanceData.qe_qt);
-                if (substanceData.qt_ml != 0)
+                //substanceData.Qe1 = 0.362;
+
+                //substanceData.qe_qt = substanceData.Qe1 - substanceData.qt_ml;
+                //substanceData.log_qe_qt = Math.Log10(substanceData.qe_qt);
+                //if (substanceData.qt_ml != 0)
+                //{
+                //    substanceData.t_qt = substanceData.time / substanceData.qt_ml;
+                //}
+                //else
+                //{
+                //    substanceData.t_qt = 0;
+                //}
+
+                substance.data.Add(substanceData);
+
+                //string[] rows = { dataGridView_ExprData["Column_time", i].Value.ToString(),
+                //    dataGridView_ExprData["Column_m_r", i].Value.ToString(),
+                //    dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString(),
+                //    substanceData.C_mkmol.ToString(),
+                //    substanceData.qt_mr.ToString(),
+                //    substanceData.qt_ml.ToString(),
+                //    substanceData.proc.ToString(),
+                //    substanceData.qe_qt.ToString(),
+                //    substanceData.log_qe_qt.ToString(),
+                //    substanceData.t_qt.ToString(),
+                //};
+
+                //dataGridView_Data.Rows.Add(rows);
+            }
+
+            //find out Qe1
+            double[] time = new double[substance.data.Count];
+            double[] qt_exp = new double[substance.data.Count];
+            for (int i = 0; i < substance.data.Count; i++)
+            {
+                time[i] = substance.data[i].time;
+                qt_exp[i] = substance.data[i].qt_ml;
+            }
+            double Qe1 = getQe(time, qt_exp);
+            for (int i = 0; i < substance.data.Count; i++)
+            {
+                substance.data[i].Qe1 = Qe1;
+
+                substance.data[i].qe_qt = substance.data[i].Qe1 - substance.data[i].qt_ml;
+                substance.data[i].log_qe_qt = Math.Log10(substance.data[i].qe_qt);
+                if (substance.data[i].qt_ml != 0)
                 {
-                    substanceData.t_qt = substanceData.time / substanceData.qt_ml;
+                    substance.data[i].t_qt = substance.data[i].time / substance.data[i].qt_ml;
                 }
                 else
                 {
-                    substanceData.t_qt = 0;
+                    substance.data[i].t_qt = 0;
                 }
-
-                substance.data.Add(substanceData);
 
                 string[] rows = { dataGridView_ExprData["Column_time", i].Value.ToString(),
                     dataGridView_ExprData["Column_m_r", i].Value.ToString(),
                     dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString(),
-                    substanceData.C_mkmol.ToString(),
-                    substanceData.qt_mr.ToString(),
-                    substanceData.qt_ml.ToString(),
-                    substanceData.proc.ToString(),
-                    substanceData.qe_qt.ToString(),
-                    substanceData.log_qe_qt.ToString(),
-                    substanceData.t_qt.ToString(),
+                    substance.data[i].C_mkmol.ToString(),
+                    substance.data[i].qt_mr.ToString(),
+                    substance.data[i].qt_ml.ToString(),
+                    substance.data[i].proc.ToString(),
+                    substance.data[i].qe_qt.ToString(),
+                    substance.data[i].log_qe_qt.ToString(),
+                    substance.data[i].t_qt.ToString(),
                 };
 
                 dataGridView_Data.Rows.Add(rows);

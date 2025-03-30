@@ -30,11 +30,6 @@
         {
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView_Data = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
-            this.button_SaveEdits = new System.Windows.Forms.Button();
-            this.tableLayoutPanel_ListSubstances = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_Data_Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_m_r = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_A = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +40,11 @@
             this.dataGridView_Data_Column_qe_qt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_log_qe_qt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Data_Column_t_qt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
+            this.button_SaveEdits = new System.Windows.Forms.Button();
+            this.tableLayoutPanel_ListSubstances = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Data)).BeginInit();
             this.tableLayoutPanel_Buttons.SuspendLayout();
@@ -88,6 +88,56 @@
             this.dataGridView_Data.Name = "dataGridView_Data";
             this.dataGridView_Data.Size = new System.Drawing.Size(795, 276);
             this.dataGridView_Data.TabIndex = 1;
+            // 
+            // dataGridView_Data_Column_time
+            // 
+            this.dataGridView_Data_Column_time.HeaderText = "обр/врем";
+            this.dataGridView_Data_Column_time.Name = "dataGridView_Data_Column_time";
+            // 
+            // dataGridView_Data_Column_m_r
+            // 
+            this.dataGridView_Data_Column_m_r.HeaderText = "m, г";
+            this.dataGridView_Data_Column_m_r.Name = "dataGridView_Data_Column_m_r";
+            // 
+            // dataGridView_Data_Column_A
+            // 
+            this.dataGridView_Data_Column_A.HeaderText = "A";
+            this.dataGridView_Data_Column_A.Name = "dataGridView_Data_Column_A";
+            // 
+            // dataGridView_Data_Column_C_mkmol
+            // 
+            this.dataGridView_Data_Column_C_mkmol.HeaderText = "С,мкг/мл";
+            this.dataGridView_Data_Column_C_mkmol.Name = "dataGridView_Data_Column_C_mkmol";
+            // 
+            // dataGridView_Data_Column_qt_mr
+            // 
+            this.dataGridView_Data_Column_qt_mr.HeaderText = "qt, мкг/г";
+            this.dataGridView_Data_Column_qt_mr.Name = "dataGridView_Data_Column_qt_mr";
+            // 
+            // dataGridView_Data_Column_qt_ml
+            // 
+            this.dataGridView_Data_Column_qt_ml.HeaderText = "qt, μмоль/г";
+            this.dataGridView_Data_Column_qt_ml.Name = "dataGridView_Data_Column_qt_ml";
+            // 
+            // dataGridView_Data_Column_proc
+            // 
+            this.dataGridView_Data_Column_proc.HeaderText = "%";
+            this.dataGridView_Data_Column_proc.Name = "dataGridView_Data_Column_proc";
+            // 
+            // dataGridView_Data_Column_qe_qt
+            // 
+            this.dataGridView_Data_Column_qe_qt.HeaderText = "qe-qt";
+            this.dataGridView_Data_Column_qe_qt.Name = "dataGridView_Data_Column_qe_qt";
+            // 
+            // dataGridView_Data_Column_log_qe_qt
+            // 
+            this.dataGridView_Data_Column_log_qe_qt.HeaderText = "log(qe-qt)";
+            this.dataGridView_Data_Column_log_qe_qt.Name = "dataGridView_Data_Column_log_qe_qt";
+            // 
+            // dataGridView_Data_Column_t_qt
+            // 
+            this.dataGridView_Data_Column_t_qt.HeaderText = "t\\qt";
+            this.dataGridView_Data_Column_t_qt.Name = "dataGridView_Data_Column_t_qt";
             // 
             // tableLayoutPanel_Buttons
             // 
@@ -147,56 +197,6 @@
             this.label1.Size = new System.Drawing.Size(104, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Выберите раствор:";
-            // 
-            // dataGridView_Data_Column_time
-            // 
-            this.dataGridView_Data_Column_time.HeaderText = "обр/врем";
-            this.dataGridView_Data_Column_time.Name = "dataGridView_Data_Column_time";
-            // 
-            // dataGridView_Data_Column_m_r
-            // 
-            this.dataGridView_Data_Column_m_r.HeaderText = "m, г";
-            this.dataGridView_Data_Column_m_r.Name = "dataGridView_Data_Column_m_r";
-            // 
-            // dataGridView_Data_Column_A
-            // 
-            this.dataGridView_Data_Column_A.HeaderText = "A";
-            this.dataGridView_Data_Column_A.Name = "dataGridView_Data_Column_A";
-            // 
-            // dataGridView_Data_Column_C_mkmol
-            // 
-            this.dataGridView_Data_Column_C_mkmol.HeaderText = "С,мкг/мл";
-            this.dataGridView_Data_Column_C_mkmol.Name = "dataGridView_Data_Column_C_mkmol";
-            // 
-            // dataGridView_Data_Column_qt_mr
-            // 
-            this.dataGridView_Data_Column_qt_mr.HeaderText = "qt, мкг/г";
-            this.dataGridView_Data_Column_qt_mr.Name = "dataGridView_Data_Column_qt_mr";
-            // 
-            // dataGridView_Data_Column_qt_ml
-            // 
-            this.dataGridView_Data_Column_qt_ml.HeaderText = "qt, μмоль/г";
-            this.dataGridView_Data_Column_qt_ml.Name = "dataGridView_Data_Column_qt_ml";
-            // 
-            // dataGridView_Data_Column_proc
-            // 
-            this.dataGridView_Data_Column_proc.HeaderText = "%";
-            this.dataGridView_Data_Column_proc.Name = "dataGridView_Data_Column_proc";
-            // 
-            // dataGridView_Data_Column_qe_qt
-            // 
-            this.dataGridView_Data_Column_qe_qt.HeaderText = "qe-qt";
-            this.dataGridView_Data_Column_qe_qt.Name = "dataGridView_Data_Column_qe_qt";
-            // 
-            // dataGridView_Data_Column_log_qe_qt
-            // 
-            this.dataGridView_Data_Column_log_qe_qt.HeaderText = "log(qe-qt)";
-            this.dataGridView_Data_Column_log_qe_qt.Name = "dataGridView_Data_Column_log_qe_qt";
-            // 
-            // dataGridView_Data_Column_t_qt
-            // 
-            this.dataGridView_Data_Column_t_qt.HeaderText = "t\\qt";
-            this.dataGridView_Data_Column_t_qt.Name = "dataGridView_Data_Column_t_qt";
             // 
             // EditSubstanceForm
             // 
