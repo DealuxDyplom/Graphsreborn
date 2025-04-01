@@ -12,6 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 using MathNet.Numerics.Optimization;
+using System.Globalization;
 
 namespace Graphs
 {
@@ -90,6 +91,7 @@ namespace Graphs
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
+            if (openFileDialog.FileName == "") return;
 
             //очищаем таблицу
             dataGridView_ExprData.Rows.Clear();
@@ -208,7 +210,7 @@ namespace Graphs
             dataGridView_Data.Rows.Clear();
             dataGridView_Data.Refresh();
 
-            double OpticDens = double.Parse(textBox_OpticDens.Text);
+            double OpticDens = double.Parse(textBox_OpticDens.Text.Replace(".", ","));
             double C_from_OpticDens = OpticDens / k;
             for (int i = 0; i < dataGridView_ExprData.Rows.Count - 1; i++)
             {

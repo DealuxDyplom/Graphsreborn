@@ -30,10 +30,6 @@
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, 1D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(2D, 2D);
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
@@ -225,20 +221,6 @@
             this.chart_Graphs.Legends.Add(legend1);
             this.chart_Graphs.Location = new System.Drawing.Point(3, 3);
             this.chart_Graphs.Name = "chart_Graphs";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series1.Legend = "Legend1";
-            series1.MarkerSize = 10;
-            series1.Name = "Series1";
-            dataPoint1.MarkerSize = 5;
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            this.chart_Graphs.Series.Add(series1);
-            this.chart_Graphs.Series.Add(series2);
             this.chart_Graphs.Size = new System.Drawing.Size(885, 306);
             this.chart_Graphs.TabIndex = 3;
             this.chart_Graphs.Text = "chart1";
