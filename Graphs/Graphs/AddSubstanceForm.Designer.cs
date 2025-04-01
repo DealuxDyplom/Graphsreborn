@@ -484,6 +484,7 @@
             // button_Recalculate
             // 
             this.button_Recalculate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_Recalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_Recalculate.Location = new System.Drawing.Point(615, 3);
             this.button_Recalculate.Name = "button_Recalculate";
             this.button_Recalculate.Size = new System.Drawing.Size(607, 39);
@@ -495,6 +496,7 @@
             // button_AddSubstance
             // 
             this.button_AddSubstance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button_AddSubstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_AddSubstance.Location = new System.Drawing.Point(3, 3);
             this.button_AddSubstance.Name = "button_AddSubstance";
             this.button_AddSubstance.Size = new System.Drawing.Size(606, 39);

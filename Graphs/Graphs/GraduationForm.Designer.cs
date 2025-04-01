@@ -57,9 +57,9 @@
             this.tableLayoutPanel_Main.Name = "tableLayoutPanel_Main";
             this.tableLayoutPanel_Main.RowCount = 3;
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(848, 377);
             this.tableLayoutPanel_Main.TabIndex = 0;
             // 
             // groupBox_GraduationList
@@ -68,7 +68,7 @@
             this.groupBox_GraduationList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_GraduationList.Location = new System.Drawing.Point(3, 3);
             this.groupBox_GraduationList.Name = "groupBox_GraduationList";
-            this.groupBox_GraduationList.Size = new System.Drawing.Size(794, 144);
+            this.groupBox_GraduationList.Size = new System.Drawing.Size(842, 103);
             this.groupBox_GraduationList.TabIndex = 0;
             this.groupBox_GraduationList.TabStop = false;
             this.groupBox_GraduationList.Text = "Градуировки";
@@ -79,7 +79,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(788, 125);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(836, 84);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel_GraduationData
@@ -88,11 +88,11 @@
             this.tableLayoutPanel_GraduationData.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel_GraduationData.Controls.Add(this.dataGridView_GraduationData, 0, 0);
             this.tableLayoutPanel_GraduationData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_GraduationData.Location = new System.Drawing.Point(3, 153);
+            this.tableLayoutPanel_GraduationData.Location = new System.Drawing.Point(3, 112);
             this.tableLayoutPanel_GraduationData.Name = "tableLayoutPanel_GraduationData";
             this.tableLayoutPanel_GraduationData.RowCount = 1;
             this.tableLayoutPanel_GraduationData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_GraduationData.Size = new System.Drawing.Size(794, 144);
+            this.tableLayoutPanel_GraduationData.Size = new System.Drawing.Size(842, 212);
             this.tableLayoutPanel_GraduationData.TabIndex = 1;
             // 
             // dataGridView_GraduationData
@@ -105,7 +105,7 @@
             this.dataGridView_GraduationData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_GraduationData.Location = new System.Drawing.Point(3, 3);
             this.dataGridView_GraduationData.Name = "dataGridView_GraduationData";
-            this.dataGridView_GraduationData.Size = new System.Drawing.Size(788, 138);
+            this.dataGridView_GraduationData.Size = new System.Drawing.Size(836, 206);
             this.dataGridView_GraduationData.TabIndex = 0;
             // 
             // dataGridView_GraduationData_Column_C_mkmol
@@ -126,19 +126,20 @@
             this.tableLayoutPanel_Buttons.Controls.Add(this.button_AddGraduation, 0, 0);
             this.tableLayoutPanel_Buttons.Controls.Add(this.button_EditGraduation, 1, 0);
             this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 303);
+            this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 330);
             this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
             this.tableLayoutPanel_Buttons.RowCount = 1;
             this.tableLayoutPanel_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(794, 144);
+            this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(842, 44);
             this.tableLayoutPanel_Buttons.TabIndex = 2;
             // 
             // button_AddGraduation
             // 
             this.button_AddGraduation.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_AddGraduation.Location = new System.Drawing.Point(69, 43);
+            this.button_AddGraduation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_AddGraduation.Location = new System.Drawing.Point(81, 3);
             this.button_AddGraduation.Name = "button_AddGraduation";
-            this.button_AddGraduation.Size = new System.Drawing.Size(259, 58);
+            this.button_AddGraduation.Size = new System.Drawing.Size(259, 38);
             this.button_AddGraduation.TabIndex = 0;
             this.button_AddGraduation.Text = "Добавить градуировку";
             this.button_AddGraduation.UseVisualStyleBackColor = true;
@@ -147,9 +148,10 @@
             // button_EditGraduation
             // 
             this.button_EditGraduation.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_EditGraduation.Location = new System.Drawing.Point(490, 46);
+            this.button_EditGraduation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_EditGraduation.Location = new System.Drawing.Point(526, 3);
             this.button_EditGraduation.Name = "button_EditGraduation";
-            this.button_EditGraduation.Size = new System.Drawing.Size(211, 51);
+            this.button_EditGraduation.Size = new System.Drawing.Size(211, 38);
             this.button_EditGraduation.TabIndex = 1;
             this.button_EditGraduation.Text = "Редактировать";
             this.button_EditGraduation.UseVisualStyleBackColor = true;
@@ -159,7 +161,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(848, 377);
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Name = "GraduationForm";
             this.Text = "Graduation";

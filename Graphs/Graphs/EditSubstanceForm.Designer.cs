@@ -155,6 +155,7 @@
             // button_SaveEdits
             // 
             this.button_SaveEdits.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_SaveEdits.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_SaveEdits.Location = new System.Drawing.Point(300, 3);
             this.button_SaveEdits.Name = "button_SaveEdits";
             this.button_SaveEdits.Size = new System.Drawing.Size(195, 38);

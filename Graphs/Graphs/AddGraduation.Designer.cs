@@ -112,6 +112,7 @@
             // button_FillFromFile
             // 
             this.button_FillFromFile.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_FillFromFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_FillFromFile.Location = new System.Drawing.Point(316, 8);
             this.button_FillFromFile.Name = "button_FillFromFile";
             this.button_FillFromFile.Size = new System.Drawing.Size(156, 30);
@@ -123,6 +124,7 @@
             // button_AddGraduation
             // 
             this.button_AddGraduation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button_AddGraduation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_AddGraduation.Location = new System.Drawing.Point(306, 56);
             this.button_AddGraduation.Name = "button_AddGraduation";
             this.button_AddGraduation.Size = new System.Drawing.Size(175, 28);

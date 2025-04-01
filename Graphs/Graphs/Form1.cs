@@ -59,9 +59,6 @@ namespace Graphs
         public void updateflowLayoutPanel()
         {
             flowLayoutPanel.Controls.Clear();
-            Label label_listSubstances = new Label();
-            label_listSubstances.Text = "Список растворов:";
-            flowLayoutPanel.Controls.Add(label_listSubstances);
             checkBoxes.Clear();
 
             for (int i = 0; i < Databank.substances.Count; i++)
@@ -98,10 +95,12 @@ namespace Graphs
             chart_Graphs.Show();
             chart_Graphs.Series.Clear();
             Random rand = new Random();
+            int count_of_checked_checkboxes = 0;
             for (int i = 0; i < checkBoxes.Count; i++)
             {
                 if (checkBoxes[i].Checked)
                 {
+                    count_of_checked_checkboxes++;
                     Series added_series = chart_Graphs.Series.Add(checkBoxes[i].Text);
                     added_series.ChartType = SeriesChartType.Spline;
                     added_series.Color = Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
@@ -141,6 +140,10 @@ namespace Graphs
                     }
                 }
             }
+            if (count_of_checked_checkboxes == 0)
+            {
+                MessageBox.Show("Ни один раствор не выбран", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -160,10 +163,12 @@ namespace Graphs
 
         private void button_PsevdoGraphs_Click(object sender, EventArgs e)
         {
+            int count_of_checked_checkboxes = 0;
             for (int i = 0; i < checkBoxes.Count; i++)
             {
                 if (checkBoxes[i].Checked)
                 {
+                    count_of_checked_checkboxes++;
                     for (int j = 0; j < Databank.substances.Count; j++)
                     {
                         if (checkBoxes[i].Text == Databank.substances[j].name)
@@ -174,6 +179,10 @@ namespace Graphs
                     }
 
                 }
+            }
+            if (count_of_checked_checkboxes == 0)
+            {
+                MessageBox.Show("Ни один раствор не выбран", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -209,9 +218,6 @@ namespace Graphs
 
                 //add new checkboxes
                 flowLayoutPanel.Controls.Clear();
-                Label label_listSubstances = new Label();
-                label_listSubstances.Text = "Список растворов:";
-                flowLayoutPanel.Controls.Add(label_listSubstances);
                 checkBoxes.Clear();
 
                 for (int i = 0; i < Databank.substances.Count; i++)
