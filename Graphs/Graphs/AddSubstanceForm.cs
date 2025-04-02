@@ -214,15 +214,15 @@ namespace Graphs
             double C_from_OpticDens = OpticDens / k;
             for (int i = 0; i < dataGridView_ExprData.Rows.Count - 1; i++)
             {
-                double C_mkmol = double.Parse(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString()) / k;
-                double qt_mr = (C_from_OpticDens - C_mkmol) * 20 / (double.Parse(dataGridView_ExprData["Column_m_r", i].Value.ToString()));
+                double C_mkmol = double.Parse(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString().Replace(".", ",")) / k;
+                double qt_mr = (C_from_OpticDens - C_mkmol) * 20 / (double.Parse(dataGridView_ExprData["Column_m_r", i].Value.ToString().Replace(".", ",")));
                 double qt_ml = qt_mr / 1355; //??? что такое 1355
                 double proc = (C_from_OpticDens - C_mkmol) / C_from_OpticDens * 100;
 
                 SubstanceData substanceData = new SubstanceData();
-                substanceData.time = Convert.ToDouble(dataGridView_ExprData["Column_time", i].Value);
-                substanceData.m_r = Convert.ToDouble(dataGridView_ExprData["Column_m_r", i].Value);
-                substanceData.A = Convert.ToDouble(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value);
+                substanceData.time = Convert.ToDouble(dataGridView_ExprData["Column_time", i].Value.ToString().Replace(".", ","));
+                substanceData.m_r = Convert.ToDouble(dataGridView_ExprData["Column_m_r", i].Value.ToString().Replace(".", ","));
+                substanceData.A = Convert.ToDouble(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString().Replace(".", ","));
                 substanceData.C_mkmol = C_mkmol;
                 substanceData.qt_mr = qt_mr;
                 substanceData.qt_ml = qt_ml;

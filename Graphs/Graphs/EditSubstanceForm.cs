@@ -59,16 +59,16 @@ namespace Graphs
             for (int i = 0; i < dataGridView_Data.Rows.Count - 1; i++)
             {
                 SubstanceData substanceData = new SubstanceData();
-                substanceData.time = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_time", i].Value);
-                substanceData.m_r = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_m_r", i].Value);
-                substanceData.A = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_A", i].Value);
-                substanceData.C_mkmol = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value);
-                substanceData.qt_mr = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value);
-                substanceData.qt_ml = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value);
-                substanceData.proc = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_proc", i].Value);
-                substanceData.qe_qt = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qe_qt", i].Value);
-                substanceData.log_qe_qt = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_log_qe_qt", i].Value);
-                substanceData.t_qt = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_t_qt", i].Value);
+                substanceData.time = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_time", i].Value.ToString().Replace(".", ","));
+                substanceData.m_r = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_m_r", i].Value.ToString().Replace(".", ","));
+                substanceData.A = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_A", i].Value.ToString().Replace(".", ","));
+                substanceData.C_mkmol = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value.ToString().Replace(".", ","));
+                substanceData.qt_mr = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value.ToString().Replace(".", ","));
+                substanceData.qt_ml = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value.ToString().Replace(".", ","));
+                substanceData.proc = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_proc", i].Value.ToString().Replace(".", ","));
+                substanceData.qe_qt = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qe_qt", i].Value.ToString().Replace(".", ","));
+                substanceData.log_qe_qt = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_log_qe_qt", i].Value.ToString().Replace(".", ","));
+                substanceData.t_qt = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_t_qt", i].Value.ToString().Replace(".", ","));
 
                 Databank.substances[comboBox1.SelectedIndex].data.Add(substanceData);
             }

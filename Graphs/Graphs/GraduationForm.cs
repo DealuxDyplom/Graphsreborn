@@ -94,8 +94,8 @@ namespace Graphs
                             for (int k = 0; k < dataGridView_GraduationData.Rows.Count - 1; k++)
                             {
                                 GraduationData graduationData = new GraduationData();
-                                graduationData.C_mkmol = Convert.ToDouble(dataGridView_GraduationData["dataGridView_GraduationData_Column_C_mkmol", k].Value);
-                                graduationData.A = Convert.ToDouble(dataGridView_GraduationData["dataGridView_GraduationData_Column_A", k].Value);
+                                graduationData.C_mkmol = Convert.ToDouble(dataGridView_GraduationData["dataGridView_GraduationData_Column_C_mkmol", k].Value.ToString().Replace(".", ","));
+                                graduationData.A = Convert.ToDouble(dataGridView_GraduationData["dataGridView_GraduationData_Column_A", k].Value.ToString().Replace(".", ","));
                                 Databank.graduations[j].data.Add(graduationData);
                             }
                             return;
