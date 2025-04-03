@@ -77,6 +77,7 @@ namespace Graphs
 
         private void EditSubstanceForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            parent.fillFlowLayoutCheckboxes();
             parent.Show();
         }
     }

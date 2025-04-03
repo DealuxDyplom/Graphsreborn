@@ -56,7 +56,7 @@ namespace Graphs
 
         #region [ Kinetics ]
 
-        private void fillFlowLayoutCheckboxes()
+        public void fillFlowLayoutCheckboxes()
         {
             chart_Graphs.Series.Clear();
             flowLayoutPanel.Controls.Clear();
@@ -200,6 +200,8 @@ namespace Graphs
                     Random rand = new Random();
                     Series added_series = chart_Graphs.Series.Add(checkBox.Text);
                     added_series.ChartType = SeriesChartType.Spline;
+                    //to make graph more smooth
+                    added_series.SetCustomProperty("LineTension", "0.2");
                     added_series.Color = Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
                     added_series.BorderWidth = 3;
 
