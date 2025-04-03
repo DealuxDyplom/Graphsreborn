@@ -94,6 +94,12 @@ namespace Graphs
             double k1 = -(b * 2.303);
             textBox_K1.Text = k1.ToString();
 
+            //to paint points before trendline
+            chart_PsevdoGraph_1.Series.Remove(added_series_psevdo_1);
+            chart_PsevdoGraph_1.Series.Remove(psevdo_1_trend_line_series);
+            chart_PsevdoGraph_1.Series.Add(psevdo_1_trend_line_series);
+            chart_PsevdoGraph_1.Series.Add(added_series_psevdo_1);
+
             //create psevdo graph 2
             Series added_series_psevdo_2 = chart_PsevdoGraph_2.Series.Add("Psevdo_2");
             added_series_psevdo_2.ChartType = SeriesChartType.Point;
@@ -166,6 +172,12 @@ namespace Graphs
             //find out K1
             double k2 = 1 / (0.16 / (1/ (Qe2 * Qe2)));
             textBox_K2.Text = k2.ToString();
+
+            //to paint points before trendline
+            chart_PsevdoGraph_2.Series.Remove(added_series_psevdo_2);
+            chart_PsevdoGraph_2.Series.Remove(psevdo_2_trend_line_series);
+            chart_PsevdoGraph_2.Series.Add(psevdo_2_trend_line_series);
+            chart_PsevdoGraph_2.Series.Add(added_series_psevdo_2);
         }
     }
 }

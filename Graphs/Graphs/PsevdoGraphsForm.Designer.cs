@@ -42,6 +42,10 @@
             this.label_Determination = new System.Windows.Forms.Label();
             this.textBox_Equation_1 = new System.Windows.Forms.TextBox();
             this.textBox_Determination_1 = new System.Windows.Forms.TextBox();
+            this.label_Qe1 = new System.Windows.Forms.Label();
+            this.label_k1 = new System.Windows.Forms.Label();
+            this.textBox_Qe1 = new System.Windows.Forms.TextBox();
+            this.textBox_K1 = new System.Windows.Forms.TextBox();
             this.chart_PsevdoGraph_1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel_PsevdoGraphs_2 = new System.Windows.Forms.TableLayoutPanel();
             this.chart_PsevdoGraph_2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -50,16 +54,12 @@
             this.label_Determination_2 = new System.Windows.Forms.Label();
             this.textBox_Equation_2 = new System.Windows.Forms.TextBox();
             this.textBox_Determination_2 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel_Labels = new System.Windows.Forms.TableLayoutPanel();
-            this.label_Main = new System.Windows.Forms.Label();
-            this.label_Qe1 = new System.Windows.Forms.Label();
-            this.label_k1 = new System.Windows.Forms.Label();
-            this.textBox_Qe1 = new System.Windows.Forms.TextBox();
-            this.textBox_K1 = new System.Windows.Forms.TextBox();
             this.label_Qe2 = new System.Windows.Forms.Label();
             this.label_K2 = new System.Windows.Forms.Label();
             this.textBox_Qe2 = new System.Windows.Forms.TextBox();
             this.textBox_K2 = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel_Labels = new System.Windows.Forms.TableLayoutPanel();
+            this.label_Main = new System.Windows.Forms.Label();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel_PsevdoGraphs.SuspendLayout();
             this.tableLayoutPanel_PsevdoGraphs_1.SuspendLayout();
@@ -179,8 +179,51 @@
             this.textBox_Determination_1.Size = new System.Drawing.Size(155, 20);
             this.textBox_Determination_1.TabIndex = 3;
             // 
+            // label_Qe1
+            // 
+            this.label_Qe1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_Qe1.AutoSize = true;
+            this.label_Qe1.Location = new System.Drawing.Point(153, 34);
+            this.label_Qe1.Name = "label_Qe1";
+            this.label_Qe1.Size = new System.Drawing.Size(39, 13);
+            this.label_Qe1.TabIndex = 4;
+            this.label_Qe1.Text = "Qe1 = ";
+            // 
+            // label_k1
+            // 
+            this.label_k1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_k1.AutoSize = true;
+            this.label_k1.Location = new System.Drawing.Point(550, 34);
+            this.label_k1.Name = "label_k1";
+            this.label_k1.Size = new System.Drawing.Size(32, 13);
+            this.label_k1.TabIndex = 5;
+            this.label_k1.Text = "K1 = ";
+            // 
+            // textBox_Qe1
+            // 
+            this.textBox_Qe1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_Qe1.Location = new System.Drawing.Point(198, 30);
+            this.textBox_Qe1.Name = "textBox_Qe1";
+            this.textBox_Qe1.ReadOnly = true;
+            this.textBox_Qe1.Size = new System.Drawing.Size(176, 20);
+            this.textBox_Qe1.TabIndex = 6;
+            // 
+            // textBox_K1
+            // 
+            this.textBox_K1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBox_K1.Location = new System.Drawing.Point(588, 30);
+            this.textBox_K1.Name = "textBox_K1";
+            this.textBox_K1.ReadOnly = true;
+            this.textBox_K1.Size = new System.Drawing.Size(155, 20);
+            this.textBox_K1.TabIndex = 7;
+            // 
             // chart_PsevdoGraph_1
             // 
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisX.IsStartedFromZero = false;
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
             chartArea1.Name = "ChartArea1";
             this.chart_PsevdoGraph_1.ChartAreas.Add(chartArea1);
             this.chart_PsevdoGraph_1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -212,6 +255,10 @@
             // 
             // chart_PsevdoGraph_2
             // 
+            chartArea2.AxisX.IsStartedFromZero = false;
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisY.IsStartedFromZero = false;
+            chartArea2.AxisY.MajorGrid.Enabled = false;
             chartArea2.Name = "ChartArea1";
             this.chart_PsevdoGraph_2.ChartAreas.Add(chartArea2);
             this.chart_PsevdoGraph_2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -288,68 +335,6 @@
             this.textBox_Determination_2.Size = new System.Drawing.Size(155, 20);
             this.textBox_Determination_2.TabIndex = 3;
             // 
-            // tableLayoutPanel_Labels
-            // 
-            this.tableLayoutPanel_Labels.ColumnCount = 1;
-            this.tableLayoutPanel_Labels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Labels.Controls.Add(this.label_Main, 0, 0);
-            this.tableLayoutPanel_Labels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Labels.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel_Labels.Name = "tableLayoutPanel_Labels";
-            this.tableLayoutPanel_Labels.RowCount = 1;
-            this.tableLayoutPanel_Labels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Labels.Size = new System.Drawing.Size(794, 24);
-            this.tableLayoutPanel_Labels.TabIndex = 1;
-            // 
-            // label_Main
-            // 
-            this.label_Main.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label_Main.AutoSize = true;
-            this.label_Main.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label_Main.Location = new System.Drawing.Point(371, 2);
-            this.label_Main.Name = "label_Main";
-            this.label_Main.Size = new System.Drawing.Size(51, 20);
-            this.label_Main.TabIndex = 0;
-            this.label_Main.Text = "label1";
-            // 
-            // label_Qe1
-            // 
-            this.label_Qe1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label_Qe1.AutoSize = true;
-            this.label_Qe1.Location = new System.Drawing.Point(153, 34);
-            this.label_Qe1.Name = "label_Qe1";
-            this.label_Qe1.Size = new System.Drawing.Size(39, 13);
-            this.label_Qe1.TabIndex = 4;
-            this.label_Qe1.Text = "Qe1 = ";
-            // 
-            // label_k1
-            // 
-            this.label_k1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label_k1.AutoSize = true;
-            this.label_k1.Location = new System.Drawing.Point(550, 34);
-            this.label_k1.Name = "label_k1";
-            this.label_k1.Size = new System.Drawing.Size(32, 13);
-            this.label_k1.TabIndex = 5;
-            this.label_k1.Text = "K1 = ";
-            // 
-            // textBox_Qe1
-            // 
-            this.textBox_Qe1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox_Qe1.Location = new System.Drawing.Point(198, 30);
-            this.textBox_Qe1.Name = "textBox_Qe1";
-            this.textBox_Qe1.ReadOnly = true;
-            this.textBox_Qe1.Size = new System.Drawing.Size(176, 20);
-            this.textBox_Qe1.TabIndex = 6;
-            // 
-            // textBox_K1
-            // 
-            this.textBox_K1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox_K1.Location = new System.Drawing.Point(588, 30);
-            this.textBox_K1.Name = "textBox_K1";
-            this.textBox_K1.ReadOnly = true;
-            this.textBox_K1.Size = new System.Drawing.Size(155, 20);
-            this.textBox_K1.TabIndex = 7;
-            // 
             // label_Qe2
             // 
             this.label_Qe2.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -387,6 +372,30 @@
             this.textBox_K2.ReadOnly = true;
             this.textBox_K2.Size = new System.Drawing.Size(155, 20);
             this.textBox_K2.TabIndex = 7;
+            // 
+            // tableLayoutPanel_Labels
+            // 
+            this.tableLayoutPanel_Labels.ColumnCount = 1;
+            this.tableLayoutPanel_Labels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Labels.Controls.Add(this.label_Main, 0, 0);
+            this.tableLayoutPanel_Labels.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel_Labels.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel_Labels.Name = "tableLayoutPanel_Labels";
+            this.tableLayoutPanel_Labels.RowCount = 1;
+            this.tableLayoutPanel_Labels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Labels.Size = new System.Drawing.Size(794, 24);
+            this.tableLayoutPanel_Labels.TabIndex = 1;
+            // 
+            // label_Main
+            // 
+            this.label_Main.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label_Main.AutoSize = true;
+            this.label_Main.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_Main.Location = new System.Drawing.Point(371, 2);
+            this.label_Main.Name = "label_Main";
+            this.label_Main.Size = new System.Drawing.Size(51, 20);
+            this.label_Main.TabIndex = 0;
+            this.label_Main.Text = "label1";
             // 
             // PsevdoGraphsForm
             // 

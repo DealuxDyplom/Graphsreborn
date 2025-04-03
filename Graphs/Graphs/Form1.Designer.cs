@@ -41,6 +41,8 @@
             this.button_PsevdoGraphs = new System.Windows.Forms.Button();
             this.tableLayoutPanel_Graphs = new System.Windows.Forms.TableLayoutPanel();
             this.chart_Graphs = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,16 +51,14 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.сохранитьГрадуировкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьГрадуировкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel_Buttons.SuspendLayout();
             this.tableLayoutPanel_Graphs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -196,6 +196,8 @@
             // 
             // chart_Graphs
             // 
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
             chartArea1.Name = "ChartArea1";
             this.chart_Graphs.ChartAreas.Add(chartArea1);
             this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -207,12 +209,32 @@
             this.chart_Graphs.TabIndex = 3;
             this.chart_Graphs.Text = "chart1";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.flowLayoutPanel);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(918, 131);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Список растворов";
+            // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(912, 112);
+            this.flowLayoutPanel.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(903, 494);
+            this.tabPage2.Size = new System.Drawing.Size(930, 489);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Изотермы";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -272,26 +294,6 @@
             this.загрузитьГрадуировкуToolStripMenuItem.Text = "Загрузить градуировку";
             this.загрузитьГрадуировкуToolStripMenuItem.Click += new System.EventHandler(this.загрузитьГрадуировкуToolStripMenuItem_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.flowLayoutPanel);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(918, 131);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Список растворов";
-            // 
-            // flowLayoutPanel
-            // 
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 16);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(912, 112);
-            this.flowLayoutPanel.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,9 +311,9 @@
             this.tableLayoutPanel_Buttons.ResumeLayout(false);
             this.tableLayoutPanel_Graphs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graphs)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

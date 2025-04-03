@@ -256,6 +256,10 @@
             // 
             // chart1
             // 
+            chartArea1.AxisX.IsStartedFromZero = false;
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             this.tableLayoutPanel_Graph.SetColumnSpan(this.chart1, 2);
