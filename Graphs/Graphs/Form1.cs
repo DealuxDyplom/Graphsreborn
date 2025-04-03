@@ -56,17 +56,25 @@ namespace Graphs
 
         #region [ Kinetics ]
 
-        public void updateflowLayoutPanel()
+        private void fillFlowLayoutCheckboxes()
         {
+            chart_Graphs.Series.Clear();
             flowLayoutPanel.Controls.Clear();
             checkBoxes.Clear();
 
             for (int i = 0; i < Databank.substances.Count; i++)
             {
-                checkBoxes.Add(new CheckBox());
-                checkBoxes[checkBoxes.Count - 1].Text = Databank.substances[i].name;
-                flowLayoutPanel.Controls.Add(checkBoxes[checkBoxes.Count - 1]);
+                CheckBox checkBox = new CheckBox();
+                checkBox.Text = Databank.substances[i].name;
+                checkBox.CheckedChanged += paintGraphFromCheckbox;
+                checkBoxes.Add(checkBox);
+                flowLayoutPanel.Controls.Add(checkBox);
             }
+        }
+
+        public void updateflowLayoutPanel()
+        {
+            fillFlowLayoutCheckboxes();
         }
 
         private void button_AddSubstance_Click(object sender, EventArgs e)
@@ -74,19 +82,6 @@ namespace Graphs
             this.Hide();
             AddSubstanceForm addSubstanceForm = new AddSubstanceForm(this);
             addSubstanceForm.Show();
-
-            //flowLayoutPanel.Controls.Clear();
-            //Label label_listSubstances = new Label();
-            //label_listSubstances.Text = "Список растворов:";
-            //flowLayoutPanel.Controls.Add(label_listSubstances);
-            //checkBoxes.Clear();
-
-            //for (int i = 0; i < Databank.substances.Count; i++)
-            //{
-            //    checkBoxes.Add(new CheckBox());
-            //    checkBoxes[checkBoxes.Count - 1].Text = Databank.substances[i].name;
-            //    flowLayoutPanel.Controls.Add(checkBoxes[checkBoxes.Count - 1]);
-            //}
         }
 
         private void button_Compare_Click(object sender, EventArgs e)
@@ -186,6 +181,64 @@ namespace Graphs
             }
         }
 
+        private void paintGraphFromCheckbox(object sender, EventArgs e)
+        {
+            if (!((CheckBox)sender).Checked) {
+
+                chart_Graphs.Series.Remove(chart_Graphs.Series[((CheckBox)sender).Text]);
+                chart_Graphs.Series.Remove(chart_Graphs.Series[((CheckBox)sender).Text + "_Points"]);
+
+                return; 
+            }
+            chart_Graphs.Show();
+            for (int i = 0; i < Databank.substances.Count; i++)
+            {
+                if (Databank.substances[i].name == ((CheckBox)sender).Text)
+                {
+                    CheckBox checkBox = ((CheckBox)sender);
+
+                    Random rand = new Random();
+                    Series added_series = chart_Graphs.Series.Add(checkBox.Text);
+                    added_series.ChartType = SeriesChartType.Spline;
+                    added_series.Color = Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
+                    added_series.BorderWidth = 3;
+
+                    Series series_with_visible_points = chart_Graphs.Series.Add(checkBox.Text + "_Points");
+                    series_with_visible_points.ChartType = SeriesChartType.Point;
+                    series_with_visible_points.IsVisibleInLegend = false;
+                    series_with_visible_points.Color = added_series.Color;
+
+                    //add null data into series
+                    added_series.Points.AddXY(0, 0);
+                    series_with_visible_points.Points.AddXY(0, 0);
+
+                    //search substance name
+                    for (int j = 0; j < Databank.substances.Count; j++)
+                    {
+                        if (Databank.substances[j].name == checkBoxes[i].Text)
+                        {
+                            for (int k = 0; k < Databank.substances[j].data.Count; k++)
+                            {
+                                double x = Databank.substances[j].data[k].time;
+                                double y = Databank.substances[j].data[k].qt_ml;
+                                added_series.Points.AddXY(x, y);
+                                series_with_visible_points.Points.AddXY(x, y);
+                            }
+                            break;
+                        }
+                    }
+
+                    //paint points
+                    for (int j = 0; j < series_with_visible_points.Points.Count; j++)
+                    {
+                        series_with_visible_points.Points[j].MarkerSize = 10;
+                        series_with_visible_points.Points[j].MarkerBorderColor = Color.Black;
+                        series_with_visible_points.Points[j].MarkerStyle = MarkerStyle.Circle;
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region [Menu]
@@ -217,16 +270,7 @@ namespace Graphs
                 Databank.substances = JsonConvert.DeserializeObject<List<Substance>>(json);
 
                 //add new checkboxes
-                flowLayoutPanel.Controls.Clear();
-                checkBoxes.Clear();
-
-                for (int i = 0; i < Databank.substances.Count; i++)
-                {
-                    checkBoxes.Add(new CheckBox());
-                    checkBoxes[checkBoxes.Count - 1].Text = Databank.substances[i].name;
-                    flowLayoutPanel.Controls.Add(checkBoxes[checkBoxes.Count - 1]);
-                }
-
+                fillFlowLayoutCheckboxes();
             }
         }
 
@@ -259,7 +303,7 @@ namespace Graphs
             }
         }
 
-        #endregion
 
+        #endregion
     }
 }

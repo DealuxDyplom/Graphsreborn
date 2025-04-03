@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
-            this.button_Compare = new System.Windows.Forms.Button();
             this.button_AddSubstance = new System.Windows.Forms.Button();
             this.button_EditSubstance = new System.Windows.Forms.Button();
             this.button_GraduationList = new System.Windows.Forms.Button();
@@ -102,17 +101,16 @@
             // 
             // tableLayoutPanel_Buttons
             // 
-            this.tableLayoutPanel_Buttons.ColumnCount = 5;
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_Compare, 0, 0);
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_AddSubstance, 1, 0);
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_EditSubstance, 2, 0);
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_GraduationList, 3, 0);
-            this.tableLayoutPanel_Buttons.Controls.Add(this.button_PsevdoGraphs, 4, 0);
+            this.tableLayoutPanel_Buttons.ColumnCount = 4;
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_AddSubstance, 0, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_EditSubstance, 1, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_GraduationList, 2, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.button_PsevdoGraphs, 3, 0);
             this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 140);
             this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
@@ -121,25 +119,13 @@
             this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(918, 64);
             this.tableLayoutPanel_Buttons.TabIndex = 4;
             // 
-            // button_Compare
-            // 
-            this.button_Compare.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_Compare.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_Compare.Location = new System.Drawing.Point(3, 3);
-            this.button_Compare.Name = "button_Compare";
-            this.button_Compare.Size = new System.Drawing.Size(177, 58);
-            this.button_Compare.TabIndex = 2;
-            this.button_Compare.Text = "Сравнить";
-            this.button_Compare.UseVisualStyleBackColor = true;
-            this.button_Compare.Click += new System.EventHandler(this.button_Compare_Click);
-            // 
             // button_AddSubstance
             // 
             this.button_AddSubstance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_AddSubstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_AddSubstance.Location = new System.Drawing.Point(186, 3);
+            this.button_AddSubstance.Location = new System.Drawing.Point(3, 3);
             this.button_AddSubstance.Name = "button_AddSubstance";
-            this.button_AddSubstance.Size = new System.Drawing.Size(177, 58);
+            this.button_AddSubstance.Size = new System.Drawing.Size(223, 58);
             this.button_AddSubstance.TabIndex = 0;
             this.button_AddSubstance.Text = "Добавить новый раствор";
             this.button_AddSubstance.UseVisualStyleBackColor = true;
@@ -149,9 +135,9 @@
             // 
             this.button_EditSubstance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_EditSubstance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_EditSubstance.Location = new System.Drawing.Point(369, 3);
+            this.button_EditSubstance.Location = new System.Drawing.Point(232, 3);
             this.button_EditSubstance.Name = "button_EditSubstance";
-            this.button_EditSubstance.Size = new System.Drawing.Size(177, 58);
+            this.button_EditSubstance.Size = new System.Drawing.Size(223, 58);
             this.button_EditSubstance.TabIndex = 3;
             this.button_EditSubstance.Text = "Редактировать раствор";
             this.button_EditSubstance.UseVisualStyleBackColor = true;
@@ -161,9 +147,9 @@
             // 
             this.button_GraduationList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_GraduationList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_GraduationList.Location = new System.Drawing.Point(552, 3);
+            this.button_GraduationList.Location = new System.Drawing.Point(461, 3);
             this.button_GraduationList.Name = "button_GraduationList";
-            this.button_GraduationList.Size = new System.Drawing.Size(177, 58);
+            this.button_GraduationList.Size = new System.Drawing.Size(223, 58);
             this.button_GraduationList.TabIndex = 4;
             this.button_GraduationList.Text = "Открыть список градуировок";
             this.button_GraduationList.UseVisualStyleBackColor = true;
@@ -173,9 +159,9 @@
             // 
             this.button_PsevdoGraphs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_PsevdoGraphs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_PsevdoGraphs.Location = new System.Drawing.Point(735, 3);
+            this.button_PsevdoGraphs.Location = new System.Drawing.Point(690, 3);
             this.button_PsevdoGraphs.Name = "button_PsevdoGraphs";
-            this.button_PsevdoGraphs.Size = new System.Drawing.Size(180, 58);
+            this.button_PsevdoGraphs.Size = new System.Drawing.Size(225, 58);
             this.button_PsevdoGraphs.TabIndex = 5;
             this.button_PsevdoGraphs.Text = "Показать псевдографики";
             this.button_PsevdoGraphs.UseVisualStyleBackColor = true;
@@ -196,13 +182,13 @@
             // 
             // chart_Graphs
             // 
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.Name = "ChartArea1";
-            this.chart_Graphs.ChartAreas.Add(chartArea1);
+            chartArea5.AxisX.MajorGrid.Enabled = false;
+            chartArea5.AxisY.MajorGrid.Enabled = false;
+            chartArea5.Name = "ChartArea1";
+            this.chart_Graphs.ChartAreas.Add(chartArea5);
             this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart_Graphs.Legends.Add(legend1);
+            legend5.Name = "Legend1";
+            this.chart_Graphs.Legends.Add(legend5);
             this.chart_Graphs.Location = new System.Drawing.Point(3, 3);
             this.chart_Graphs.Name = "chart_Graphs";
             this.chart_Graphs.Size = new System.Drawing.Size(912, 264);
@@ -326,7 +312,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Main;
         private System.Windows.Forms.Button button_AddSubstance;
-        private System.Windows.Forms.Button button_Compare;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Graphs;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
