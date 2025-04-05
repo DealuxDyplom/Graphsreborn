@@ -212,6 +212,8 @@ namespace Graphs
 
             double OpticDens = double.Parse(textBox_OpticDens.Text.Replace(".", ","));
             double C_from_OpticDens = OpticDens / k;
+            substance.k = k;
+            substance.OpticDens = OpticDens; ;
             for (int i = 0; i < dataGridView_ExprData.Rows.Count - 1; i++)
             {
                 double C_mkmol = double.Parse(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString().Replace(".", ",")) / k;

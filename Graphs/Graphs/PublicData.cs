@@ -9,6 +9,8 @@ namespace Graphs
     public class Substance
     {
         public string name;
+        public double OpticDens;
+        public double k;
         public List<SubstanceData> data;
     }
 
