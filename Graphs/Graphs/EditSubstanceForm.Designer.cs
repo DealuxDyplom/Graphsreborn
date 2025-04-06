@@ -49,11 +49,14 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chart_Graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel_Y = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Data)).BeginInit();
             this.tableLayoutPanel_Buttons.SuspendLayout();
             this.tableLayoutPanel_ListSubstances.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graph)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel_Main
@@ -64,10 +67,11 @@
             this.tableLayoutPanel_Main.Controls.Add(this.tableLayoutPanel_Buttons, 0, 3);
             this.tableLayoutPanel_Main.Controls.Add(this.tableLayoutPanel_ListSubstances, 0, 0);
             this.tableLayoutPanel_Main.Controls.Add(this.chart_Graph, 0, 2);
+            this.tableLayoutPanel_Main.Controls.Add(this.statusStrip1, 0, 4);
             this.tableLayoutPanel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Main.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel_Main.Name = "tableLayoutPanel_Main";
-            this.tableLayoutPanel_Main.RowCount = 4;
+            this.tableLayoutPanel_Main.RowCount = 5;
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -94,7 +98,7 @@
             this.dataGridView_Data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_Data.Location = new System.Drawing.Point(3, 33);
             this.dataGridView_Data.Name = "dataGridView_Data";
-            this.dataGridView_Data.Size = new System.Drawing.Size(1019, 78);
+            this.dataGridView_Data.Size = new System.Drawing.Size(1019, 58);
             this.dataGridView_Data.TabIndex = 1;
             this.dataGridView_Data.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Data_CellEndEdit);
             // 
@@ -154,7 +158,7 @@
             this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel_Buttons.Controls.Add(this.button_SaveEdits, 0, 0);
             this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 423);
+            this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 403);
             this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
             this.tableLayoutPanel_Buttons.RowCount = 1;
             this.tableLayoutPanel_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -211,13 +215,15 @@
             // chart_Graph
             // 
             chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.Title = "обр/врем";
             chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.Title = "qt, μмоль/г";
             chartArea1.Name = "ChartArea1";
             this.chart_Graph.ChartAreas.Add(chartArea1);
             this.chart_Graph.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart_Graph.Legends.Add(legend1);
-            this.chart_Graph.Location = new System.Drawing.Point(3, 117);
+            this.chart_Graph.Location = new System.Drawing.Point(3, 97);
             this.chart_Graph.Name = "chart_Graph";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -231,6 +237,21 @@
             this.chart_Graph.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_Graph_MouseMove);
             this.chart_Graph.MouseUp += new System.Windows.Forms.MouseEventHandler(this.chart_Graph_MouseUp);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel_Y});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 450);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1025, 20);
+            this.statusStrip1.TabIndex = 5;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel_Y
+            // 
+            this.toolStripStatusLabel_Y.Name = "toolStripStatusLabel_Y";
+            this.toolStripStatusLabel_Y.Size = new System.Drawing.Size(0, 15);
+            // 
             // EditSubstanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,11 +262,14 @@
             this.Text = "EditSubstance";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditSubstanceForm_FormClosed);
             this.tableLayoutPanel_Main.ResumeLayout(false);
+            this.tableLayoutPanel_Main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Data)).EndInit();
             this.tableLayoutPanel_Buttons.ResumeLayout(false);
             this.tableLayoutPanel_ListSubstances.ResumeLayout(false);
             this.tableLayoutPanel_ListSubstances.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Graph)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -270,5 +294,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_log_qe_qt;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridView_Data_Column_t_qt;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Graph;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_Y;
     }
 }

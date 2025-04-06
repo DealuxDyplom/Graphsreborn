@@ -190,7 +190,9 @@
             // chart_Graphs
             // 
             chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.Title = "обр/врем";
             chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.Title = "qt, μмоль/г";
             chartArea1.Name = "ChartArea1";
             this.chart_Graphs.ChartAreas.Add(chartArea1);
             this.chart_Graphs.Dock = System.Windows.Forms.DockStyle.Fill;

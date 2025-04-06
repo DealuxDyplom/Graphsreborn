@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using MathNet.Numerics.Optimization;
 using Newtonsoft.Json.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Graphs
 {
@@ -31,6 +30,7 @@ namespace Graphs
             {
                 comboBox1.Items.Add(substance.name);
             }
+
         }
 
         private void paintGraphFromComboBox() {
@@ -177,6 +177,9 @@ namespace Graphs
                 //меняем координаты опорной точки Spline
                 chart_Graph.Series[0].Points[PointIndexMouseDown].XValue = chart_Graph.Series[0].Points[PointIndexMouseDown].XValue;
                 chart_Graph.Series[0].Points[PointIndexMouseDown].YValues[0] = yValue;
+
+                //пишем в toolStripStatusLabel координаты точки
+                toolStripStatusLabel_Y.Text = "Y = " + yValue.ToString();
             }
         }
 
@@ -244,7 +247,7 @@ namespace Graphs
                 dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value = chart_Graph.Series[1].Points[i + 1].YValues[0];
                 dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value) * 1355;
                 dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_A", i].Value.ToString().Replace(".", ",")) / k;
-                dataGridView_Data["dataGridView_Data_Column_m_r", i].Value = (C_from_OpticDens - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value)) / Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value);
+                dataGridView_Data["dataGridView_Data_Column_m_r", i].Value = (C_from_OpticDens - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value)) * 20 / Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value);
                 dataGridView_Data["dataGridView_Data_Column_proc", i].Value = (C_from_OpticDens - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value)) / C_from_OpticDens * 100;
             }
 
@@ -273,6 +276,7 @@ namespace Graphs
 
             PointIndexMouseDown = -1;
             MouseDownOnPointOnGraph = false;
+            toolStripStatusLabel_Y.Text = "";
         }
     }
 }
