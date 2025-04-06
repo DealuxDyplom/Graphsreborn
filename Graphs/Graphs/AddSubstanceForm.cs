@@ -21,6 +21,7 @@ namespace Graphs
         Substance substance;
         bool Recalulate_done = false;
         Form1 parent;
+        int decimalPlaces = 3; //округление значений до заданного количества знаков после запятой для таблиц
 
         public AddSubstanceForm(Form1 owner)
         {
@@ -216,10 +217,10 @@ namespace Graphs
             substance.OpticDens = OpticDens; ;
             for (int i = 0; i < dataGridView_ExprData.Rows.Count - 1; i++)
             {
-                double C_mkmol = double.Parse(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString().Replace(".", ",")) / k;
-                double qt_mr = (C_from_OpticDens - C_mkmol) * 20 / (double.Parse(dataGridView_ExprData["Column_m_r", i].Value.ToString().Replace(".", ",")));
-                double qt_ml = qt_mr / 1355; //??? что такое 1355
-                double proc = (C_from_OpticDens - C_mkmol) / C_from_OpticDens * 100;
+                double C_mkmol = Math.Round(double.Parse(dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString().Replace(".", ",")) / k, decimalPlaces);
+                double qt_mr = Math.Round((C_from_OpticDens - C_mkmol) * 20 / (double.Parse(dataGridView_ExprData["Column_m_r", i].Value.ToString().Replace(".", ","))), decimalPlaces);
+                double qt_ml = Math.Round(qt_mr / 1355, decimalPlaces); //??? что такое 1355
+                double proc = Math.Round((C_from_OpticDens - C_mkmol) / C_from_OpticDens * 100, decimalPlaces);
 
                 SubstanceData substanceData = new SubstanceData();
                 substanceData.time = Convert.ToDouble(dataGridView_ExprData["Column_time", i].Value.ToString().Replace(".", ","));
@@ -271,13 +272,13 @@ namespace Graphs
             double Qe1 = getQe(time, qt_exp);
             for (int i = 0; i < substance.data.Count; i++)
             {
-                substance.data[i].Qe1 = Qe1;
+                substance.data[i].Qe1 = Math.Round(Qe1, decimalPlaces);
 
-                substance.data[i].qe_qt = substance.data[i].Qe1 - substance.data[i].qt_ml;
-                substance.data[i].log_qe_qt = Math.Log10(substance.data[i].qe_qt);
+                substance.data[i].qe_qt = Math.Round(substance.data[i].Qe1 - substance.data[i].qt_ml, decimalPlaces);
+                substance.data[i].log_qe_qt = Math.Round(Math.Log10(substance.data[i].qe_qt), decimalPlaces);
                 if (substance.data[i].qt_ml != 0)
                 {
-                    substance.data[i].t_qt = substance.data[i].time / substance.data[i].qt_ml;
+                    substance.data[i].t_qt = Math.Round(substance.data[i].time / substance.data[i].qt_ml, decimalPlaces);
                 }
                 else
                 {

@@ -19,6 +19,8 @@ namespace Graphs
         bool MouseDownOnPointOnGraph = false;
         int PointIndexMouseDown = -1;
         Substance substance;
+        int decimalPlaces = 3; //округление значений до заданного количества знаков после запятой для таблиц
+
 
         double Qe1;
         public EditSubstanceForm(Form1 owner)
@@ -244,11 +246,18 @@ namespace Graphs
             double C_from_OpticDens = OpticDens / k;
 
             for (int i = 0; i < dataGridView_Data.Rows.Count - 1; i++) {
-                dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value = chart_Graph.Series[1].Points[i + 1].YValues[0];
-                dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value) * 1355;
-                dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_A", i].Value.ToString().Replace(".", ",")) / k;
-                dataGridView_Data["dataGridView_Data_Column_m_r", i].Value = (C_from_OpticDens - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value)) * 20 / Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value);
-                dataGridView_Data["dataGridView_Data_Column_proc", i].Value = (C_from_OpticDens - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value)) / C_from_OpticDens * 100;
+                dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value = Math.Round(chart_Graph.Series[1].Points[i + 1].YValues[0], decimalPlaces);
+                dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value = Math.Round(Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value) * 1355, decimalPlaces);
+
+                //если меняется A
+                dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value = Math.Round(C_from_OpticDens - ((Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value) * Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_m_r", i].Value))/20), decimalPlaces);
+                dataGridView_Data["dataGridView_Data_Column_A", i].Value = Math.Round(Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value) * k, decimalPlaces);
+
+                //если меняется m, г
+                //dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_A", i].Value.ToString().Replace(".", ",")) / k;
+                //dataGridView_Data["dataGridView_Data_Column_m_r", i].Value = (C_from_OpticDens - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value)) * 20 / Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_mr", i].Value);
+
+                dataGridView_Data["dataGridView_Data_Column_proc", i].Value = Math.Round((C_from_OpticDens - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_C_mkmol", i].Value)) / C_from_OpticDens * 100, decimalPlaces);
             }
 
             //find out Qe1
@@ -263,11 +272,11 @@ namespace Graphs
 
             for (int i = 0; i < dataGridView_Data.Rows.Count - 1; i++)
             {
-                dataGridView_Data["dataGridView_Data_Column_qe_qt", i].Value = Qe1 - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value);
-                dataGridView_Data["dataGridView_Data_Column_log_qe_qt", i].Value = Math.Log10(Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qe_qt", i].Value));
+                dataGridView_Data["dataGridView_Data_Column_qe_qt", i].Value = Math.Round(Qe1 - Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value), decimalPlaces);
+                dataGridView_Data["dataGridView_Data_Column_log_qe_qt", i].Value = Math.Round(Math.Log10(Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qe_qt", i].Value)), decimalPlaces);
                 if (Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value) != 0)
                 {
-                    dataGridView_Data["dataGridView_Data_Column_t_qt", i].Value = Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_time", i].Value) / Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value);
+                    dataGridView_Data["dataGridView_Data_Column_t_qt", i].Value = Math.Round(Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_time", i].Value) / Convert.ToDouble(dataGridView_Data["dataGridView_Data_Column_qt_ml", i].Value), decimalPlaces);
                 }
                 else {
                     dataGridView_Data["dataGridView_Data_Column_t_qt", i].Value = 0;
