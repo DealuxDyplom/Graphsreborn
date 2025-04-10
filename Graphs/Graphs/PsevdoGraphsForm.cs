@@ -165,11 +165,11 @@ namespace Graphs
             determination = SS_reg / SS_tot;
             textBox_Determination_2.Text = Math.Round(determination, 2).ToString();
 
-            //find out Qe1
+            //find out Qe2
             double Qe2 = 1 / b;
             textBox_Qe2.Text = Qe2.ToString();
 
-            //find out K1
+            //find out K2
             double k2 = 1 / (0.16 / (1/ (Qe2 * Qe2)));
             textBox_K2.Text = k2.ToString();
 

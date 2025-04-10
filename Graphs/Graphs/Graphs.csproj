@@ -139,6 +139,12 @@
     <Compile Include="GraduationForm.Designer.cs">
       <DependentUpon>GraduationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KineticModelTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KineticModelTableForm.Designer.cs">
+      <DependentUpon>KineticModelTableForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PsevdoGraphsForm.cs">
@@ -146,6 +152,12 @@
     </Compile>
     <Compile Include="PsevdoGraphsForm.Designer.cs">
       <DependentUpon>PsevdoGraphsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PsevdoGraphsSingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PsevdoGraphsSingleForm.Designer.cs">
+      <DependentUpon>PsevdoGraphsSingleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PublicData.cs" />
     <EmbeddedResource Include="AddGraduation.resx">
@@ -163,6 +175,9 @@
     <EmbeddedResource Include="GraduationForm.resx">
       <DependentUpon>GraduationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KineticModelTableForm.resx">
+      <DependentUpon>KineticModelTableForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -174,6 +189,9 @@
     </Compile>
     <EmbeddedResource Include="PsevdoGraphsForm.resx">
       <DependentUpon>PsevdoGraphsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PsevdoGraphsSingleForm.resx">
+      <DependentUpon>PsevdoGraphsSingleForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

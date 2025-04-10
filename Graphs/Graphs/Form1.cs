@@ -158,27 +158,9 @@ namespace Graphs
 
         private void button_PsevdoGraphs_Click(object sender, EventArgs e)
         {
-            int count_of_checked_checkboxes = 0;
-            for (int i = 0; i < checkBoxes.Count; i++)
-            {
-                if (checkBoxes[i].Checked)
-                {
-                    count_of_checked_checkboxes++;
-                    for (int j = 0; j < Databank.substances.Count; j++)
-                    {
-                        if (checkBoxes[i].Text == Databank.substances[j].name)
-                        {
-                            PsevdoGraphsForm psevdoGraphsForm = new PsevdoGraphsForm(Databank.substances[j]);
-                            psevdoGraphsForm.Show();
-                        }
-                    }
-
-                }
-            }
-            if (count_of_checked_checkboxes == 0)
-            {
-                MessageBox.Show("Ни один раствор не выбран", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            KineticModelTableForm kineticModelTableForm = new KineticModelTableForm(this);
+            kineticModelTableForm.Show();
+            this.Hide();
         }
 
         private void paintGraphFromCheckbox(object sender, EventArgs e)
