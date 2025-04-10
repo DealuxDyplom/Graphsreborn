@@ -306,6 +306,10 @@ namespace Graphs
         private void button_AddSubstance_Click(object sender, EventArgs e)
         {
             //error handling
+            if (textBox_SubstanceName.Text.Replace(" ", "") == "") {
+                MessageBox.Show("Введите название раствора", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (!Recalulate_done)
             {
                 MessageBox.Show("Выполните перерасчет", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
