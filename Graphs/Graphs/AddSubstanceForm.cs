@@ -404,5 +404,24 @@ namespace Graphs
             double determination = SS_reg / SS_tot;
             textBox_Detr.Text = determination.ToString();
         }
+
+        private void button_SaveExprData_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (var writer = new StreamWriter(saveFileDialog.FileName))
+                {
+                    string row_header = "обр/врем|m,г|A";
+                    writer.WriteLine(row_header);
+                    for (int i = 0; i < dataGridView_ExprData.Rows.Count - 1; i++)
+                    {
+                        string row = dataGridView_ExprData["Column_time", i].Value.ToString().Replace(".", ",") + "|" + dataGridView_ExprData["Column_m_r", i].Value.ToString().Replace(".", ",") + "|" + dataGridView_ExprData["DataGridView_ExprData_Column_A", i].Value.ToString().Replace(".", ",");
+                        writer.WriteLine(row);
+                    }
+                }
+            }
+        }
     }
 }
