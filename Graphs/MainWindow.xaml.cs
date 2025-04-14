@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms.DataVisualization;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Graphs
 {
@@ -23,6 +25,12 @@ namespace Graphs
         public MainWindow()
         {
             InitializeComponent();
+            //Graphs_Substances.ChartAreas.Add(new ChartArea());
+            //Series added_series = new Series();
+            //Graphs_Substances.Series.Add(added_series);
+            //added_series.ChartType = SeriesChartType.Point;
+            //added_series.Points.AddXY(1, 1);
+            //added_series.Points.AddXY(2, 2);
         }
     }
 }
