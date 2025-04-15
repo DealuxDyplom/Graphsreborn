@@ -32,5 +32,11 @@ namespace Graphs
             //added_series.Points.AddXY(1, 1);
             //added_series.Points.AddXY(2, 2);
         }
+
+        private void Button_AddSubstanceForm_Click(object sender, RoutedEventArgs e)
+        {
+            AddSubstanceForm addSubstanceForm = new AddSubstanceForm();
+            addSubstanceForm.Show();
+        }
     }
 }
