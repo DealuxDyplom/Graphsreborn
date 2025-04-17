@@ -6,7 +6,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:Graphs"
         mc:Ignorable="d"
-        Title="AddSubstanceForm" Height="450" Width="1000">
+        Title="AddSubstanceForm" Height="543" Width="925">
     <Grid x:Name="Grid_Main">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -30,10 +30,10 @@
             <ComboBox x:Name="ComboBox_Graduation" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="150">
 
             </ComboBox>
-            <DataGrid x:Name="DataGrid_Graduation" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <DataGrid x:Name="DataGrid_Graduation" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="С,мкг/мл" Width="*"/>
-                    <DataGridTextColumn Header="А (361 нм)" Width="*"/>
+                    <DataGridTextColumn Header="С,мкг/мл" Width="*" Binding="{Binding Path=C_mkmol}"/>
+                    <DataGridTextColumn Header="А (361 нм)" Width="*" Binding="{Binding Path=A}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
@@ -57,11 +57,11 @@
                 <Label Content="Оптическая плотность раствора(А):" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <TextBox x:Name="TextBox_OpticDens" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150"/>
             </Grid>
-            <DataGrid x:Name="DataGrid_ExprData" Grid.Row="1" Grid.Column="0">
+            <DataGrid x:Name="DataGrid_ExprData" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="обр/врем" Width="*"/>
-                    <DataGridTextColumn Header="m, г" Width="*"/>
-                    <DataGridTextColumn Header="A" Width="*"/>
+                    <DataGridTextColumn Header="обр/врем" Width="*" Binding="{Binding Path=time}"/>
+                    <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding Path=m_r}"/>
+                    <DataGridTextColumn Header="A" Width="*" Binding="{Binding Path=A}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid x:Name="Grid_ExprDataButtons" Grid.Row="2" Grid.Column="0">
@@ -69,8 +69,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="Button_FillExprDataFromFile" Content="Заполнить из файла" Margin="20 5 20 5" Grid.Row="0" Grid.Column="0"/>
-                <Button x:Name="Button_SaveExprDataIntoFile" Content="Сохранить в файл" Margin="20 5 20 5" Grid.Row="0" Grid.Column="1"/>
+                <Button x:Name="Button_FillExprDataFromFile" Content="Заполнить из файла" Margin="20 5 20 5" Grid.Row="0" Grid.Column="0" Click="Button_FillExprDataFromFile_Click"/>
+                <Button x:Name="Button_SaveExprDataIntoFile" Content="Сохранить в файл" Margin="20 5 20 5" Grid.Row="0" Grid.Column="1" Click="Button_SaveExprDataIntoFile_Click"/>
             </Grid>
         </Grid>
         <Grid x:Name="Grid_GraduationGraph" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
@@ -92,9 +92,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Коэффициент::" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <TextBox x:Name="TextBox_Coef" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150"/>
+                <TextBox x:Name="TextBox_Coef" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150" IsReadOnly="True"/>
                 <Label Content="Детерминация:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <TextBox x:Name="TextBox_Detr" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150"/>
+                <TextBox x:Name="TextBox_Detr" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150" IsReadOnly="True"/>
             </Grid>
         </Grid>
         <Grid x:Name="Grid_Data" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
@@ -102,18 +102,18 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="DataGrid_Data" Grid.Row="0" Grid.Column="0">
+            <DataGrid x:Name="DataGrid_Data" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="0" Grid.Column="0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="обр\врем" Width="*"/>
-                    <DataGridTextColumn Header="m, г" Width="*"/>
-                    <DataGridTextColumn Header="A" Width="*"/>
-                    <DataGridTextColumn Header="С,мкг/мл" Width="*"/>
-                    <DataGridTextColumn Header="qt, мкг/г" Width="*"/>
-                    <DataGridTextColumn Header="qt, μмоль/г" Width="*"/>
-                    <DataGridTextColumn Header="%" Width="*"/>
-                    <DataGridTextColumn Header="qe-qt" Width="*"/>
-                    <DataGridTextColumn Header="log(qe-qt)" Width="*"/>
-                    <DataGridTextColumn Header="t\qt" Width="*"/>
+                    <DataGridTextColumn Header="обр\врем" Width="*" Binding="{Binding Path=time}"/>
+                    <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding Path=m_r}"/>
+                    <DataGridTextColumn Header="A" Width="*" Binding="{Binding Path=A}"/>
+                    <DataGridTextColumn Header="С,мкг/мл" Width="*" Binding="{Binding Path=C_mkmol}"/>
+                    <DataGridTextColumn Header="qt, мкг/г" Width="*" Binding="{Binding Path=qt_mr}"/>
+                    <DataGridTextColumn Header="qt, μмоль/г" Width="*" Binding="{Binding Path=qt_ml}"/>
+                    <DataGridTextColumn Header="%" Width="*" Binding="{Binding Path=proc}"/>
+                    <DataGridTextColumn Header="qe-qt" Width="*" Binding="{Binding Path=qe_qt}"/>
+                    <DataGridTextColumn Header="log(qe-qt)" Width="*" Binding="{Binding Path=log_qe_qt}"/>
+                    <DataGridTextColumn Header="t\qt" Width="*" Binding="{Binding Path=t_qt}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid x:Name="Grid_DataButtons" Grid.Row="1" Grid.Column="0">
@@ -121,8 +121,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="Button_AddSubstance" Content="Добавить" Margin="50 5 50 5" Grid.Row="0" Grid.Column="0"/>
-                <Button x:Name="Button_Recalculate" Content="Пересчитать" Margin="50 5 50 5" Grid.Row="0" Grid.Column="1"/>
+                <Button x:Name="Button_AddSubstance" Content="Добавить" Margin="50 5 50 5" Grid.Row="0" Grid.Column="0" Click="Button_AddSubstance_Click"/>
+                <Button x:Name="Button_Recalculate" Content="Пересчитать" Margin="50 5 50 5" Grid.Row="0" Grid.Column="1" Click="Button_Recalculate_Click"/>
             </Grid>
         </Grid>
     </Grid>

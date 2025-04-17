@@ -25,12 +25,36 @@ namespace Graphs
         public MainWindow()
         {
             InitializeComponent();
-            //Graphs_Substances.ChartAreas.Add(new ChartArea());
-            //Series added_series = new Series();
-            //Graphs_Substances.Series.Add(added_series);
-            //added_series.ChartType = SeriesChartType.Point;
-            //added_series.Points.AddXY(1, 1);
-            //added_series.Points.AddXY(2, 2);
+
+            Databank.substances = new List<Substance>();
+            Databank.graduations = new List<Graduation>();
+
+            Graduation graduation = new Graduation();
+            graduation.data = new List<GraduationData>();
+
+            GraduationData graduationData = new GraduationData();
+            graduationData.C_mkmol = 5;
+            graduationData.A = 0.089;
+            graduation.data.Add(graduationData);
+
+            graduationData = new GraduationData();
+            graduationData.C_mkmol = 10;
+            graduationData.A = 0.165;
+            graduation.data.Add(graduationData);
+
+            graduationData = new GraduationData();
+            graduationData.C_mkmol = 20;
+            graduationData.A = 0.318;
+            graduation.data.Add(graduationData);
+
+            graduationData = new GraduationData();
+            graduationData.C_mkmol = 30;
+            graduationData.A = 0.471;
+            graduation.data.Add(graduationData);
+
+            graduation.name = "Градуировка В12/H2O";
+
+            Databank.graduations.Add(graduation);
         }
 
         private void Button_AddSubstanceForm_Click(object sender, RoutedEventArgs e)
