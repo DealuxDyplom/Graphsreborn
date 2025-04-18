@@ -68,8 +68,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditSubstanceForm.xaml.cs">
+      <DependentUpon>EditSubstanceForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PublicData.cs" />
     <Page Include="AddSubstanceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditSubstanceForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

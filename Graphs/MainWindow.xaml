@@ -26,9 +26,7 @@
             <Grid x:Name="Grid_SubstancesList" Grid.Row="0">
                 <GroupBox>
                     <GroupBox.Header>Список растворов</GroupBox.Header>
-                    <WrapPanel x:Name="WrapPanel_Substances" Orientation="Vertical">
-                        <CheckBox Content="CheckBox"/>
-                    </WrapPanel>
+                    <WrapPanel x:Name="WrapPanel_Substances" Orientation="Vertical"/>
                 </GroupBox>
             </Grid>
             <Grid x:Name="Grid_Buttons" Grid.Row="1" ShowGridLines="True">
@@ -39,7 +37,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="Button_AddSubstanceForm" Content="Добавить новый раствор" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Click="Button_AddSubstanceForm_Click"/>
-                <Button x:Name="Button_EditSubstanceForm" Content="Редактировать раствор" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+                <Button x:Name="Button_EditSubstanceForm" Content="Редактировать раствор" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Click="Button_EditSubstanceForm_Click"/>
                 <Button x:Name="Button_GraduationForm" Content="Открыть список градуировок" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"/>
                 <Button x:Name="Button_PsevdoGraphs" Content="Показать пвседографики" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3"/>
             </Grid>

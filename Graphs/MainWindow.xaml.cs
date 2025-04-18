@@ -71,6 +71,7 @@ namespace Graphs
             substancesGraph_ChartArea.AxisY.MajorGrid.Enabled = false;
             substancesGraph_ChartArea.AxisX.IsStartedFromZero = true;
             substancesGraph_ChartArea.AxisY.IsStartedFromZero = true;
+            substancesGraph_ChartArea.AlignmentOrientation = AreaAlignmentOrientations.All;
             Graphs_Substances.ChartAreas.Add(substancesGraph_ChartArea);
         }
 
@@ -228,7 +229,13 @@ namespace Graphs
                 }
             }
         }
-        
+
         #endregion
+
+        private void Button_EditSubstanceForm_Click(object sender, RoutedEventArgs e)
+        {
+            EditSubstanceForm editSubstanceForm = new EditSubstanceForm();
+            editSubstanceForm.Show();
+        }
     }
 }
