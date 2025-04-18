@@ -26,7 +26,9 @@
             <Grid x:Name="Grid_SubstancesList" Grid.Row="0">
                 <GroupBox>
                     <GroupBox.Header>Список растворов</GroupBox.Header>
-                    <WrapPanel x:Name="WrapPanel_Substances" Orientation="Vertical"/>
+                    <WrapPanel x:Name="WrapPanel_Substances" Orientation="Vertical">
+                        <CheckBox Content="CheckBox"/>
+                    </WrapPanel>
                 </GroupBox>
             </Grid>
             <Grid x:Name="Grid_Buttons" Grid.Row="1" ShowGridLines="True">
