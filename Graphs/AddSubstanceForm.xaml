@@ -6,7 +6,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:Graphs"
         mc:Ignorable="d"
-        Title="AddSubstanceForm" Height="543" Width="925">
+        Title="AddSubstanceForm" Height="543" Width="925" Closing="Window_Closing">
     <Grid x:Name="Grid_Main">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

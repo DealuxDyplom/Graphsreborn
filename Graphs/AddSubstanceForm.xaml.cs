@@ -56,11 +56,13 @@ namespace Graphs
         public ObservableCollection<Graduation_Row> graduation_Row_List;
         public ObservableCollection<Data_Row> data_Row_List;
 
+        MainWindow parent;
         bool Recalulate_done = false;
         double Grad_K;
         Substance substance;
-        public AddSubstanceForm()
+        public AddSubstanceForm(MainWindow owner)
         {
+            parent = owner;
             InitializeComponent();
             
             //initialize dataGrid tables
@@ -377,6 +379,11 @@ namespace Graphs
             substance.name = TextBox_SubstanceName.Text;
             Databank.substances.Add(substance);
             this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            parent.updateGroupBoxSubstances();
         }
     }
 }
