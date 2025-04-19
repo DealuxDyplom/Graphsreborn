@@ -105,6 +105,16 @@ namespace Graphs
 
         private void paintGraphFromCheckbox(object sender, RoutedEventArgs e)
         {
+            Graphs_Substances.ChartAreas.Clear();
+            ChartArea substancesGraph_ChartArea = new ChartArea();
+            substancesGraph_ChartArea.AxisX.IsStartedFromZero = false;
+            substancesGraph_ChartArea.AxisX.MajorGrid.Enabled = false;
+            substancesGraph_ChartArea.AxisY.IsStartedFromZero = false;
+            substancesGraph_ChartArea.AxisY.MajorGrid.Enabled = false;
+            substancesGraph_ChartArea.AxisX.IsStartedFromZero = true;
+            substancesGraph_ChartArea.AxisY.IsStartedFromZero = true;
+            substancesGraph_ChartArea.AlignmentOrientation = AreaAlignmentOrientations.All;
+            Graphs_Substances.ChartAreas.Add(substancesGraph_ChartArea);
             for (int i = 0; i < Databank.substances.Count; i++)
             {
                 if (Databank.substances[i].name == ((System.Windows.Controls.CheckBox)sender).Content.ToString())
@@ -246,6 +256,14 @@ namespace Graphs
         {
             GraduationsListForm graduationsListForm = new GraduationsListForm(this);
             graduationsListForm.Show();
+
+            this.Hide();
+        }
+
+        private void Button_PsevdoGraphs_Click(object sender, RoutedEventArgs e)
+        {
+            KineticModelTableForm kineticModelTableForm = new KineticModelTableForm(this);
+            kineticModelTableForm.Show();
 
             this.Hide();
         }

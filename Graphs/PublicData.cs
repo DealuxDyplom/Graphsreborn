@@ -33,11 +33,30 @@ namespace Graphs
         public double t_qt { get; set; }
     }
 
+    public class Psevdo_1_Data
+    {
+        public double a;
+        public double b;
+        public double determination;
+        public double Qe1;
+        public double k1;
+    }
+
+    public class Psevdo_2_Data
+    {
+        public double a;
+        public double b;
+        public double determination;
+        public double Qe2;
+        public double k2;
+    }
     public class Substance
     {
         public string name;
         public double OpticDens;
         public double k;
+        public Psevdo_1_Data psevdo_1_data;
+        public Psevdo_2_Data psevdo_2_data;
         public List<SubstanceData> data;
     }
 

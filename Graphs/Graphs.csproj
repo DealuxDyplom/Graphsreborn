@@ -77,6 +77,12 @@
     <Compile Include="GraduationsListForm.xaml.cs">
       <DependentUpon>GraduationsListForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KineticModelTableForm.xaml.cs">
+      <DependentUpon>KineticModelTableForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PsevdoGraphForm.xaml.cs">
+      <DependentUpon>PsevdoGraphForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PublicData.cs" />
     <Page Include="AddGraduationForm.xaml">
       <SubType>Designer</SubType>
@@ -91,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GraduationsListForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KineticModelTableForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,6 +119,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PsevdoGraphForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
