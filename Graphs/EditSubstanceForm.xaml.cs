@@ -25,6 +25,7 @@ namespace Graphs
     /// </summary>
     public partial class EditSubstanceForm : Window
     {
+        MainWindow parent;
         public ObservableCollection<Data_Row> data_Row_List;
         Substance substance;
         ChartArea substancesGraph_ChartArea;
@@ -33,8 +34,9 @@ namespace Graphs
         int PointIndexMouseDown = -1;
         bool MouseDownOnPointOnGraph = false;
         double Qe1;
-        public EditSubstanceForm()
+        public EditSubstanceForm(MainWindow owner)
         {
+            parent = owner;
             InitializeComponent();
 
             data_Row_List = new ObservableCollection<Data_Row>();
@@ -300,6 +302,11 @@ namespace Graphs
             }
 
             this.Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            parent.Show();
         }
     }
 }

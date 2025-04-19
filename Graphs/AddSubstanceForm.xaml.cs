@@ -23,32 +23,6 @@ namespace Graphs
     /// <summary>
     /// Логика взаимодействия для AddSubstanceForm.xaml
     /// </summary>
-    public class ExprData_Row
-    {
-        public double time { get; set; }
-        public double m_r { get; set; }
-        public double A { get; set; }
-    }
-
-    public class Graduation_Row
-    {
-        public double C_mkmol { get; set; }
-        public double A { get; set; }
-    }
-
-    public class Data_Row
-    {
-        public double time { get; set; }
-        public double m_r { get; set; }
-        public double A { get; set; }
-        public double C_mkmol { get; set; }
-        public double qt_mr { get; set; }
-        public double qt_ml { get; set; }
-        public double proc { get; set; }
-        public double qe_qt { get; set; }
-        public double log_qe_qt { get; set; }
-        public double t_qt { get; set; }
-    }
 
     public partial class AddSubstanceForm
     {
@@ -384,6 +358,7 @@ namespace Graphs
         private void Window_Closed(object sender, EventArgs e)
         {
             parent.updateGroupBoxSubstances();
+            parent.Show();
         }
     }
 }

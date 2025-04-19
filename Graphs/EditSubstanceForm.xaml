@@ -6,7 +6,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:Graphs"
         mc:Ignorable="d"
-        Title="EditSubstanceForm" Height="450" Width="800">
+        Title="EditSubstanceForm" Height="450" Width="800" Closed="Window_Closed">
     <DockPanel>
         <Grid x:Name="Grid_Main">
             <Grid.RowDefinitions>

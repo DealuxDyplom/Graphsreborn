@@ -79,6 +79,8 @@ namespace Graphs
         {
             AddSubstanceForm addSubstanceForm = new AddSubstanceForm(this);
             addSubstanceForm.Show();
+
+            this.Hide();
         }
 
         public void fillGroupBoxSubstancesCheckboxes()
@@ -234,8 +236,18 @@ namespace Graphs
 
         private void Button_EditSubstanceForm_Click(object sender, RoutedEventArgs e)
         {
-            EditSubstanceForm editSubstanceForm = new EditSubstanceForm();
+            EditSubstanceForm editSubstanceForm = new EditSubstanceForm(this);
             editSubstanceForm.Show();
+
+            this.Hide();
+        }
+
+        private void Button_GraduationForm_Click(object sender, RoutedEventArgs e)
+        {
+            GraduationsListForm graduationsListForm = new GraduationsListForm(this);
+            graduationsListForm.Show();
+
+            this.Hide();
         }
     }
 }
