@@ -306,6 +306,7 @@ namespace Graphs
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            parent.updateGroupBoxSubstances();
             parent.Show();
         }
     }

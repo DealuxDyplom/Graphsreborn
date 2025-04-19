@@ -101,6 +101,8 @@ namespace Graphs
         public void updateGroupBoxSubstances()
         {
             fillGroupBoxSubstancesCheckboxes();
+            Graphs_Substances.ChartAreas.Clear();
+            Graphs_Substances.Series.Clear();
         }
 
         private void paintGraphFromCheckbox(object sender, RoutedEventArgs e)

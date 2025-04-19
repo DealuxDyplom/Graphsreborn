@@ -33,6 +33,25 @@ namespace Graphs
                 Databank.substances[i].psevdo_1_data = new Psevdo_1_Data();
                 //fill psevdo_1
 
+                //create border for cells
+                for (int j = 0; j < 5; j++)
+                {
+                    Border border = new Border();
+                    System.Windows.Media.Brush brush = new SolidColorBrush(Colors.Black);
+                    border.BorderBrush = brush;
+                    if (i == Databank.substances.Count - 1)
+                    {
+                        border.BorderThickness = new System.Windows.Thickness(1, 0, 0, 0);
+                    }
+                    else
+                    {
+                        border.BorderThickness = new System.Windows.Thickness(1, 0, 0, 1);
+                    }
+                    Grid_Psevdo_1_Param.Children.Add(border);
+                    Grid.SetColumn(border, j);
+                    Grid.SetRow(border, i);
+                }
+
                 TextBlock textBlock = new TextBlock();
                 textBlock.TextWrapping = TextWrapping.Wrap;
                 textBlock.TextAlignment = TextAlignment.Center;
@@ -153,6 +172,25 @@ namespace Graphs
             {
                 Databank.substances[i].psevdo_2_data = new Psevdo_2_Data();
                 //fill psevdo_2
+
+                //create border fo cells
+                for (int j = 0; j < 5; j++)
+                {
+                    Border border = new Border();
+                    System.Windows.Media.Brush brush = new SolidColorBrush(Colors.Black);
+                    border.BorderBrush = brush;
+                    if (i == Databank.substances.Count - 1)
+                    {
+                        border.BorderThickness = new System.Windows.Thickness(1, 0, 0, 0);
+                    }
+                    else
+                    {
+                        border.BorderThickness = new System.Windows.Thickness(1, 0, 0, 1);
+                    }
+                    Grid_Psevdo_2_Param.Children.Add(border);
+                    Grid.SetColumn(border, j);
+                    Grid.SetRow(border, i);
+                }
 
                 TextBlock textBlock = new TextBlock();
                 textBlock.TextWrapping = TextWrapping.Wrap;
