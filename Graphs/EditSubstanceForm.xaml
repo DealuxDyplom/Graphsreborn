@@ -30,15 +30,15 @@
                 <DataGrid x:Name="DataGrid_Substance" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="обр\врем" Width="*" Binding="{Binding Path=time}"/>
-                        <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding Path=m_r}"/>
-                        <DataGridTextColumn Header="A" Width="*" Binding="{Binding Path=A}"/>
-                        <DataGridTextColumn Header="С,мкг/мл" Width="*" Binding="{Binding Path=C_mkmol}"/>
-                        <DataGridTextColumn Header="qt, мкг/г" Width="*" Binding="{Binding Path=qt_mr}"/>
-                        <DataGridTextColumn Header="qt, μмоль/г" Width="*" Binding="{Binding Path=qt_ml}"/>
-                        <DataGridTextColumn Header="%" Width="*" Binding="{Binding Path=proc}"/>
-                        <DataGridTextColumn Header="qe-qt" Width="*" Binding="{Binding Path=qe_qt}"/>
-                        <DataGridTextColumn Header="log(qe-qt)" Width="*" Binding="{Binding Path=log_qe_qt}"/>
-                        <DataGridTextColumn Header="t\qt" Width="*" Binding="{Binding Path=t_qt}"/>
+                        <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding Path=m_r, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="A" Width="*" Binding="{Binding Path=A, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="С,мкг/мл" Width="*" Binding="{Binding Path=C_mkmol, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="qt, мкг/г" Width="*" Binding="{Binding Path=qt_mr, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="qt, μмоль/г" Width="*" Binding="{Binding Path=qt_ml, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="%" Width="*" Binding="{Binding Path=proc, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="qe-qt" Width="*" Binding="{Binding Path=qe_qt, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="log(qe-qt)" Width="*" Binding="{Binding Path=log_qe_qt, StringFormat='{}{0:f3}'}"/>
+                        <DataGridTextColumn Header="t\qt" Width="*" Binding="{Binding Path=t_qt, StringFormat='{}{0:f3}'}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
