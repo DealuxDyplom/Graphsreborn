@@ -37,6 +37,7 @@ namespace Graphs
             psevdoGraph_ChartArea.AlignmentOrientation = AreaAlignmentOrientations.All;
             Graph_PsevdoChart.ChartAreas.Add(psevdoGraph_ChartArea);
 
+            Graph_PsevdoChart.Legends.Add(new Legend());
 
             if (psevdo == 1)
             {

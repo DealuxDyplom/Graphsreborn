@@ -75,17 +75,24 @@ namespace Graphs
             Series graduationGraph_SeriesPoints = new Series();
             graduationGraph_SeriesPoints.ChartType = SeriesChartType.Point;
             graduationGraph_SeriesPoints.Name = "Градуировка";
-            Chart_Graduation.Series.Add(graduationGraph_SeriesPoints);
             for (int i = 0; i < graduation_Row_List.Count; i++)
             {
                 graduationGraph_SeriesPoints.Points.AddXY(graduation_Row_List[i].C_mkmol, graduation_Row_List[i].A);
+            }
+            for (int j = 0; j < graduationGraph_SeriesPoints.Points.Count; j++)
+            {
+                graduationGraph_SeriesPoints.Points[j].MarkerSize = 10;
+                graduationGraph_SeriesPoints.Points[j].MarkerBorderColor = System.Drawing.Color.Black;
+                graduationGraph_SeriesPoints.Points[j].MarkerStyle = MarkerStyle.Circle;
             }
 
             //create trendline
             Series graduationGraph_SeriesLine = new Series();
             graduationGraph_SeriesLine.ChartType = SeriesChartType.Line;
             graduationGraph_SeriesLine.Name = "Линия тренда";
+            graduationGraph_SeriesLine.BorderWidth = 3;
             Chart_Graduation.Series.Add(graduationGraph_SeriesLine);
+            Chart_Graduation.Series.Add(graduationGraph_SeriesPoints);
             double y_sum = 0;
             double x_sum = 0;
             double x_2_sum = 0;

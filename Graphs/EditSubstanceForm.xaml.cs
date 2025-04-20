@@ -39,6 +39,8 @@ namespace Graphs
             parent = owner;
             InitializeComponent();
 
+            Graph_Substance.Legends.Add(new Legend());
+
             data_Row_List = new ObservableCollection<Data_Row>();
             DataGrid_Substance.ItemsSource = data_Row_List;
 
