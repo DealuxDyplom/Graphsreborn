@@ -7,35 +7,46 @@
         xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         mc:Ignorable="d"
         Title="MainWindow" Height="387" Width="792">
-    <Grid x:Name="Grid_Main" ShowGridLines="True">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="152*"/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="Grid_SubstancesList" Grid.Row="0">
-            <GroupBox>
-                <GroupBox.Header>Список растворов</GroupBox.Header>
-                <WrapPanel Orientation="Vertical"/>
-            </GroupBox>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Меню">
+                <MenuItem Header="Сохранить" Click="Menu_SaveSubstances_Click"/>
+                <MenuItem Header="Загрузить" Click="Menu_LoadSubstances_Click"/>
+                <Separator/>
+                <MenuItem Header="Сохранить градуировку" Click="Menu_SaveGraduations_Click"/>
+                <MenuItem Header="Загрузить градуировку" Click="Menu_LoadGraduations_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid x:Name="Grid_Main">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="152*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="Grid_SubstancesList" Grid.Row="0">
+                <GroupBox>
+                    <GroupBox.Header>Список растворов</GroupBox.Header>
+                    <WrapPanel x:Name="WrapPanel_Substances" Orientation="Vertical"/>
+                </GroupBox>
+            </Grid>
+            <Grid x:Name="Grid_Buttons" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Button_AddSubstanceForm" Content="Добавить новый раствор" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Click="Button_AddSubstanceForm_Click"/>
+                <Button x:Name="Button_EditSubstanceForm" Content="Редактировать раствор" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Click="Button_EditSubstanceForm_Click"/>
+                <Button x:Name="Button_GraduationForm" Content="Открыть список градуировок" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Click="Button_GraduationForm_Click"/>
+                <Button x:Name="Button_PsevdoGraphs" Content="Показать пвседографики" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Click="Button_PsevdoGraphs_Click"/>
+            </Grid>
+            <Grid x:Name="Grid_Graphs" Grid.Row="2">
+                <WindowsFormsHost Name="chartHost">
+                    <wf:Chart x:Name="Graphs_Substances"/>
+
+                </WindowsFormsHost>
+            </Grid>
         </Grid>
-        <Grid x:Name="Grid_Buttons" Grid.Row="1" ShowGridLines="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="Добавить новый раствор" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0"/>
-            <Button Content="Редактировать раствор" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
-            <Button Content="Открыть список градуировок" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"/>
-            <Button Content="Показать пвседографики" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3"/>
-        </Grid>
-        <Grid x:Name="Grid_Graphs" Grid.Row="2">
-            <WindowsFormsHost Name="chartHost">
-                <wf:Chart x:Name="Graphs_Substances"/>
-                
-            </WindowsFormsHost>
-        </Grid>
-    </Grid>
+    </DockPanel>
 </Window>
