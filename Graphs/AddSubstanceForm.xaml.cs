@@ -70,6 +70,8 @@ namespace Graphs
             graduationGraph_ChartArea.AxisX.MajorGrid.Enabled = false;
             graduationGraph_ChartArea.AxisY.IsStartedFromZero = false;
             graduationGraph_ChartArea.AxisY.MajorGrid.Enabled = false;
+            graduationGraph_ChartArea.AxisX.Title = "С,мкг/мл";
+            graduationGraph_ChartArea.AxisY.Title = "А";
             Chart_Graduation.ChartAreas.Add(graduationGraph_ChartArea);
 
             Series graduationGraph_SeriesPoints = new Series();

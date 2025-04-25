@@ -41,6 +41,9 @@ namespace Graphs
 
             if (psevdo == 1)
             {
+                psevdoGraph_ChartArea.AxisX.Title = "t, мин";
+                psevdoGraph_ChartArea.AxisY.Title = "log(qe-qt)";
+
                 Random rand = new Random();
 
                 Series psevdoGraph_SeriesPoints = new Series();
@@ -87,6 +90,9 @@ namespace Graphs
             } 
             else if (psevdo == 2)
             {
+                psevdoGraph_ChartArea.AxisX.Title = "t, мин";
+                psevdoGraph_ChartArea.AxisY.Title = "t\\qt";
+
                 Random rand = new Random();
 
                 Series psevdoGraph_SeriesPoints = new Series();
