@@ -7,7 +7,7 @@ using System.Windows.Media;
 namespace Graphs
 {
     /// <summary>
-    /// Displays parameters obtained by direct nonlinear fitting in q(t) coordinates.
+    /// Displays parameters obtained from the product's linearized kinetic models.
     /// </summary>
     public partial class KineticModelTableForm : Window
     {
@@ -36,7 +36,7 @@ namespace Graphs
                     Grid_Psevdo_1_Param,
                     i,
                     substance,
-                    "qₜ = qₑ·(1 − e^(−k₁t))",
+                    FormatEquation(substance.psevdo_1_data.a, substance.psevdo_1_data.b),
                     substance.psevdo_1_data.Qe1,
                     substance.psevdo_1_data.k1,
                     substance.psevdo_1_data.determination,
@@ -47,7 +47,7 @@ namespace Graphs
                     Grid_Psevdo_2_Param,
                     i,
                     substance,
-                    "qₜ = (k₂·qₑ²·t)/(1 + k₂·qₑ·t)",
+                    FormatEquation(substance.psevdo_2_data.a, substance.psevdo_2_data.b),
                     substance.psevdo_2_data.Qe2,
                     substance.psevdo_2_data.k2,
                     substance.psevdo_2_data.determination,
@@ -129,6 +129,15 @@ namespace Graphs
         private static string FormatNumber(double value)
         {
             return double.IsNaN(value) || double.IsInfinity(value) ? "—" : value.ToString("G6");
+        }
+
+        private static string FormatEquation(double intercept, double slope)
+        {
+            if (double.IsNaN(intercept) || double.IsInfinity(intercept)
+                || double.IsNaN(slope) || double.IsInfinity(slope)) return "—";
+            return "y = " + intercept.ToString("G6")
+                + (slope < 0 ? " − " : " + ")
+                + Math.Abs(slope).ToString("G6") + "·x";
         }
 
         private void paintLabel(object sender, RoutedEventArgs e)

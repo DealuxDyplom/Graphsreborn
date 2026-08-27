@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Graphs"
         mc:Ignorable="d"
-        Title="Кинетические модели — нелинейная аппроксимация" Height="500" Width="1050" Background="White" Closed="Window_Closed">
+        Title="Кинетические модели — линеаризация" Height="500" Width="1050" Background="White" Closed="Window_Closed">
     <Window.Resources>
         <Style x:Key="BorderCell">
             <Setter Property="Control.BorderBrush" Value="Black"/>
@@ -53,7 +53,7 @@
                     <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource BorderCell}">
                         <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Label.Content>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">Уравнение модели</TextBlock>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">Уравнение прямой</TextBlock>
                             </Label.Content>
                         </Label>
                     </Border>
@@ -74,7 +74,7 @@
                     <Border Grid.Row="0" Grid.Column="5" Style="{StaticResource BorderCellEnd}">
                         <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Label.Content>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">R² по исходным qₜ</TextBlock>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">R² линеаризации</TextBlock>
                             </Label.Content>
                         </Label>
                     </Border>
