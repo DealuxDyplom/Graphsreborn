@@ -40,6 +40,8 @@ namespace Graphs
         public double determination;
         public double Qe1;
         public double k1;
+        public bool rateConstantIdentifiable;
+        public string fitNote;
     }
 
     public class Psevdo_2_Data
@@ -49,12 +51,16 @@ namespace Graphs
         public double determination;
         public double Qe2;
         public double k2;
+        public bool rateConstantIdentifiable;
+        public string fitNote;
     }
     public class Substance
     {
         public string name;
         public double OpticDens;
         public double k;
+        public double solutionVolumeMl;
+        public double molarMassGPerMol;
         public Psevdo_1_Data psevdo_1_data;
         public Psevdo_2_Data psevdo_2_data;
         public List<SubstanceData> data;

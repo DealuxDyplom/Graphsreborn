@@ -6,7 +6,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:Graphs"
         mc:Ignorable="d"
-        Title="AddSubstanceForm" Height="543" Width="925" Closed="Window_Closed">
+        Title="Добавление кинетического ряда" Height="650" Width="1000" Closed="Window_Closed">
     <Grid x:Name="Grid_Main">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -39,12 +39,14 @@
         </Grid>
         <Grid x:Name="Grid_ExprData" Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="120"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid x:Name="Grid_ExprDataParam" Grid.Row="0" Grid.Column="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -56,10 +58,14 @@
                 <TextBox x:Name="TextBox_SubstanceName" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150"/>
                 <Label Content="Оптическая плотность раствора(А):" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <TextBox x:Name="TextBox_OpticDens" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150"/>
+                <Label Content="Объём раствора, мл:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBox x:Name="TextBox_SolutionVolume" Text="20" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150"/>
+                <Label Content="Молярная масса, г/моль:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBox x:Name="TextBox_MolarMass" Text="1355,4" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="150"/>
             </Grid>
             <DataGrid x:Name="DataGrid_ExprData" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="обр/врем" Width="*" Binding="{Binding Path=time}"/>
+                    <DataGridTextColumn Header="t, мин" Width="*" Binding="{Binding Path=time}"/>
                     <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding Path=m_r}"/>
                     <DataGridTextColumn Header="A" Width="*" Binding="{Binding Path=A}"/>
                 </DataGrid.Columns>
@@ -104,16 +110,13 @@
             </Grid.RowDefinitions>
             <DataGrid x:Name="DataGrid_Data" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="0" Grid.Column="0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="обр\врем" Width="*" Binding="{Binding Path=time}"/>
+                    <DataGridTextColumn Header="t, мин" Width="*" Binding="{Binding Path=time}"/>
                     <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding Path=m_r, StringFormat='{}{0:f3}'}"/>
                     <DataGridTextColumn Header="A" Width="*" Binding="{Binding Path=A, StringFormat='{}{0:f3}'}"/>
                     <DataGridTextColumn Header="С,мкг/мл" Width="*" Binding="{Binding Path=C_mkmol, StringFormat='{}{0:f3}'}"/>
                     <DataGridTextColumn Header="qt, мкг/г" Width="*" Binding="{Binding Path=qt_mr, StringFormat='{}{0:f3}'}"/>
                     <DataGridTextColumn Header="qt, μмоль/г" Width="*" Binding="{Binding Path=qt_ml, StringFormat='{}{0:f3}'}"/>
                     <DataGridTextColumn Header="%" Width="*" Binding="{Binding Path=proc, StringFormat='{}{0:f3}'}"/>
-                    <DataGridTextColumn Header="qe-qt" Width="*" Binding="{Binding Path=qe_qt, StringFormat='{}{0:f3}'}"/>
-                    <DataGridTextColumn Header="log(qe-qt)" Width="*" Binding="{Binding Path=log_qe_qt, StringFormat='{}{0:f3}'}"/>
-                    <DataGridTextColumn Header="t\qt" Width="*" Binding="{Binding Path=t_qt, StringFormat='{}{0:f3}'}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid x:Name="Grid_DataButtons" Grid.Row="1" Grid.Column="0">

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Graphs"
         mc:Ignorable="d"
-        Title="KineticModelTableForm" Height="450" Width="800" Closed="Window_Closed">
+        Title="Кинетические модели — нелинейная аппроксимация" Height="500" Width="1050" Background="White" Closed="Window_Closed">
     <Window.Resources>
         <Style x:Key="BorderCell">
             <Setter Property="Control.BorderBrush" Value="Black"/>
@@ -21,7 +21,7 @@
         </Style>
     </Window.Resources>
     <DockPanel>
-        <Grid x:Name="Grid_Main">
+        <Grid x:Name="Grid_Main" Background="White">
             <Grid x:Name="Grid_ModelKin">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -53,28 +53,28 @@
                     <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource BorderCell}">
                         <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Label.Content>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">Уравнение аппроксимации</TextBlock>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">Уравнение модели</TextBlock>
                             </Label.Content>
                         </Label>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="3" Style="{StaticResource BorderCell}">
                         <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Label.Content>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">qe, (мкмоль/г)</TextBlock>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">qₑ, мкмоль/г</TextBlock>
                             </Label.Content>
                         </Label>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="4" Style="{StaticResource BorderCell}">
                         <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Label.Content>
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">K1, (мин^-1)</TextBlock>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">k₁, мин⁻¹ / k₂, г·мкмоль⁻¹·мин⁻¹</TextBlock>
                         </Label.Content>
                     </Label>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="5" Style="{StaticResource BorderCellEnd}">
                         <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Label.Content>
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">R^2</TextBlock>
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center">R² по исходным qₜ</TextBlock>
                             </Label.Content>
                         </Label>
                     </Border>
@@ -95,7 +95,7 @@
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center">Псевдо-первый порядок</TextBlock>
                                 </Label.Content>
                             </Label>
-                            <Grid x:Name="Grid_Psevdo_1_Param" Grid.Row="0" Grid.Column="1">
+                            <Grid x:Name="Grid_Psevdo_1_Param" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -117,7 +117,7 @@
                                         <TextBlock TextWrapping="Wrap" TextAlignment="Center">Псевдо-второй порядок</TextBlock>
                                     </Label.Content>
                                 </Label>
-                                <Grid x:Name="Grid_Psevdo_2_Param" Grid.Row="0" Grid.Column="1">
+                                <Grid x:Name="Grid_Psevdo_2_Param" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>

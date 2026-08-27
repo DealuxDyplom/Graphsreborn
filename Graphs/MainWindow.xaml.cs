@@ -116,7 +116,7 @@ namespace Graphs
             substancesGraph_ChartArea.AxisX.IsStartedFromZero = true;
             substancesGraph_ChartArea.AxisY.IsStartedFromZero = true;
             substancesGraph_ChartArea.AlignmentOrientation = AreaAlignmentOrientations.All;
-            substancesGraph_ChartArea.AxisX.Title = "обр/врем";
+            substancesGraph_ChartArea.AxisX.Title = "t, мин";
             substancesGraph_ChartArea.AxisY.Title = "qt, μмоль/г";
             Graphs_Substances.ChartAreas.Add(substancesGraph_ChartArea);
             for (int i = 0; i < Databank.substances.Count; i++)

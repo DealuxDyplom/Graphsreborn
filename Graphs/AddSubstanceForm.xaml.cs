@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms.DataVisualization.Charting;
-using MathNet.Numerics.Optimization;
 using static System.Windows.Forms.LinkLabel;
 using System.Windows.Forms;
 
@@ -144,51 +143,14 @@ namespace Graphs
             Chart_Graduation.Legends.Add(new Legend());
         }
 
-        // Модель псевдо-первого порядка
-        static double PseudoFirstOrder(double t, double qe, double k1)
+        private static bool TryParseNumber(string text, out double value)
         {
-            return qe * (1 - Math.Exp(-k1 * t));
-        }
-
-        // Функция сгенерирована ChatGPT
-        static double getQe(double[] time, double[] qt_exp)
-        {
-            ////Экспериментальные данные
-            //double[] time = { 0, 5, 10, 20, 40, 60 };  // Время в минутах
-            //double[] qt_exp = { 0, 0.3544, 0.3509, 0.3542, 0.3617, 0.3562 };  // Экспериментальные данные
-
-            // Функция ошибки (минимизируемая)
-            Func<double, double, double> errorFunc = (qe_local, k1_local) =>
-            {
-                double error = 0.0;
-                for (int i = 0; i < time.Length; i++)
-                {
-                    double model = PseudoFirstOrder(time[i], qe_local, k1_local);
-                    error += Math.Pow(model - qt_exp[i], 2);
-                }
-                return error;
-            };
-
-            // Начальные значения
-            double qe = 0.1;
-            double k1 = 0.1;
-            int iterations = 5; // Количество итераций поочерёдной минимизации
-
-            var minimizer = new GoldenSectionMinimizer(1e-9, 100);
-
-            for (int iter = 0; iter < iterations; iter++)
-            {
-                // Минимизация по qe (фиксируем k1)
-                var resultQe = minimizer.FindMinimum(ObjectiveFunction.ScalarValue(q => errorFunc(q, k1)), 0, 1);
-                qe = resultQe.MinimizingPoint;
-
-                // Минимизация по k1 (фиксируем qe)
-                var resultK1 = minimizer.FindMinimum(ObjectiveFunction.ScalarValue(k => errorFunc(qe, k)), 0, 1);
-                k1 = resultK1.MinimizingPoint;
-            }
-
-            //Console.WriteLine($"Подобранные параметры: qe = {qe}, k1 = {k1}");
-            return qe * 1.02;
+            return double.TryParse(text, out value)
+                || double.TryParse(
+                    text.Replace(',', '.'),
+                    System.Globalization.NumberStyles.Float,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out value);
         }
 
         private void Button_FillExprDataFromFile_Click(object sender, RoutedEventArgs e)
@@ -245,9 +207,10 @@ namespace Graphs
                 System.Windows.Forms.MessageBox.Show("Оптическая плотность раствора не указана", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (TextBox_OpticDens.Text.Any(c => char.IsLetter(c)))
+            double OpticDens;
+            if (!TryParseNumber(TextBox_OpticDens.Text, out OpticDens) || OpticDens <= 0)
             {
-                System.Windows.Forms.MessageBox.Show("Оптическая плотность не должна содержать буквы", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.MessageBox.Show("Оптическая плотность должна быть положительным числом", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TextBox_SubstanceName.Text == "")
@@ -260,27 +223,48 @@ namespace Graphs
                 System.Windows.Forms.MessageBox.Show("Градуировка не заполнена", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (exprData_Row_List.Count == 0)
+            if (exprData_Row_List.Count < 3)
             {
-                System.Windows.Forms.MessageBox.Show("Экспериментальные данные не указаны", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Windows.Forms.MessageBox.Show("Для аппроксимации необходимо не менее трёх экспериментальных точек", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double solutionVolumeMl;
+            if (!TryParseNumber(TextBox_SolutionVolume.Text, out solutionVolumeMl) || solutionVolumeMl <= 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Объём раствора должен быть положительным числом", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double molarMassGPerMol;
+            if (!TryParseNumber(TextBox_MolarMass.Text, out molarMassGPerMol) || molarMassGPerMol <= 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Молярная масса должна быть положительным числом", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (exprData_Row_List.Any(row => row.time < 0 || row.m_r <= 0 || row.A < 0))
+            {
+                System.Windows.Forms.MessageBox.Show("Проверьте данные: t и A не могут быть отрицательными, масса должна быть больше нуля", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
 
             data_Row_List.Clear();
 
-            double OpticDens = double.Parse(TextBox_OpticDens.Text.Replace(".", ","));
             double C_from_OpticDens = OpticDens / Grad_K;
 
             substance = new Substance();
             substance.data = new List<SubstanceData>();
             substance.k = Grad_K;
             substance.OpticDens = OpticDens;
+            substance.solutionVolumeMl = solutionVolumeMl;
+            substance.molarMassGPerMol = molarMassGPerMol;
             for (int i = 0; i < exprData_Row_List.Count; i++)
             {
                 double C_mkmol = exprData_Row_List[i].A / Grad_K;
-                double qt_mr = (C_from_OpticDens - C_mkmol) * 20 / exprData_Row_List[i].m_r;
-                double qt_ml = qt_mr / 1355; //??? что такое 1355
+                double qt_mr = (C_from_OpticDens - C_mkmol) * solutionVolumeMl / exprData_Row_List[i].m_r;
+                double qt_ml = qt_mr / molarMassGPerMol;
                 double proc = (C_from_OpticDens - C_mkmol) / C_from_OpticDens * 100;
 
                 SubstanceData substanceData = new SubstanceData();
@@ -295,21 +279,26 @@ namespace Graphs
                 substance.data.Add(substanceData);
             }
 
-            //find out Qe1
-            double[] time = new double[substance.data.Count];
-            double[] qt_exp = new double[substance.data.Count];
-            for (int i = 0; i < substance.data.Count; i++)
+            if (substance.data.Any(row => row.qt_ml < 0 || double.IsNaN(row.qt_ml) || double.IsInfinity(row.qt_ml)))
             {
-                time[i] = substance.data[i].time;
-                qt_exp[i] = substance.data[i].qt_ml;
+                System.Windows.Forms.MessageBox.Show(
+                    "Получено отрицательное или некорректное qₜ. Проверьте исходную оптическую плотность, массы и экспериментальные A.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
             }
-            double Qe1 = getQe(time, qt_exp);
+
+            KineticModelFitter.Fit(substance);
+            double Qe1 = substance.psevdo_1_data.Qe1;
             for (int i = 0; i < substance.data.Count; i++)
             {
                 substance.data[i].Qe1 = Qe1;
 
                 substance.data[i].qe_qt = substance.data[i].Qe1 - substance.data[i].qt_ml;
-                substance.data[i].log_qe_qt = Math.Log10(substance.data[i].qe_qt);
+                substance.data[i].log_qe_qt = substance.data[i].qe_qt > 0
+                    ? Math.Log10(substance.data[i].qe_qt)
+                    : double.NaN;
                 if (substance.data[i].qt_ml != 0)
                 {
                     substance.data[i].t_qt = substance.data[i].time / substance.data[i].qt_ml;

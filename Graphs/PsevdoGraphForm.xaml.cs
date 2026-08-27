@@ -1,141 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Graphs
 {
     /// <summary>
-    /// Логика взаимодействия для PsevdoGraphForm.xaml
+    /// Shows experimental q(t) values together with a directly fitted kinetic curve.
     /// </summary>
     public partial class PsevdoGraphForm : Window
     {
-        KineticModelTableForm parent;
-        int decimalPlaces = 3;
+        private readonly KineticModelTableForm parent;
+
         public PsevdoGraphForm(Substance substance, int psevdo, KineticModelTableForm owner)
         {
             parent = owner;
             InitializeComponent();
+            KineticModelFitter.Fit(substance);
 
-            Label_PsevdoGraph_Name.Content = substance.name;
+            bool isPfo = psevdo == 1;
+            string modelName = isPfo ? "PFO" : "PSO";
+            Color modelColor = isPfo ? Color.SteelBlue : Color.DarkOrange;
+            Label_PsevdoGraph_Name.Content = substance.name + " — " + modelName + " (нелинейная аппроксимация)";
 
-            ChartArea psevdoGraph_ChartArea = new ChartArea();
-            psevdoGraph_ChartArea.AxisX.IsStartedFromZero = false;
-            psevdoGraph_ChartArea.AxisX.MajorGrid.Enabled = false;
-            psevdoGraph_ChartArea.AxisY.IsStartedFromZero = false;
-            psevdoGraph_ChartArea.AxisY.MajorGrid.Enabled = false;
-            psevdoGraph_ChartArea.AlignmentOrientation = AreaAlignmentOrientations.All;
-            Graph_PsevdoChart.ChartAreas.Add(psevdoGraph_ChartArea);
+            var chartArea = new ChartArea();
+            chartArea.AxisX.Title = "t, мин";
+            chartArea.AxisY.Title = "qₜ, мкмоль/г";
+            chartArea.AxisX.IsStartedFromZero = true;
+            chartArea.AxisY.IsStartedFromZero = true;
+            chartArea.AxisX.MajorGrid.LineColor = Color.Gainsboro;
+            chartArea.AxisY.MajorGrid.LineColor = Color.Gainsboro;
+            Graph_PsevdoChart.ChartAreas.Add(chartArea);
+            Graph_PsevdoChart.Legends.Add(new Legend { Docking = Docking.Top });
 
-            Graph_PsevdoChart.Legends.Add(new Legend());
-
-            if (psevdo == 1)
+            var experimental = new Series("Экспериментальные qₜ")
             {
-                psevdoGraph_ChartArea.AxisX.Title = "t, мин";
-                psevdoGraph_ChartArea.AxisY.Title = "log(qe-qt)";
+                ChartType = SeriesChartType.Point,
+                Color = modelColor,
+                MarkerStyle = MarkerStyle.Circle,
+                MarkerSize = 10,
+                MarkerBorderColor = Color.Black,
+                BorderWidth = 2
+            };
+            experimental.Points.AddXY(0, 0);
+            foreach (var point in substance.data.OrderBy(row => row.time))
+                experimental.Points.AddXY(point.time, point.qt_ml);
 
-                Random rand = new Random();
-
-                Series psevdoGraph_SeriesPoints = new Series();
-                psevdoGraph_SeriesPoints.ChartType = SeriesChartType.Point;
-                psevdoGraph_SeriesPoints.Name = substance.name + "_Point";
-                psevdoGraph_SeriesPoints.Color = System.Drawing.Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
-                for (int j = 0; j < substance.data.Count; j++)
-                {
-                    double x_local = substance.data[j].time;
-                    double y_local = substance.data[j].log_qe_qt;
-                    psevdoGraph_SeriesPoints.Points.AddXY(x_local, y_local);
-                }
-
-                for (int j = 0; j < psevdoGraph_SeriesPoints.Points.Count; j++)
-                {
-                    psevdoGraph_SeriesPoints.Points[j].MarkerSize = 10;
-                    psevdoGraph_SeriesPoints.Points[j].MarkerBorderColor = System.Drawing.Color.Black;
-                    psevdoGraph_SeriesPoints.Points[j].MarkerStyle = MarkerStyle.Circle;
-                }
-
-                Series psevdoGraph_SeriesTrendLine = new Series();
-                psevdoGraph_SeriesTrendLine.ChartType = SeriesChartType.Line;
-                psevdoGraph_SeriesTrendLine.Name = substance.name + "_Line";
-                psevdoGraph_SeriesTrendLine.BorderWidth = 3;
-                psevdoGraph_SeriesTrendLine.Color = psevdoGraph_SeriesPoints.Color;
-
-                double x = psevdoGraph_SeriesPoints.Points[0].XValue;
-                double y = substance.psevdo_1_data.a + substance.psevdo_1_data.b * x;
-                psevdoGraph_SeriesTrendLine.Points.AddXY(x, y);
-                x = psevdoGraph_SeriesPoints.Points[psevdoGraph_SeriesPoints.Points.Count - 1].XValue;
-                y = substance.psevdo_1_data.a + substance.psevdo_1_data.b * x;
-                psevdoGraph_SeriesTrendLine.Points.AddXY(x, y);
-
-                Graph_PsevdoChart.Series.Add(psevdoGraph_SeriesTrendLine);
-                Graph_PsevdoChart.Series.Add(psevdoGraph_SeriesPoints);
-
-                TextBox_Equastion.Text = "y = " + Math.Round(substance.psevdo_1_data.a, decimalPlaces).ToString() + " + " + Math.Round(substance.psevdo_1_data.b, decimalPlaces).ToString() + " * x";
-                TextBox_R2.Text = Math.Round(substance.psevdo_1_data.determination, decimalPlaces).ToString();
-                Label_Qe.Content = "Qe1";
-                TextBox_Qe.Text = Math.Round(substance.psevdo_1_data.Qe1, decimalPlaces).ToString();
-                Label_K.Content = "K1";
-                TextBox_K.Text = Math.Round(substance.psevdo_1_data.k1, decimalPlaces).ToString();
-
-            } 
-            else if (psevdo == 2)
+            var fittedCurve = new Series(modelName + " — расчётная кривая")
             {
-                psevdoGraph_ChartArea.AxisX.Title = "t, мин";
-                psevdoGraph_ChartArea.AxisY.Title = "t\\qt";
+                ChartType = SeriesChartType.Line,
+                Color = modelColor,
+                BorderWidth = 3
+            };
 
-                Random rand = new Random();
-
-                Series psevdoGraph_SeriesPoints = new Series();
-                psevdoGraph_SeriesPoints.ChartType = SeriesChartType.Point;
-                psevdoGraph_SeriesPoints.Name = substance.name + "_Point";
-                psevdoGraph_SeriesPoints.Color = System.Drawing.Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
-                for (int j = 0; j < substance.data.Count; j++)
-                {
-                    double x_local = substance.data[j].time;
-                    double y_local = substance.data[j].t_qt;
-                    psevdoGraph_SeriesPoints.Points.AddXY(x_local, y_local);
-                }
-
-                for (int j = 0; j < psevdoGraph_SeriesPoints.Points.Count; j++)
-                {
-                    psevdoGraph_SeriesPoints.Points[j].MarkerSize = 10;
-                    psevdoGraph_SeriesPoints.Points[j].MarkerBorderColor = System.Drawing.Color.Black;
-                    psevdoGraph_SeriesPoints.Points[j].MarkerStyle = MarkerStyle.Circle;
-                }
-
-                Series psevdoGraph_SeriesTrendLine = new Series();
-                psevdoGraph_SeriesTrendLine.ChartType = SeriesChartType.Line;
-                psevdoGraph_SeriesTrendLine.Name = substance.name + "_Line";
-                psevdoGraph_SeriesTrendLine.BorderWidth = 3;
-                psevdoGraph_SeriesTrendLine.Color = psevdoGraph_SeriesPoints.Color;
-
-                double x = psevdoGraph_SeriesPoints.Points[0].XValue;
-                double y = substance.psevdo_2_data.a + substance.psevdo_2_data.b * x;
-                psevdoGraph_SeriesTrendLine.Points.AddXY(x, y);
-                x = psevdoGraph_SeriesPoints.Points[psevdoGraph_SeriesPoints.Points.Count - 1].XValue;
-                y = substance.psevdo_2_data.a + substance.psevdo_2_data.b * x;
-                psevdoGraph_SeriesTrendLine.Points.AddXY(x, y);
-
-                Graph_PsevdoChart.Series.Add(psevdoGraph_SeriesTrendLine);
-                Graph_PsevdoChart.Series.Add(psevdoGraph_SeriesPoints);
-
-                TextBox_Equastion.Text = "y = " + Math.Round(substance.psevdo_2_data.a, decimalPlaces).ToString() + " + " + Math.Round(substance.psevdo_2_data.b, decimalPlaces).ToString() + " * x";
-                TextBox_R2.Text = Math.Round(substance.psevdo_2_data.determination, decimalPlaces).ToString();
-                Label_Qe.Content = "Qe2";
-                TextBox_Qe.Text = Math.Round(substance.psevdo_2_data.Qe2, decimalPlaces).ToString();
-                Label_K.Content = "K2";
-                TextBox_K.Text = Math.Round(substance.psevdo_2_data.k2, decimalPlaces).ToString();
+            double maxTime = Math.Max(1.0, substance.data.Max(row => row.time));
+            for (int i = 0; i <= 160; i++)
+            {
+                double time = maxTime * i / 160.0;
+                double qt = isPfo
+                    ? KineticModelFitter.PredictPseudoFirstOrder(time, substance.psevdo_1_data.Qe1, substance.psevdo_1_data.k1)
+                    : KineticModelFitter.PredictPseudoSecondOrder(time, substance.psevdo_2_data.Qe2, substance.psevdo_2_data.k2);
+                fittedCurve.Points.AddXY(time, qt);
             }
+
+            Graph_PsevdoChart.Series.Add(fittedCurve);
+            Graph_PsevdoChart.Series.Add(experimental);
+
+            if (isPfo)
+            {
+                TextBox_Equastion.Text = "qₜ = qₑ·(1 − e^(−k₁t))";
+                TextBox_R2.Text = Format(substance.psevdo_1_data.determination);
+                Label_Qe.Content = "qₑ, мкмоль/г";
+                TextBox_Qe.Text = Format(substance.psevdo_1_data.Qe1);
+                Label_K.Content = "k₁, мин⁻¹";
+                TextBox_K.Text = substance.psevdo_1_data.rateConstantIdentifiable
+                    ? Format(substance.psevdo_1_data.k1)
+                    : "не определяется";
+                TextBox_K.ToolTip = substance.psevdo_1_data.fitNote;
+            }
+            else
+            {
+                TextBox_Equastion.Text = "qₜ = (k₂·qₑ²·t)/(1 + k₂·qₑ·t)";
+                TextBox_R2.Text = Format(substance.psevdo_2_data.determination);
+                Label_Qe.Content = "qₑ, мкмоль/г";
+                TextBox_Qe.Text = Format(substance.psevdo_2_data.Qe2);
+                Label_K.Content = "k₂, г/(мкмоль·мин)";
+                TextBox_K.Text = substance.psevdo_2_data.rateConstantIdentifiable
+                    ? Format(substance.psevdo_2_data.k2)
+                    : "не определяется";
+                TextBox_K.ToolTip = substance.psevdo_2_data.fitNote;
+            }
+        }
+
+        private static string Format(double value)
+        {
+            return double.IsNaN(value) || double.IsInfinity(value) ? "—" : value.ToString("G7");
         }
 
         private void Window_Closed(object sender, EventArgs e)

@@ -6,7 +6,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:Graphs"
         mc:Ignorable="d"
-        Title="EditSubstanceForm" Height="450" Width="800" Closed="Window_Closed">
+        Title="Редактирование кинетического ряда" Height="500" Width="900" Closed="Window_Closed">
     <DockPanel>
         <Grid x:Name="Grid_Main">
             <Grid.RowDefinitions>
@@ -29,16 +29,13 @@
                 </Grid>
                 <DataGrid x:Name="DataGrid_Substance" Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="обр\врем" Width="*" Binding="{Binding Path=time}"/>
+                        <DataGridTextColumn Header="t, мин" Width="*" Binding="{Binding Path=time}"/>
                         <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding Path=m_r, StringFormat='{}{0:f3}'}"/>
                         <DataGridTextColumn Header="A" Width="*" Binding="{Binding Path=A, StringFormat='{}{0:f3}'}"/>
                         <DataGridTextColumn Header="С,мкг/мл" Width="*" Binding="{Binding Path=C_mkmol, StringFormat='{}{0:f3}'}"/>
                         <DataGridTextColumn Header="qt, мкг/г" Width="*" Binding="{Binding Path=qt_mr, StringFormat='{}{0:f3}'}"/>
                         <DataGridTextColumn Header="qt, μмоль/г" Width="*" Binding="{Binding Path=qt_ml, StringFormat='{}{0:f3}'}"/>
                         <DataGridTextColumn Header="%" Width="*" Binding="{Binding Path=proc, StringFormat='{}{0:f3}'}"/>
-                        <DataGridTextColumn Header="qe-qt" Width="*" Binding="{Binding Path=qe_qt, StringFormat='{}{0:f3}'}"/>
-                        <DataGridTextColumn Header="log(qe-qt)" Width="*" Binding="{Binding Path=log_qe_qt, StringFormat='{}{0:f3}'}"/>
-                        <DataGridTextColumn Header="t\qt" Width="*" Binding="{Binding Path=t_qt, StringFormat='{}{0:f3}'}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

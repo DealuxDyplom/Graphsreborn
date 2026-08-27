@@ -102,6 +102,7 @@
     <Compile Include="KineticModelTableForm.xaml.cs">
       <DependentUpon>KineticModelTableForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KineticModelFitter.cs" />
     <Compile Include="PsevdoGraphForm.xaml.cs">
       <DependentUpon>PsevdoGraphForm.xaml</DependentUpon>
     </Compile>

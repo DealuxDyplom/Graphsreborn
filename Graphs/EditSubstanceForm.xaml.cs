@@ -16,7 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MathNet.Numerics.Optimization;
 
 namespace Graphs
 {
@@ -60,7 +59,6 @@ namespace Graphs
                 if (Databank.substances[i].name == ((ComboBox)sender).SelectedValue.ToString())
                 {
                     substance = Databank.substances[i];
-                    Qe1 = Databank.substances[i].data[0].Qe1;
                     //fill dataGrid
                     for (int j = 0; j < Databank.substances[i].data.Count; j++)
                     {
@@ -88,7 +86,7 @@ namespace Graphs
                     substancesGraph_ChartArea.AxisX.IsStartedFromZero = true;
                     substancesGraph_ChartArea.AxisY.IsStartedFromZero = true;
                     substancesGraph_ChartArea.AlignmentOrientation = AreaAlignmentOrientations.All;
-                    substancesGraph_ChartArea.AxisX.Title = "обр/врем";
+                    substancesGraph_ChartArea.AxisX.Title = "t, мин";
                     substancesGraph_ChartArea.AxisY.Title = "qt, μмоль/г";
                     Graph_Substance.ChartAreas.Add(substancesGraph_ChartArea);
 
@@ -129,6 +127,7 @@ namespace Graphs
 
                     Graph_Substance.Series.Add(substanceGraph_SeriesLine);
                     Graph_Substance.Series.Add(substanceGraph_SeriesPoints);
+                    UpdateDerivedModelValues();
 
                     break;
                 }
@@ -139,7 +138,7 @@ namespace Graphs
         {
             //когда нажата ЛКМ, определяется индекс точки
             PointIndexMouseDown = Graph_Substance.HitTest(e.X, e.Y).PointIndex;
-            if (PointIndexMouseDown == -1) { return; }
+            if (PointIndexMouseDown <= 0) { return; }
             //если ЛКМ нажата на точку, то её края окрашиваются в желтый
 
             substanceGraph_SeriesPoints.Points[PointIndexMouseDown].MarkerBorderColor = System.Drawing.Color.Yellow;
@@ -152,8 +151,7 @@ namespace Graphs
             //если мышь двигается, и до этого ЛКМ была нажата на точку, то координаты точки меняются
             if (MouseDownOnPointOnGraph)
             {
-                double xValue = substancesGraph_ChartArea.AxisX.PixelPositionToValue(e.X);
-                double yValue = substancesGraph_ChartArea.AxisY.PixelPositionToValue(e.Y);
+                double yValue = Math.Max(0, substancesGraph_ChartArea.AxisY.PixelPositionToValue(e.Y));
 
                 //меняем координаты самой точки
                 substanceGraph_SeriesPoints.Points[PointIndexMouseDown].XValue = substanceGraph_SeriesPoints.Points[PointIndexMouseDown].XValue;
@@ -168,56 +166,10 @@ namespace Graphs
             }
         }
 
-        // Модель псевдо-первого порядка
-        static double PseudoFirstOrder(double t, double qe, double k1)
-        {
-            return qe * (1 - Math.Exp(-k1 * t));
-        }
-
-        // Функция сгенерирована ChatGPT
-        static double getQe(double[] time, double[] qt_exp)
-        {
-            ////Экспериментальные данные
-            //double[] time = { 0, 5, 10, 20, 40, 60 };  // Время в минутах
-            //double[] qt_exp = { 0, 0.3544, 0.3509, 0.3542, 0.3617, 0.3562 };  // Экспериментальные данные
-
-            // Функция ошибки (минимизируемая)
-            Func<double, double, double> errorFunc = (qe_local, k1_local) =>
-            {
-                double error = 0.0;
-                for (int i = 0; i < time.Length; i++)
-                {
-                    double model = PseudoFirstOrder(time[i], qe_local, k1_local);
-                    error += Math.Pow(model - qt_exp[i], 2);
-                }
-                return error;
-            };
-
-            // Начальные значения
-            double qe = 0.1;
-            double k1 = 0.1;
-            int iterations = 5; // Количество итераций поочерёдной минимизации
-
-            var minimizer = new GoldenSectionMinimizer(1e-9, 100);
-
-            for (int iter = 0; iter < iterations; iter++)
-            {
-                // Минимизация по qe (фиксируем k1)
-                var resultQe = minimizer.FindMinimum(ObjectiveFunction.ScalarValue(q => errorFunc(q, k1)), 0, 1);
-                qe = resultQe.MinimizingPoint;
-
-                // Минимизация по k1 (фиксируем qe)
-                var resultK1 = minimizer.FindMinimum(ObjectiveFunction.ScalarValue(k => errorFunc(qe, k)), 0, 1);
-                k1 = resultK1.MinimizingPoint;
-            }
-
-            //Console.WriteLine($"Подобранные параметры: qe = {qe}, k1 = {k1}");
-            return qe * 1.02;
-        }
-
-
         private void Graph_Substance_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            if (!MouseDownOnPointOnGraph) return;
+
             //когда мышь отпущена, края всех точек окрашиваются в черный
             for (int i = 0; i < substanceGraph_SeriesPoints.Points.Count; i++)
             {
@@ -228,47 +180,26 @@ namespace Graphs
             double k = substance.k;
             double OpticDens = substance.OpticDens;
             double C_from_OpticDens = OpticDens / k;
+            double molarMass = substance.molarMassGPerMol > 0 ? substance.molarMassGPerMol : 1355.4;
+            double solutionVolume = substance.solutionVolumeMl > 0 ? substance.solutionVolumeMl : 20.0;
 
             for (int i = 0; i < data_Row_List.Count; i++)
             {
                 data_Row_List[i].qt_ml = substanceGraph_SeriesPoints.Points[i + 1].YValues[0];
-                data_Row_List[i].qt_mr = data_Row_List[i].qt_ml * 1355;
+                data_Row_List[i].qt_mr = data_Row_List[i].qt_ml * molarMass;
 
                 //если меняется A
-                data_Row_List[i].C_mkmol = C_from_OpticDens - ((data_Row_List[i].qt_mr * data_Row_List[i].m_r) / 20);
+                data_Row_List[i].C_mkmol = C_from_OpticDens - ((data_Row_List[i].qt_mr * data_Row_List[i].m_r) / solutionVolume);
                 data_Row_List[i].A = data_Row_List[i].C_mkmol * k;
                 
                 //если меняется m, г
                 //data_Row_List[i].C_mkmol = data_Row_List[i].A / k;
-                //data_Row_List[i].m_r = (C_from_OpticDens - data_Row_List[i].C_mkmol) * 20 / data_Row_List[i].qt_mr;
+                //data_Row_List[i].m_r = (C_from_OpticDens - data_Row_List[i].C_mkmol) * solutionVolume / data_Row_List[i].qt_mr;
                 
                 data_Row_List[i].proc = (C_from_OpticDens - data_Row_List[i].C_mkmol) / C_from_OpticDens * 100;
             }
 
-            //find out Qe1
-            double[] time = new double[data_Row_List.Count];
-            double[] qt_exp = new double[data_Row_List.Count];
-            for (int i = 0; i < data_Row_List.Count; i++)
-            {
-                time[i] = data_Row_List[i].time;
-                qt_exp[i] = data_Row_List[i].qt_ml;
-            }
-            Qe1 = getQe(time, qt_exp);
-
-            for (int i = 0; i < data_Row_List.Count; i++)
-            {
-                data_Row_List[i].qe_qt = Qe1 - data_Row_List[i].qt_ml;
-                data_Row_List[i].log_qe_qt = Math.Log10(data_Row_List[i].qe_qt);
-
-                if (data_Row_List[i].qt_ml != 0)
-                {
-                    data_Row_List[i].t_qt = data_Row_List[i].time / data_Row_List[i].qt_ml;
-                }
-                else
-                {
-                    data_Row_List[i].t_qt = 0;
-                }
-            }
+            UpdateDerivedModelValues();
 
             PointIndexMouseDown = -1;
             MouseDownOnPointOnGraph = false;
@@ -276,9 +207,30 @@ namespace Graphs
             //toolStripStatusLabel_Y.Text = "";
         }
 
+        private void UpdateDerivedModelValues()
+        {
+            if (data_Row_List.Count < 3) return;
+
+            var fitSubstance = new Substance { data = new List<SubstanceData>() };
+            foreach (var row in data_Row_List)
+                fitSubstance.data.Add(new SubstanceData { time = row.time, qt_ml = row.qt_ml });
+
+            KineticModelFitter.Fit(fitSubstance);
+            Qe1 = fitSubstance.psevdo_1_data.Qe1;
+
+            foreach (var row in data_Row_List)
+            {
+                row.qe_qt = Qe1 - row.qt_ml;
+                row.log_qe_qt = row.qe_qt > 0 ? Math.Log10(row.qe_qt) : double.NaN;
+                row.t_qt = row.qt_ml != 0 ? row.time / row.qt_ml : 0;
+            }
+        }
+
         private void Button_SaveEditSubstance_Click(object sender, RoutedEventArgs e)
         {
             substance.data = new List<SubstanceData>();
+            if (substance.solutionVolumeMl <= 0) substance.solutionVolumeMl = 20.0;
+            if (substance.molarMassGPerMol <= 0) substance.molarMassGPerMol = 1355.4;
             for (int i = 0; i < data_Row_List.Count; i++)
             {
                 SubstanceData substanceData = new SubstanceData();
@@ -295,6 +247,16 @@ namespace Graphs
                 substanceData.t_qt = data_Row_List[i].t_qt;
 
                 substance.data.Add(substanceData);
+            }
+
+            KineticModelFitter.Fit(substance);
+            Qe1 = substance.psevdo_1_data.Qe1;
+            foreach (var row in substance.data)
+            {
+                row.Qe1 = Qe1;
+                row.qe_qt = Qe1 - row.qt_ml;
+                row.log_qe_qt = row.qe_qt > 0 ? Math.Log10(row.qe_qt) : double.NaN;
+                row.t_qt = row.qt_ml != 0 ? row.time / row.qt_ml : 0;
             }
 
             for (int i = 0; i < Databank.substances.Count; i++)
