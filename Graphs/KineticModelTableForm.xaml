@@ -79,10 +79,13 @@
                         </Label>
                     </Border>
                 </Grid>
-                <Grid x:Name="Grid_PsevdoParam" Grid.Row="1" Grid.Column="0">
+                <ScrollViewer Grid.Row="1" Grid.Column="0"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                <Grid x:Name="Grid_PsevdoParam">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource BorderCellEnd}">
                         <Grid x:Name="Grid_Psevdo_1" Grid.Row="0" Grid.Column="0">
@@ -95,7 +98,7 @@
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center">Псевдо-первый порядок</TextBlock>
                                 </Label.Content>
                             </Label>
-                            <Grid x:Name="Grid_Psevdo_1_Param" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                            <Grid x:Name="Grid_Psevdo_1_Param" Grid.Row="0" Grid.Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -117,7 +120,7 @@
                                         <TextBlock TextWrapping="Wrap" TextAlignment="Center">Псевдо-второй порядок</TextBlock>
                                     </Label.Content>
                                 </Label>
-                                <Grid x:Name="Grid_Psevdo_2_Param" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                <Grid x:Name="Grid_Psevdo_2_Param" Grid.Row="0" Grid.Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -129,6 +132,7 @@
                         </Grid>
                     </Border>
                 </Grid>
+                </ScrollViewer>
                 <!--<Grid x:Name="Grid_Psevdo_1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" ShowGridLines="true">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

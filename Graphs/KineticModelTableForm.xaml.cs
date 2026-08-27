@@ -18,6 +18,10 @@ namespace Graphs
             parent = owner;
             InitializeComponent();
 
+            // The window grows with the number of samples. After the comfortable
+            // desktop height is reached, the model area becomes scrollable.
+            Height = Math.Min(850, Math.Max(260, 120 + Databank.substances.Count * 108));
+
             for (int i = 0; i < Databank.substances.Count; i++)
             {
                 var substance = Databank.substances[i];
@@ -67,7 +71,12 @@ namespace Graphs
             bool rateConstantIdentifiable,
             string fitNote)
         {
-            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            // Rows keep a readable height; the surrounding window grows with count.
+            grid.RowDefinitions.Add(new RowDefinition
+            {
+                Height = GridLength.Auto,
+                MinHeight = 54
+            });
 
             for (int column = 0; column < 5; column++)
             {
