@@ -36,6 +36,7 @@ namespace Graphs
             checkBoxes_Substances_List = new List<System.Windows.Controls.CheckBox>();
             Databank.substances = new List<Substance>();
             Databank.graduations = new List<Graduation>();
+            Databank.isotherms = new List<IsothermSeries>();
 
             Graduation graduation = new Graduation();
             graduation.data = new List<GraduationData>();
@@ -82,11 +83,29 @@ namespace Graphs
             string[] arguments = Environment.GetCommandLineArgs();
             bool openKineticModels = arguments.Length >= 3
                 && string.Equals(arguments[1], "--kinetics", StringComparison.OrdinalIgnoreCase);
-            string dataFile = openKineticModels
+            bool openIsotherms = arguments.Length >= 3
+                && string.Equals(arguments[1], "--isotherms", StringComparison.OrdinalIgnoreCase);
+            bool openFirstIsothermGraph = arguments.Any(argument =>
+                string.Equals(argument, "--open-first", StringComparison.OrdinalIgnoreCase));
+            string dataFile = openKineticModels || openIsotherms
                 ? arguments[2]
                 : arguments.Length >= 2 ? arguments[1] : null;
 
             if (string.IsNullOrWhiteSpace(dataFile) || !File.Exists(dataFile)) return;
+
+            if (openIsotherms)
+            {
+                LoadIsotherms(dataFile);
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    var isothermTable = new IsothermModelTableForm(this);
+                    isothermTable.Show();
+                    if (openFirstIsothermGraph && Databank.isotherms.Count > 0)
+                        new IsothermGraphForm(Databank.isotherms[0], isothermTable).Show();
+                    Hide();
+                }));
+                return;
+            }
 
             LoadSubstances(dataFile);
             if (!openKineticModels) return;
@@ -97,6 +116,13 @@ namespace Graphs
                 kineticModelTableForm.Show();
                 Hide();
             }));
+        }
+
+        private void LoadIsotherms(string fileName)
+        {
+            string json = File.ReadAllText(fileName);
+            Databank.isotherms = JsonConvert.DeserializeObject<List<IsothermSeries>>(json)
+                ?? new List<IsothermSeries>();
         }
 
         private void LoadSubstances(string fileName)
@@ -294,6 +320,14 @@ namespace Graphs
         {
             KineticModelTableForm kineticModelTableForm = new KineticModelTableForm(this);
             kineticModelTableForm.Show();
+
+            this.Hide();
+        }
+
+        private void Button_Isotherms_Click(object sender, RoutedEventArgs e)
+        {
+            IsothermModelTableForm isothermModelTableForm = new IsothermModelTableForm(this);
+            isothermModelTableForm.Show();
 
             this.Hide();
         }

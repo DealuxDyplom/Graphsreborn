@@ -94,9 +94,39 @@ namespace Graphs
         public double A;
     }
 
+    public class IsothermPoint
+    {
+        public double Ce;
+        public double Qe;
+        public double LinearX;
+        public double LinearY;
+    }
+
+    public class LangmuirResult
+    {
+        public double a;
+        public double b;
+        public double qMax;
+        public double kL;
+        public double determination;
+        public bool isPhysicallyValid;
+        public string fitNote;
+    }
+
+    public class IsothermSeries
+    {
+        public string name;
+        public double temperatureC;
+        public string concentrationUnit = "мкмоль/л";
+        public string capacityUnit = "мкмоль/г";
+        public List<IsothermPoint> data;
+        public LangmuirResult langmuir;
+    }
+
     static public class Databank
     {
         static public List<Substance> substances;
         static public List<Graduation> graduations;
+        static public List<IsothermSeries> isotherms;
     }
 }

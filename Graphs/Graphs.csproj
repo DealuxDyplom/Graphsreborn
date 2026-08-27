@@ -103,6 +103,13 @@
       <DependentUpon>KineticModelTableForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="KineticModelFitter.cs" />
+    <Compile Include="IsothermGraphForm.xaml.cs">
+      <DependentUpon>IsothermGraphForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IsothermModelFitter.cs" />
+    <Compile Include="IsothermModelTableForm.xaml.cs">
+      <DependentUpon>IsothermModelTableForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PsevdoGraphForm.xaml.cs">
       <DependentUpon>PsevdoGraphForm.xaml</DependentUpon>
     </Compile>
@@ -124,6 +131,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="KineticModelTableForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IsothermGraphForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IsothermModelTableForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
