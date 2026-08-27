@@ -73,6 +73,38 @@ namespace Graphs
             substancesGraph_ChartArea.AxisY.IsStartedFromZero = true;
             substancesGraph_ChartArea.AlignmentOrientation = AreaAlignmentOrientations.All;
             Graphs_Substances.ChartAreas.Add(substancesGraph_ChartArea);
+
+            LoadStartupTestDataIfRequested();
+        }
+
+        private void LoadStartupTestDataIfRequested()
+        {
+            string[] arguments = Environment.GetCommandLineArgs();
+            bool openKineticModels = arguments.Length >= 3
+                && string.Equals(arguments[1], "--kinetics", StringComparison.OrdinalIgnoreCase);
+            string dataFile = openKineticModels
+                ? arguments[2]
+                : arguments.Length >= 2 ? arguments[1] : null;
+
+            if (string.IsNullOrWhiteSpace(dataFile) || !File.Exists(dataFile)) return;
+
+            LoadSubstances(dataFile);
+            if (!openKineticModels) return;
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                var kineticModelTableForm = new KineticModelTableForm(this);
+                kineticModelTableForm.Show();
+                Hide();
+            }));
+        }
+
+        private void LoadSubstances(string fileName)
+        {
+            string json = File.ReadAllText(fileName);
+            Databank.substances = JsonConvert.DeserializeObject<List<Substance>>(json)
+                ?? new List<Substance>();
+            fillGroupBoxSubstancesCheckboxes();
         }
 
         private void Button_AddSubstanceForm_Click(object sender, RoutedEventArgs e)
@@ -200,13 +232,7 @@ namespace Graphs
 
             if (openFileDialog.ShowDialog() == true)
             {
-                StreamReader reader = new StreamReader(openFileDialog.FileName);
-                string json = reader.ReadToEnd();
-                Databank.substances.Clear();
-                Databank.substances = JsonConvert.DeserializeObject<List<Substance>>(json);
-
-                //add new checkboxes
-                fillGroupBoxSubstancesCheckboxes();
+                LoadSubstances(openFileDialog.FileName);
             }
         }
 
