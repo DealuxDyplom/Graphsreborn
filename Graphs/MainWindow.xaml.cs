@@ -220,6 +220,9 @@ namespace Graphs
 
             Graphs_Substances.Series.Clear();
             Graphs_Substances.ChartAreas.Clear();
+            Graphs_Substances.Titles.Clear();
+            if (isIsothermMode)
+                Graphs_Substances.Titles.Add("Изотерма сорбции");
             if (isIsothermMode)
                 fillGroupBoxIsothermCheckboxes();
             else
@@ -236,7 +239,7 @@ namespace Graphs
             if (Graphs_Substances.ChartAreas.Count == 0)
             {
                 var area = new ChartArea();
-                area.AxisX.Title = isIsothermMode ? "Ce, мкмоль/л" : "t, мин";
+                area.AxisX.Title = isIsothermMode ? "C0, мкмоль/л" : "t, мин";
                 area.AxisY.Title = isIsothermMode ? "qe, мкмоль/г" : "qt, мкмоль/г";
                 area.AxisX.MajorGrid.Enabled = false;
                 area.AxisY.MajorGrid.Enabled = false;
@@ -384,7 +387,7 @@ namespace Graphs
             area.AxisX.MajorGrid.Enabled = false;
             area.AxisY.MajorGrid.Enabled = false;
             area.AlignmentOrientation = AreaAlignmentOrientations.All;
-            area.AxisX.Title = "Ce, " + isotherm.concentrationUnit;
+            area.AxisX.Title = "C0, " + isotherm.concentrationUnit;
             area.AxisY.Title = "qe, " + isotherm.capacityUnit;
             area.AxisX.LabelStyle.Format = "0.#####";
             area.AxisY.LabelStyle.Format = "0.#####";
@@ -409,12 +412,24 @@ namespace Graphs
                 MarkerStyle = MarkerStyle.Circle
             };
 
-            foreach (var point in isotherm.data
-                .Where(item => item.Ce >= 0 && item.Qe >= 0)
-                .OrderBy(item => item.Ce))
+            var displayPoints = isotherm.data
+                .Select(point => new
+                {
+                    Point = point,
+                    InitialConcentration = IsothermCalculator.GetEditorConcentration(point, isotherm)
+                })
+                .Where(item => !double.IsNaN(item.InitialConcentration)
+                    && !double.IsInfinity(item.InitialConcentration)
+                    && item.InitialConcentration >= 0
+                    && !double.IsNaN(item.Point.Qe)
+                    && !double.IsInfinity(item.Point.Qe)
+                    && item.Point.Qe >= 0)
+                .OrderBy(item => item.InitialConcentration);
+
+            foreach (var item in displayPoints)
             {
-                line.Points.AddXY(point.Ce, point.Qe);
-                points.Points.AddXY(point.Ce, point.Qe);
+                line.Points.AddXY(item.InitialConcentration, item.Point.Qe);
+                points.Points.AddXY(item.InitialConcentration, item.Point.Qe);
             }
 
             Graphs_Substances.Series.Add(line);
