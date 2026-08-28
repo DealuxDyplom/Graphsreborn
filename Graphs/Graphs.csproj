@@ -93,6 +93,7 @@
     <Compile Include="AddGraduationForm.xaml.cs">
       <DependentUpon>AddGraduationForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChartAxisHelper.cs" />
     <Compile Include="AddIsothermForm.xaml.cs">
       <DependentUpon>AddIsothermForm.xaml</DependentUpon>
     </Compile>

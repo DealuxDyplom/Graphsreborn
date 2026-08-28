@@ -89,13 +89,20 @@ namespace Graphs
 
             var visiblePoints = points.Where(IsDisplayPoint)
                 .OrderBy(GetEditorConcentration).ToList();
-            if (visiblePoints.Count > 0)
+            double maximumConcentration = visiblePoints.Count > 0
+                ? visiblePoints.Max(GetEditorConcentration) : 1.0;
+            double maximumQe = visiblePoints.Count > 0
+                ? visiblePoints.Max(point => point.Qe) : 1.0;
+            ChartAxisHelper.ConfigureFromZero(chartArea.AxisX, maximumConcentration, 8);
+            ChartAxisHelper.ConfigureFromZero(chartArea.AxisY, maximumQe, 4);
+
+            bool hasOrigin = visiblePoints.Any(point =>
+                Math.Abs(GetEditorConcentration(point)) < 0.0000001
+                && Math.Abs(point.Qe) < 0.0000001);
+            if (!hasOrigin)
             {
-                chartArea.AxisX.Minimum = 0;
-                chartArea.AxisX.Maximum = Math.Max(0.00001,
-                    visiblePoints.Max(GetEditorConcentration) * 1.15);
-                chartArea.AxisY.Minimum = 0;
-                chartArea.AxisY.Maximum = Math.Max(0.00001, visiblePoints.Max(point => point.Qe) * 1.15);
+                graphLine.Points.AddXY(0.0, 0.0);
+                graphPoints.Points.AddXY(0.0, 0.0);
             }
 
             foreach (IsothermPoint point in visiblePoints)

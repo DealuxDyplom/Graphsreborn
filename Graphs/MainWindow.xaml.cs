@@ -357,7 +357,12 @@ namespace Graphs
         {
             string name = ((System.Windows.Controls.CheckBox)sender).Content.ToString();
             if (isIsothermMode)
+            {
                 selectedIsothermNames.Remove(name);
+                RemoveSeries(name);
+                ConfigureMainIsothermAxes();
+                return;
+            }
             else
                 selectedKineticNames.Remove(name);
             RemoveSeries(name);
@@ -392,6 +397,7 @@ namespace Graphs
             area.AxisX.LabelStyle.Format = "0.#####";
             area.AxisY.LabelStyle.Format = "0.#####";
             Graphs_Substances.ChartAreas.Add(area);
+            ConfigureMainIsothermAxes(area);
 
             System.Drawing.Color color = GetSeriesColor(name);
 
@@ -424,7 +430,17 @@ namespace Graphs
                     && !double.IsNaN(item.Point.Qe)
                     && !double.IsInfinity(item.Point.Qe)
                     && item.Point.Qe >= 0)
-                .OrderBy(item => item.InitialConcentration);
+                .OrderBy(item => item.InitialConcentration)
+                .ToList();
+
+            bool hasOrigin = displayPoints.Any(item =>
+                Math.Abs(item.InitialConcentration) < 0.0000001
+                && Math.Abs(item.Point.Qe) < 0.0000001);
+            if (!hasOrigin)
+            {
+                line.Points.AddXY(0.0, 0.0);
+                points.Points.AddXY(0.0, 0.0);
+            }
 
             foreach (var item in displayPoints)
             {
@@ -434,6 +450,38 @@ namespace Graphs
 
             Graphs_Substances.Series.Add(line);
             Graphs_Substances.Series.Add(points);
+        }
+
+        private void ConfigureMainIsothermAxes(ChartArea area = null)
+        {
+            ChartArea targetArea = area ?? Graphs_Substances.ChartAreas
+                .Cast<ChartArea>().FirstOrDefault();
+            if (targetArea == null) return;
+
+            var selectedSeries = Databank.isotherms
+                .Where(series => selectedIsothermNames.Contains(series.name)
+                    && series.data != null)
+                .ToList();
+            var displayPoints = selectedSeries
+                .SelectMany(series => series.data.Select(point => new
+                {
+                    Point = point,
+                    InitialConcentration = IsothermCalculator.GetEditorConcentration(point, series)
+                }))
+                .Where(item => !double.IsNaN(item.InitialConcentration)
+                    && !double.IsInfinity(item.InitialConcentration)
+                    && item.InitialConcentration >= 0
+                    && !double.IsNaN(item.Point.Qe)
+                    && !double.IsInfinity(item.Point.Qe)
+                    && item.Point.Qe >= 0)
+                .ToList();
+
+            double maximumConcentration = displayPoints.Count > 0
+                ? displayPoints.Max(item => item.InitialConcentration) : 1.0;
+            double maximumQe = displayPoints.Count > 0
+                ? displayPoints.Max(item => item.Point.Qe) : 1.0;
+            ChartAxisHelper.ConfigureFromZero(targetArea.AxisX, maximumConcentration, 8);
+            ChartAxisHelper.ConfigureFromZero(targetArea.AxisY, maximumQe, 4);
         }
 
         public System.Drawing.Color GetSeriesColor(string name)
