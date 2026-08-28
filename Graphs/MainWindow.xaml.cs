@@ -96,14 +96,17 @@ namespace Graphs
             if (openIsotherms)
             {
                 LoadIsotherms(dataFile);
-                Dispatcher.BeginInvoke(new Action(() =>
+                if (openFirstIsothermGraph)
                 {
-                    var isothermTable = new IsothermModelTableForm(this);
-                    isothermTable.Show();
-                    if (openFirstIsothermGraph && Databank.isotherms.Count > 0)
-                        new IsothermGraphForm(Databank.isotherms[0], isothermTable).Show();
-                    Hide();
-                }));
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        var isothermTable = new IsothermModelTableForm(this);
+                        isothermTable.Show();
+                        if (Databank.isotherms.Count > 0)
+                            new IsothermGraphForm(Databank.isotherms[0], isothermTable).Show();
+                        Hide();
+                    }));
+                }
                 return;
             }
 
@@ -123,6 +126,7 @@ namespace Graphs
             string json = File.ReadAllText(fileName);
             Databank.isotherms = JsonConvert.DeserializeObject<List<IsothermSeries>>(json)
                 ?? new List<IsothermSeries>();
+            fillGroupBoxIsothermCheckboxes();
         }
 
         private void LoadSubstances(string fileName)
@@ -144,6 +148,7 @@ namespace Graphs
         public void fillGroupBoxSubstancesCheckboxes()
         {
             WrapPanel_Substances.Children.Clear();
+            checkBoxes_Substances_List.Clear();
             for (int i = 0; i < Databank.substances.Count; i++)
             {
                 System.Windows.Controls.CheckBox checkbox_Substance = new System.Windows.Controls.CheckBox();
@@ -226,9 +231,70 @@ namespace Graphs
         private void clearGraphFromCheckbox(object sender, RoutedEventArgs e)
         {
             Series substanceGraph_SeriesLine = Graphs_Substances.Series.FindByName(((System.Windows.Controls.CheckBox)sender).Content.ToString() + "_Line");
-            Graphs_Substances.Series.Remove(substanceGraph_SeriesLine);
+            if (substanceGraph_SeriesLine != null)
+                Graphs_Substances.Series.Remove(substanceGraph_SeriesLine);
             Series substanceGraph_SeriesPoint = Graphs_Substances.Series.FindByName(((System.Windows.Controls.CheckBox)sender).Content.ToString() + "_Point");
-            Graphs_Substances.Series.Remove(substanceGraph_SeriesPoint);
+            if (substanceGraph_SeriesPoint != null)
+                Graphs_Substances.Series.Remove(substanceGraph_SeriesPoint);
+        }
+
+        private void paintIsothermGraphFromCheckbox(object sender, RoutedEventArgs e)
+        {
+            var checkbox = (System.Windows.Controls.CheckBox)sender;
+            string name = checkbox.Content.ToString();
+            IsothermSeries isotherm = Databank.isotherms.FirstOrDefault(item => item.name == name);
+            if (isotherm == null || isotherm.data == null) return;
+
+            Graphs_Substances.ChartAreas.Clear();
+            var area = new ChartArea();
+            area.AxisX.IsStartedFromZero = true;
+            area.AxisY.IsStartedFromZero = true;
+            area.AxisX.MajorGrid.Enabled = false;
+            area.AxisY.MajorGrid.Enabled = false;
+            area.AlignmentOrientation = AreaAlignmentOrientations.All;
+            area.AxisX.Title = "Ce, " + isotherm.concentrationUnit;
+            area.AxisY.Title = "qe, " + isotherm.capacityUnit;
+            area.AxisX.LabelStyle.Format = "0.#####";
+            area.AxisY.LabelStyle.Format = "0.#####";
+            Graphs_Substances.ChartAreas.Add(area);
+
+            int index = Databank.isotherms.IndexOf(isotherm);
+            System.Drawing.Color[] colors =
+            {
+                System.Drawing.Color.SeaGreen,
+                System.Drawing.Color.SteelBlue,
+                System.Drawing.Color.DarkOrange,
+                System.Drawing.Color.MediumVioletRed
+            };
+            System.Drawing.Color color = colors[Math.Abs(index) % colors.Length];
+
+            var line = new Series(name + "_Line")
+            {
+                ChartType = SeriesChartType.Spline,
+                BorderWidth = 3,
+                Color = color
+            };
+            line.SetCustomProperty("LineTension", "0.2");
+
+            var points = new Series(name + "_Point")
+            {
+                ChartType = SeriesChartType.Point,
+                Color = color,
+                MarkerSize = 10,
+                MarkerBorderColor = System.Drawing.Color.Black,
+                MarkerStyle = MarkerStyle.Circle
+            };
+
+            foreach (var point in isotherm.data
+                .Where(item => item.Ce >= 0 && item.Qe >= 0)
+                .OrderBy(item => item.Ce))
+            {
+                line.Points.AddXY(point.Ce, point.Qe);
+                points.Points.AddXY(point.Ce, point.Qe);
+            }
+
+            Graphs_Substances.Series.Add(line);
+            Graphs_Substances.Series.Add(points);
         }
 
         #region [ Menu ]
@@ -259,6 +325,24 @@ namespace Graphs
             if (openFileDialog.ShowDialog() == true)
             {
                 LoadSubstances(openFileDialog.FileName);
+            }
+        }
+
+        private void fillGroupBoxIsothermCheckboxes()
+        {
+            WrapPanel_Substances.Children.Clear();
+            checkBoxes_Substances_List.Clear();
+            foreach (var isotherm in Databank.isotherms)
+            {
+                var checkbox = new System.Windows.Controls.CheckBox
+                {
+                    Content = isotherm.name,
+                    Margin = new System.Windows.Thickness(3)
+                };
+                checkbox.Checked += paintIsothermGraphFromCheckbox;
+                checkbox.Unchecked += clearGraphFromCheckbox;
+                WrapPanel_Substances.Children.Add(checkbox);
+                checkBoxes_Substances_List.Add(checkbox);
             }
         }
 
