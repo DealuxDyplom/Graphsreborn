@@ -122,6 +122,8 @@ namespace Graphs
         public double qMax;
         public double kL;
         public double determination;
+        public int pointCount;
+        public int excludedPointCount;
         public bool isPhysicallyValid;
         public string fitNote;
     }

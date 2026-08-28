@@ -25,7 +25,8 @@ namespace Graphs
                     AddRow(i, series, FormatEquation(series.langmuir.a, series.langmuir.b),
                         series.langmuir.qMax, series.langmuir.kL,
                         series.langmuir.determination,
-                        series.langmuir.isPhysicallyValid ? "применима" : "неприменима",
+                        (series.langmuir.isPhysicallyValid ? "применима" : "неприменима")
+                            + " (" + series.langmuir.pointCount + " точек)",
                         series.langmuir.fitNote, true);
                 }
                 catch (ArgumentException error)
@@ -87,7 +88,7 @@ namespace Graphs
             AddCell(CreateLabel(FormatNumber(rSquared)), row, 4);
             var statusLabel = CreateLabel(status);
             statusLabel.ToolTip = fitNote;
-            statusLabel.Foreground = status == "применима" ? Brushes.DarkGreen : Brushes.DarkRed;
+            statusLabel.Foreground = status.StartsWith("применима") ? Brushes.DarkGreen : Brushes.DarkRed;
             AddCell(statusLabel, row, 5);
         }
 

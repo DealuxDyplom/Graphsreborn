@@ -24,6 +24,8 @@ namespace Graphs
             if (points.Count < 3)
                 throw new ArgumentException("Для расчёта необходимо не менее трёх точек с Ce > 0 и qe > 0.", nameof(series));
 
+            int excludedPointCount = series.data.Count - points.Count;
+
             foreach (var point in series.data)
             {
                 point.LinearX = point.Ce;
@@ -57,11 +59,25 @@ namespace Graphs
                 qMax = qMax,
                 kL = kL,
                 determination = rSquared,
+                pointCount = points.Count,
+                excludedPointCount = excludedPointCount,
                 isPhysicallyValid = isValid,
-                fitNote = isValid
-                    ? "Линейная форма Langmuir: Ce/qe = a + b·Ce; R² рассчитан в этих координатах."
-                    : "Регрессия рассчитана, но положительные qmax и KL не определяются: модель неприменима к этому набору данных."
+                fitNote = BuildFitNote(isValid, points.Count, excludedPointCount)
             };
+        }
+
+        private static string BuildFitNote(bool isValid, int pointCount, int excludedPointCount)
+        {
+            string pointInfo = " В регрессии использованы все " + pointCount
+                + " точек с Ce > 0 и qe > 0.";
+            if (excludedPointCount > 0)
+                pointInfo += " Не участвовали только нулевые или математически недопустимые точки: "
+                    + excludedPointCount + ".";
+
+            return (isValid
+                ? "Линейная форма Langmuir: Ce/qe = a + b·Ce; R² рассчитан в этих координатах."
+                : "Регрессия рассчитана, но положительные qmax и KL не определяются: модель неприменима к этому набору данных.")
+                + pointInfo;
         }
 
         private static bool IsFinite(double value)

@@ -20,7 +20,7 @@ namespace Graphs
         private int draggedPointIndex = -1;
         private bool isDraggingPoint;
         private IsothermPoint draggedPoint;
-        private const string DefaultEditStatus = "Перемещение qe пересчитывает Aравн, Ce, qe (мкг/г) и извлечение %. Для старых файлов без исходных A и массы изменяются только Ce–qe.";
+        private const string DefaultEditStatus = "По оси X зафиксирована исходная концентрация C0. Перемещение qe пересчитывает Aравн, Ce, qe (мкг/г) и извлечение %.";
 
         public IsothermDataForm(MainWindow owner, IsothermSeries selected = null)
         {
@@ -61,8 +61,9 @@ namespace Graphs
             Graph_Isotherm.Series.Clear();
             Graph_Isotherm.ChartAreas.Clear();
             Graph_Isotherm.Legends.Clear();
+            Graph_Isotherm.Titles.Clear();
             chartArea = new ChartArea();
-            chartArea.AxisX.Title = "Ce, мкмоль/л";
+            chartArea.AxisX.Title = "C0, мкмоль/л";
             chartArea.AxisY.Title = "qe, мкмоль/г";
             chartArea.AxisX.IsStartedFromZero = true;
             chartArea.AxisY.IsStartedFromZero = true;
@@ -72,6 +73,7 @@ namespace Graphs
             chartArea.AxisY.LabelStyle.Format = "0.#####";
             Graph_Isotherm.ChartAreas.Add(chartArea);
             Graph_Isotherm.Legends.Add(new Legend());
+            Graph_Isotherm.Titles.Add("Изотерма сорбции — редактирование исходных данных");
 
             System.Drawing.Color color = parent.GetSeriesColor(currentSeries == null ? "Изотерма" : currentSeries.name);
             graphLine = new Series((currentSeries == null ? "Изотерма" : currentSeries.name) + "_Line")
@@ -81,19 +83,26 @@ namespace Graphs
             { ChartType = SeriesChartType.Point, Color = color, MarkerSize = 10,
                 MarkerStyle = MarkerStyle.Circle, MarkerBorderColor = System.Drawing.Color.Black };
 
-            var visiblePoints = points.Where(IsValidPoint).OrderBy(point => point.Ce).ToList();
+            string seriesName = currentSeries == null ? "Изотерма" : currentSeries.name;
+            graphLine.LegendText = seriesName + " — линия";
+            graphPoints.LegendText = seriesName + " — точки";
+
+            var visiblePoints = points.Where(IsDisplayPoint)
+                .OrderBy(GetEditorConcentration).ToList();
             if (visiblePoints.Count > 0)
             {
                 chartArea.AxisX.Minimum = 0;
-                chartArea.AxisX.Maximum = Math.Max(0.00001, visiblePoints.Max(point => point.Ce) * 1.15);
+                chartArea.AxisX.Maximum = Math.Max(0.00001,
+                    visiblePoints.Max(GetEditorConcentration) * 1.15);
                 chartArea.AxisY.Minimum = 0;
                 chartArea.AxisY.Maximum = Math.Max(0.00001, visiblePoints.Max(point => point.Qe) * 1.15);
             }
 
             foreach (IsothermPoint point in visiblePoints)
             {
-                int lineIndex = graphLine.Points.AddXY(point.Ce, point.Qe);
-                int pointIndex = graphPoints.Points.AddXY(point.Ce, point.Qe);
+                double concentration = GetEditorConcentration(point);
+                int lineIndex = graphLine.Points.AddXY(concentration, point.Qe);
+                int pointIndex = graphPoints.Points.AddXY(concentration, point.Qe);
                 graphLine.Points[lineIndex].Tag = point;
                 graphPoints.Points[pointIndex].Tag = point;
             }
@@ -101,9 +110,16 @@ namespace Graphs
             Graph_Isotherm.Series.Add(graphPoints);
         }
 
-        private static bool IsValidPoint(IsothermPoint point)
+        private bool IsDisplayPoint(IsothermPoint point)
         {
-            return IsFinite(point.Ce) && IsFinite(point.Qe) && point.Ce > 0 && point.Qe > 0;
+            double concentration = GetEditorConcentration(point);
+            return IsFinite(concentration) && IsFinite(point.Qe)
+                && concentration >= 0 && point.Qe >= 0;
+        }
+
+        private double GetEditorConcentration(IsothermPoint point)
+        {
+            return IsothermCalculator.GetEditorConcentration(point, currentSeries);
         }
 
         private void Graph_Isotherm_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -122,16 +138,14 @@ namespace Graphs
         {
             if (!isDraggingPoint || draggedPointIndex < 0) return;
             double qe;
-            try { qe = Math.Max(0.00001, chartArea.AxisY.PixelPositionToValue(e.Y)); }
+            try { qe = Math.Max(0.0, chartArea.AxisY.PixelPositionToValue(e.Y)); }
             catch (ArgumentException) { return; }
             IsothermCalculator.UpdateFromQe(draggedPoint, currentSeries, qe);
-            graphPoints.Points[draggedPointIndex].XValue = draggedPoint.Ce;
             graphPoints.Points[draggedPointIndex].YValues[0] = draggedPoint.Qe;
-            graphLine.Points[draggedPointIndex].XValue = draggedPoint.Ce;
             graphLine.Points[draggedPointIndex].YValues[0] = draggedPoint.Qe;
             TextBlock_EditStatus.Text = string.Format(CultureInfo.CurrentCulture,
-                "Aравн = {0:0.#####}    Ce = {1:0.#####} мкмоль/л    qe = {2:0.#####} мкмоль/г    извлечение = {3:0.###} %",
-                draggedPoint.EquilibriumOpticalDensity, draggedPoint.Ce,
+                "C0 = {0:0.#####} мкмоль/л (зафиксировано)    Aравн = {1:0.#####}    Ce = {2:0.#####} мкмоль/л    qe = {3:0.#####} мкмоль/г    извлечение = {4:0.###} %",
+                GetEditorConcentration(draggedPoint), draggedPoint.EquilibriumOpticalDensity, draggedPoint.Ce,
                 draggedPoint.Qe, draggedPoint.RemovalPercent);
             Graph_Isotherm.Invalidate();
         }
@@ -181,11 +195,13 @@ namespace Graphs
         {
             DataGrid_Points.CommitEdit(DataGridEditingUnit.Cell, true);
             DataGrid_Points.CommitEdit(DataGridEditingUnit.Row, true);
-            var valid = points.Where(IsValidPoint).OrderBy(point => point.Ce)
+            var valid = points.Where(IsDisplayPoint).OrderBy(GetEditorConcentration)
                 .Select(IsothermCalculator.Clone).ToList();
-            if (currentSeries == null || valid.Count < 3)
+            int modelPointCount = valid.Count(point => IsFinite(point.Ce)
+                && IsFinite(point.Qe) && point.Ce > 0 && point.Qe > 0);
+            if (currentSeries == null || modelPointCount < 3)
             {
-                MessageBox.Show("Для изотермы необходимо не менее трёх корректных точек Ce–qe.",
+                MessageBox.Show("Для изотермы необходимо не менее трёх точек с Ce > 0 и qe > 0. Нулевые точки сохраняются, но в линеаризации не участвуют.",
                     "Редактирование изотерм", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
@@ -193,6 +209,37 @@ namespace Graphs
             currentSeries.langmuir = null;
             parent.SelectIsotherm(currentSeries.name);
             Close();
+        }
+
+        private void Button_DeletePoints_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveSelectedPoints();
+        }
+
+        private void DataGrid_Points_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key != System.Windows.Input.Key.Delete) return;
+            RemoveSelectedPoints();
+            e.Handled = true;
+        }
+
+        private void RemoveSelectedPoints()
+        {
+            var selected = DataGrid_Points.SelectedItems.Cast<IsothermPoint>().ToList();
+            if (selected.Count == 0)
+            {
+                MessageBox.Show("Выберите одну или несколько строк в таблице.",
+                    "Редактирование изотерм", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            foreach (IsothermPoint point in selected)
+                points.Remove(point);
+            TextBlock_EditStatus.Text = selected.Count == 1
+                ? "Строка удалена из текущего расчёта. До сохранения её можно вернуть кнопкой «Вернуть исходные значения»."
+                : "Строки удалены из текущего расчёта: " + selected.Count
+                    + ". До сохранения их можно вернуть кнопкой «Вернуть исходные значения».";
+            BuildChart();
         }
 
         private void Button_Reset_Click(object sender, RoutedEventArgs e)

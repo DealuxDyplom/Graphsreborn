@@ -60,7 +60,9 @@ namespace Graphs
             TextBox_R2.Text = Format(series.langmuir.determination);
             TextBox_Qmax.Text = Format(series.langmuir.qMax);
             TextBox_KL.Text = Format(series.langmuir.kL);
-            TextBox_Status.Text = series.langmuir.isPhysicallyValid ? "модель применима" : "модель неприменима";
+            TextBox_Status.Text = (series.langmuir.isPhysicallyValid
+                ? "модель применима" : "модель неприменима")
+                + "; точек в расчёте: " + series.langmuir.pointCount;
             TextBox_Status.ToolTip = series.langmuir.fitNote;
             TextBox_R2.ToolTip = series.langmuir.fitNote;
         }

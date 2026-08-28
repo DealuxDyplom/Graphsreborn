@@ -25,6 +25,8 @@
         </Grid>
         <DataGrid x:Name="DataGrid_Points" Grid.Row="1" AutoGenerateColumns="False"
                   CanUserAddRows="False" CanUserDeleteRows="False"
+                  SelectionMode="Extended" SelectionUnit="FullRow"
+                  PreviewKeyDown="DataGrid_Points_PreviewKeyDown"
                   RowEditEnding="DataGrid_Points_RowEditEnding">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Aисх" Width="*" Binding="{Binding InitialOpticalDensity, StringFormat=0.#####}"/>
@@ -43,8 +45,17 @@
                       MouseMove="Graph_Isotherm_MouseMove"
                       MouseUp="Graph_Isotherm_MouseUp"/>
         </WindowsFormsHost>
-        <TextBlock x:Name="TextBlock_EditStatus" Grid.Row="3" Margin="10 5" Foreground="#555"
-                   Text="Перемещение qe пересчитывает Aравн, Ce, qe (мкг/г) и извлечение %. Для старых файлов без исходных A и массы изменяются только Ce–qe."/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="TextBlock_EditStatus" Margin="10 5" Foreground="#555"
+                       VerticalAlignment="Center" TextWrapping="Wrap"
+                       Text="По оси X зафиксирована исходная концентрация C0. Перемещение qe пересчитывает Aравн, Ce, qe (мкг/г) и извлечение %."/>
+            <Button Grid.Column="1" Content="Удалить выбранные строки" Margin="8 4 12 4"
+                    Padding="12 3" Click="Button_DeletePoints_Click"/>
+        </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
