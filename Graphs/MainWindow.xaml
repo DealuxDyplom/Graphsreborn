@@ -10,13 +10,24 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Меню">
-                <MenuItem Header="Сохранить" Click="Menu_SaveSubstances_Click"/>
-                <MenuItem Header="Загрузить" Click="Menu_LoadSubstances_Click"/>
+                <MenuItem Header="Данные кинетики">
+                    <MenuItem Header="Сохранить" Click="Menu_SaveSubstances_Click"/>
+                    <MenuItem Header="Загрузить" Click="Menu_LoadSubstances_Click"/>
+                </MenuItem>
+                <MenuItem Header="Данные изотерм">
+                    <MenuItem Header="Сохранить" Click="Menu_SaveIsotherms_Click"/>
+                    <MenuItem Header="Загрузить" Click="Menu_LoadIsotherms_Click"/>
+                </MenuItem>
                 <Separator/>
                 <MenuItem Header="Сохранить градуировку" Click="Menu_SaveGraduations_Click"/>
                 <MenuItem Header="Загрузить градуировку" Click="Menu_LoadGraduations_Click"/>
             </MenuItem>
         </Menu>
+        <TabControl x:Name="ModeTabs" DockPanel.Dock="Top" Height="34"
+                    SelectionChanged="ModeTabs_SelectionChanged">
+            <TabItem Header="Кинетика"/>
+            <TabItem Header="Изотермы"/>
+        </TabControl>
         <Grid x:Name="Grid_Main">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100*"/>
@@ -24,7 +35,7 @@
                 <RowDefinition Height="152*"/>
             </Grid.RowDefinitions>
             <Grid x:Name="Grid_SubstancesList" Grid.Row="0">
-                <GroupBox>
+                <GroupBox x:Name="GroupBox_Series">
                     <GroupBox.Header>Список растворов</GroupBox.Header>
                     <WrapPanel x:Name="WrapPanel_Substances" Orientation="Vertical"/>
                 </GroupBox>

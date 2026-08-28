@@ -96,10 +96,10 @@ namespace Graphs
 
     public class IsothermPoint
     {
-        public double Ce;
-        public double Qe;
-        public double LinearX;
-        public double LinearY;
+        public double Ce { get; set; }
+        public double Qe { get; set; }
+        public double LinearX { get; set; }
+        public double LinearY { get; set; }
     }
 
     public class LangmuirResult

@@ -28,6 +28,9 @@ namespace Graphs
     public partial class MainWindow : Window
     {
         public List<System.Windows.Controls.CheckBox> checkBoxes_Substances_List;
+        private readonly HashSet<string> selectedKineticNames = new HashSet<string>();
+        private readonly HashSet<string> selectedIsothermNames = new HashSet<string>();
+        private bool isIsothermMode;
 
         public MainWindow()
         {
@@ -76,26 +79,27 @@ namespace Graphs
             Graphs_Substances.ChartAreas.Add(substancesGraph_ChartArea);
 
             LoadStartupTestDataIfRequested();
+            RefreshCurrentModeView();
         }
 
         private void LoadStartupTestDataIfRequested()
         {
             string[] arguments = Environment.GetCommandLineArgs();
-            bool openKineticModels = arguments.Length >= 3
-                && string.Equals(arguments[1], "--kinetics", StringComparison.OrdinalIgnoreCase);
-            bool openIsotherms = arguments.Length >= 3
-                && string.Equals(arguments[1], "--isotherms", StringComparison.OrdinalIgnoreCase);
+            string kineticFile = GetArgumentValue(arguments, "--kinetics");
+            string isothermFile = GetArgumentValue(arguments, "--isotherms");
             bool openFirstIsothermGraph = arguments.Any(argument =>
                 string.Equals(argument, "--open-first", StringComparison.OrdinalIgnoreCase));
-            string dataFile = openKineticModels || openIsotherms
-                ? arguments[2]
-                : arguments.Length >= 2 ? arguments[1] : null;
+            bool keepMainWindow = arguments.Any(argument =>
+                string.Equals(argument, "--main", StringComparison.OrdinalIgnoreCase));
 
-            if (string.IsNullOrWhiteSpace(dataFile) || !File.Exists(dataFile)) return;
+            if (!string.IsNullOrWhiteSpace(kineticFile) && File.Exists(kineticFile))
+                LoadSubstances(kineticFile);
+            if (!string.IsNullOrWhiteSpace(isothermFile) && File.Exists(isothermFile))
+                LoadIsotherms(isothermFile);
 
-            if (openIsotherms)
+            if (!string.IsNullOrWhiteSpace(isothermFile) && File.Exists(isothermFile))
             {
-                LoadIsotherms(dataFile);
+                ModeTabs.SelectedIndex = 1;
                 if (openFirstIsothermGraph)
                 {
                     Dispatcher.BeginInvoke(new Action(() =>
@@ -110,15 +114,33 @@ namespace Graphs
                 return;
             }
 
-            LoadSubstances(dataFile);
-            if (!openKineticModels) return;
-
-            Dispatcher.BeginInvoke(new Action(() =>
+            if (!string.IsNullOrWhiteSpace(kineticFile) && File.Exists(kineticFile))
             {
-                var kineticModelTableForm = new KineticModelTableForm(this);
-                kineticModelTableForm.Show();
-                Hide();
-            }));
+                ModeTabs.SelectedIndex = 0;
+                if (keepMainWindow) return;
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    var kineticModelTableForm = new KineticModelTableForm(this);
+                    kineticModelTableForm.Show();
+                    Hide();
+                }));
+                return;
+            }
+
+            string legacyFile = arguments.Length >= 2 ? arguments[1] : null;
+            if (!string.IsNullOrWhiteSpace(legacyFile) && File.Exists(legacyFile))
+                LoadSubstances(legacyFile);
+        }
+
+        private static string GetArgumentValue(string[] arguments, string name)
+        {
+            for (int i = 1; i < arguments.Length - 1; i++)
+            {
+                if (string.Equals(arguments[i], name, StringComparison.OrdinalIgnoreCase))
+                    return arguments[i + 1];
+            }
+            return null;
         }
 
         private void LoadIsotherms(string fileName)
@@ -126,7 +148,9 @@ namespace Graphs
             string json = File.ReadAllText(fileName);
             Databank.isotherms = JsonConvert.DeserializeObject<List<IsothermSeries>>(json)
                 ?? new List<IsothermSeries>();
-            fillGroupBoxIsothermCheckboxes();
+            selectedIsothermNames.RemoveWhere(name =>
+                !Databank.isotherms.Any(item => item.name == name));
+            if (isIsothermMode) RefreshCurrentModeView();
         }
 
         private void LoadSubstances(string fileName)
@@ -134,11 +158,96 @@ namespace Graphs
             string json = File.ReadAllText(fileName);
             Databank.substances = JsonConvert.DeserializeObject<List<Substance>>(json)
                 ?? new List<Substance>();
-            fillGroupBoxSubstancesCheckboxes();
+            selectedKineticNames.RemoveWhere(name =>
+                !Databank.substances.Any(item => item.name == name));
+            if (!isIsothermMode) RefreshCurrentModeView();
+        }
+
+        private void ModeTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source != ModeTabs || checkBoxes_Substances_List == null
+                || Databank.substances == null || Databank.isotherms == null) return;
+
+            SaveVisibleSelection();
+            isIsothermMode = ModeTabs.SelectedIndex == 1;
+            RefreshCurrentModeView();
+        }
+
+        private void SaveVisibleSelection()
+        {
+            HashSet<string> selected = isIsothermMode
+                ? selectedIsothermNames
+                : selectedKineticNames;
+            selected.Clear();
+            foreach (var checkbox in checkBoxes_Substances_List)
+            {
+                if (checkbox.IsChecked == true)
+                    selected.Add(checkbox.Content.ToString());
+            }
+        }
+
+        public void RefreshCurrentModeView()
+        {
+            if (checkBoxes_Substances_List == null || Databank.substances == null
+                || Databank.isotherms == null) return;
+
+            isIsothermMode = ModeTabs.SelectedIndex == 1;
+            Button_AddSubstanceForm.Content = isIsothermMode
+                ? "Добавить изотерму"
+                : "Добавить новый раствор";
+            GroupBox_Series.Header = isIsothermMode
+                ? "Экспериментальные изотермы"
+                : "Кинетические ряды";
+            Button_EditSubstanceForm.Content = isIsothermMode
+                ? "Редактировать изотерму"
+                : "Редактировать раствор";
+            Button_GraduationForm.IsEnabled = !isIsothermMode;
+            Button_PsevdoGraphs.IsEnabled = !isIsothermMode;
+            Button_Isotherms.IsEnabled = isIsothermMode;
+
+            Graphs_Substances.Series.Clear();
+            Graphs_Substances.ChartAreas.Clear();
+            if (isIsothermMode)
+                fillGroupBoxIsothermCheckboxes();
+            else
+                fillGroupBoxSubstancesCheckboxes();
+
+            foreach (var checkbox in checkBoxes_Substances_List.Where(item => item.IsChecked == true))
+            {
+                if (isIsothermMode)
+                    paintIsothermGraphFromCheckbox(checkbox, new RoutedEventArgs());
+                else
+                    paintGraphFromCheckbox(checkbox, new RoutedEventArgs());
+            }
+
+            if (Graphs_Substances.ChartAreas.Count == 0)
+            {
+                var area = new ChartArea();
+                area.AxisX.Title = isIsothermMode ? "Ce, мкмоль/л" : "t, мин";
+                area.AxisY.Title = isIsothermMode ? "qe, мкмоль/г" : "qt, мкмоль/г";
+                area.AxisX.MajorGrid.Enabled = false;
+                area.AxisY.MajorGrid.Enabled = false;
+                Graphs_Substances.ChartAreas.Add(area);
+            }
+        }
+
+        public void SelectIsotherm(string name)
+        {
+            selectedIsothermNames.RemoveWhere(selectedName =>
+                !Databank.isotherms.Any(item => item.name == selectedName));
+            selectedIsothermNames.Add(name);
+            if (ModeTabs.SelectedIndex != 1)
+                ModeTabs.SelectedIndex = 1;
         }
 
         private void Button_AddSubstanceForm_Click(object sender, RoutedEventArgs e)
         {
+            if (isIsothermMode)
+            {
+                new IsothermDataForm(this).Show();
+                Hide();
+                return;
+            }
             AddSubstanceForm addSubstanceForm = new AddSubstanceForm(this);
             addSubstanceForm.Show();
 
@@ -154,6 +263,7 @@ namespace Graphs
                 System.Windows.Controls.CheckBox checkbox_Substance = new System.Windows.Controls.CheckBox();
                 checkbox_Substance.Content = Databank.substances[i].name;
                 checkbox_Substance.Margin = new System.Windows.Thickness(3); //отступ чекбоксов друг от друга
+                checkbox_Substance.IsChecked = selectedKineticNames.Contains(Databank.substances[i].name);
                 checkbox_Substance.Checked += paintGraphFromCheckbox;
                 checkbox_Substance.Unchecked += clearGraphFromCheckbox;
                 WrapPanel_Substances.Children.Add(checkbox_Substance);
@@ -163,13 +273,14 @@ namespace Graphs
 
         public void updateGroupBoxSubstances()
         {
-            fillGroupBoxSubstancesCheckboxes();
-            Graphs_Substances.ChartAreas.Clear();
-            Graphs_Substances.Series.Clear();
+            RefreshCurrentModeView();
         }
 
         private void paintGraphFromCheckbox(object sender, RoutedEventArgs e)
         {
+            string selectedName = ((System.Windows.Controls.CheckBox)sender).Content.ToString();
+            selectedKineticNames.Add(selectedName);
+            RemoveSeries(selectedName);
             Graphs_Substances.ChartAreas.Clear();
             ChartArea substancesGraph_ChartArea = new ChartArea();
             substancesGraph_ChartArea.AxisX.IsStartedFromZero = false;
@@ -230,18 +341,28 @@ namespace Graphs
 
         private void clearGraphFromCheckbox(object sender, RoutedEventArgs e)
         {
-            Series substanceGraph_SeriesLine = Graphs_Substances.Series.FindByName(((System.Windows.Controls.CheckBox)sender).Content.ToString() + "_Line");
-            if (substanceGraph_SeriesLine != null)
-                Graphs_Substances.Series.Remove(substanceGraph_SeriesLine);
-            Series substanceGraph_SeriesPoint = Graphs_Substances.Series.FindByName(((System.Windows.Controls.CheckBox)sender).Content.ToString() + "_Point");
-            if (substanceGraph_SeriesPoint != null)
-                Graphs_Substances.Series.Remove(substanceGraph_SeriesPoint);
+            string name = ((System.Windows.Controls.CheckBox)sender).Content.ToString();
+            if (isIsothermMode)
+                selectedIsothermNames.Remove(name);
+            else
+                selectedKineticNames.Remove(name);
+            RemoveSeries(name);
+        }
+
+        private void RemoveSeries(string name)
+        {
+            Series line = Graphs_Substances.Series.FindByName(name + "_Line");
+            if (line != null) Graphs_Substances.Series.Remove(line);
+            Series points = Graphs_Substances.Series.FindByName(name + "_Point");
+            if (points != null) Graphs_Substances.Series.Remove(points);
         }
 
         private void paintIsothermGraphFromCheckbox(object sender, RoutedEventArgs e)
         {
             var checkbox = (System.Windows.Controls.CheckBox)sender;
             string name = checkbox.Content.ToString();
+            selectedIsothermNames.Add(name);
+            RemoveSeries(name);
             IsothermSeries isotherm = Databank.isotherms.FirstOrDefault(item => item.name == name);
             if (isotherm == null || isotherm.data == null) return;
 
@@ -325,7 +446,29 @@ namespace Graphs
             if (openFileDialog.ShowDialog() == true)
             {
                 LoadSubstances(openFileDialog.FileName);
+                ModeTabs.SelectedIndex = 0;
             }
+        }
+
+        private void Menu_SaveIsotherms_Click(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.FileName = "Изотермы.txt";
+            saveFileDialog.DefaultExt = ".txt";
+            saveFileDialog.Filter = "Text documents (.txt)|*.txt";
+            if (saveFileDialog.ShowDialog() != true) return;
+            File.WriteAllText(saveFileDialog.FileName,
+                JsonConvert.SerializeObject(Databank.isotherms));
+        }
+
+        private void Menu_LoadIsotherms_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.DefaultExt = ".txt";
+            openFileDialog.Filter = "Text documents (.txt)|*.txt";
+            if (openFileDialog.ShowDialog() != true) return;
+            LoadIsotherms(openFileDialog.FileName);
+            ModeTabs.SelectedIndex = 1;
         }
 
         private void fillGroupBoxIsothermCheckboxes()
@@ -337,7 +480,8 @@ namespace Graphs
                 var checkbox = new System.Windows.Controls.CheckBox
                 {
                     Content = isotherm.name,
-                    Margin = new System.Windows.Thickness(3)
+                    Margin = new System.Windows.Thickness(3),
+                    IsChecked = selectedIsothermNames.Contains(isotherm.name)
                 };
                 checkbox.Checked += paintIsothermGraphFromCheckbox;
                 checkbox.Unchecked += clearGraphFromCheckbox;
@@ -359,8 +503,7 @@ namespace Graphs
                 Databank.graduations.Clear();
                 Databank.graduations = JsonConvert.DeserializeObject<List<Graduation>>(json);
 
-                //add new checkboxes
-                fillGroupBoxSubstancesCheckboxes();
+                RefreshCurrentModeView();
             }
         }
 
@@ -386,6 +529,26 @@ namespace Graphs
 
         private void Button_EditSubstanceForm_Click(object sender, RoutedEventArgs e)
         {
+            if (isIsothermMode)
+            {
+                var selected = checkBoxes_Substances_List.FirstOrDefault(item => item.IsChecked == true);
+                if (selected == null)
+                {
+                    System.Windows.MessageBox.Show(
+                        "Выберите одну изотерму в списке.",
+                        "Редактирование изотермы",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                    return;
+                }
+
+                IsothermSeries series = Databank.isotherms.FirstOrDefault(item =>
+                    item.name == selected.Content.ToString());
+                if (series == null) return;
+                new IsothermDataForm(this, series).Show();
+                Hide();
+                return;
+            }
             EditSubstanceForm editSubstanceForm = new EditSubstanceForm(this);
             editSubstanceForm.Show();
 

@@ -106,6 +106,9 @@
     <Compile Include="IsothermGraphForm.xaml.cs">
       <DependentUpon>IsothermGraphForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IsothermDataForm.xaml.cs">
+      <DependentUpon>IsothermDataForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IsothermModelFitter.cs" />
     <Compile Include="IsothermModelTableForm.xaml.cs">
       <DependentUpon>IsothermModelTableForm.xaml</DependentUpon>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IsothermGraphForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IsothermDataForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
