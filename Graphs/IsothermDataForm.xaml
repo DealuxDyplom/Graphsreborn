@@ -43,9 +43,17 @@
                       MouseMove="Graph_Isotherm_MouseMove"
                       MouseUp="Graph_Isotherm_MouseUp"/>
         </WindowsFormsHost>
-        <TextBlock Grid.Row="3" Margin="10 5" Foreground="#555"
+        <TextBlock x:Name="TextBlock_EditStatus" Grid.Row="3" Margin="10 5" Foreground="#555"
                    Text="Перемещение qe пересчитывает Aравн, Ce, qe (мкг/г) и извлечение %. Для старых файлов без исходных A и массы изменяются только Ce–qe."/>
-        <Button Grid.Row="4" Content="Сохранить изменения" Width="500" Margin="10"
-                Click="Button_Save_Click"/>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Сохранить изменения" Margin="18 9" Click="Button_Save_Click"/>
+            <Button Grid.Column="1" Content="Вернуть исходные значения" Margin="18 9" Click="Button_Reset_Click"/>
+            <Button Grid.Column="2" Content="Закрыть без сохранения" Margin="18 9" Click="Button_Cancel_Click"/>
+        </Grid>
     </Grid>
 </Window>

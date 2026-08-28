@@ -12,12 +12,15 @@ namespace Graphs
     {
         private readonly MainWindow parent;
         private readonly ObservableCollection<IsothermPoint> points = new ObservableCollection<IsothermPoint>();
+        private readonly ObservableCollection<IsothermPoint> originalPoints = new ObservableCollection<IsothermPoint>();
         private IsothermSeries currentSeries;
         private ChartArea chartArea;
         private Series graphLine;
         private Series graphPoints;
         private int draggedPointIndex = -1;
         private bool isDraggingPoint;
+        private IsothermPoint draggedPoint;
+        private const string DefaultEditStatus = "Перемещение qe пересчитывает Aравн, Ce, qe (мкг/г) и извлечение %. Для старых файлов без исходных A и массы изменяются только Ce–qe.";
 
         public IsothermDataForm(MainWindow owner, IsothermSeries selected = null)
         {
@@ -38,13 +41,18 @@ namespace Graphs
             currentSeries = Databank.isotherms.FirstOrDefault(item =>
                 item.name == ComboBox_Isotherm.SelectedItem as string);
             points.Clear();
+            originalPoints.Clear();
             if (currentSeries == null) return;
             foreach (IsothermPoint point in currentSeries.data ?? Enumerable.Empty<IsothermPoint>())
+            {
                 points.Add(IsothermCalculator.Clone(point));
+                originalPoints.Add(IsothermCalculator.Clone(point));
+            }
             TextBlock_Parameters.Text = string.Format(CultureInfo.CurrentCulture,
                 "T = {0:0.##} °C   V = {1:0.##} мл   M = {2:0.##} г/моль   k = {3:0.#####}",
                 currentSeries.temperatureC, currentSeries.solutionVolumeMl,
                 currentSeries.molarMassGPerMol, currentSeries.calibrationK);
+            TextBlock_EditStatus.Text = DefaultEditStatus;
             BuildChart();
         }
 
@@ -73,10 +81,21 @@ namespace Graphs
             { ChartType = SeriesChartType.Point, Color = color, MarkerSize = 10,
                 MarkerStyle = MarkerStyle.Circle, MarkerBorderColor = System.Drawing.Color.Black };
 
-            foreach (IsothermPoint point in points.Where(IsValidPoint).OrderBy(point => point.Ce))
+            var visiblePoints = points.Where(IsValidPoint).OrderBy(point => point.Ce).ToList();
+            if (visiblePoints.Count > 0)
             {
-                graphLine.Points.AddXY(point.Ce, point.Qe);
-                graphPoints.Points.AddXY(point.Ce, point.Qe);
+                chartArea.AxisX.Minimum = 0;
+                chartArea.AxisX.Maximum = Math.Max(0.00001, visiblePoints.Max(point => point.Ce) * 1.15);
+                chartArea.AxisY.Minimum = 0;
+                chartArea.AxisY.Maximum = Math.Max(0.00001, visiblePoints.Max(point => point.Qe) * 1.15);
+            }
+
+            foreach (IsothermPoint point in visiblePoints)
+            {
+                int lineIndex = graphLine.Points.AddXY(point.Ce, point.Qe);
+                int pointIndex = graphPoints.Points.AddXY(point.Ce, point.Qe);
+                graphLine.Points[lineIndex].Tag = point;
+                graphPoints.Points[pointIndex].Tag = point;
             }
             Graph_Isotherm.Series.Add(graphLine);
             Graph_Isotherm.Series.Add(graphPoints);
@@ -92,8 +111,11 @@ namespace Graphs
             HitTestResult hit = Graph_Isotherm.HitTest(e.X, e.Y);
             if (hit.Series != graphPoints || hit.PointIndex < 0) return;
             draggedPointIndex = hit.PointIndex;
+            draggedPoint = graphPoints.Points[draggedPointIndex].Tag as IsothermPoint;
+            if (draggedPoint == null) return;
             graphPoints.Points[draggedPointIndex].MarkerBorderColor = System.Drawing.Color.Gold;
             isDraggingPoint = true;
+            Graph_Isotherm.Capture = true;
         }
 
         private void Graph_Isotherm_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -102,24 +124,28 @@ namespace Graphs
             double qe;
             try { qe = Math.Max(0.00001, chartArea.AxisY.PixelPositionToValue(e.Y)); }
             catch (ArgumentException) { return; }
-            graphPoints.Points[draggedPointIndex].YValues[0] = qe;
-            graphLine.Points[draggedPointIndex].YValues[0] = qe;
+            IsothermCalculator.UpdateFromQe(draggedPoint, currentSeries, qe);
+            graphPoints.Points[draggedPointIndex].XValue = draggedPoint.Ce;
+            graphPoints.Points[draggedPointIndex].YValues[0] = draggedPoint.Qe;
+            graphLine.Points[draggedPointIndex].XValue = draggedPoint.Ce;
+            graphLine.Points[draggedPointIndex].YValues[0] = draggedPoint.Qe;
+            TextBlock_EditStatus.Text = string.Format(CultureInfo.CurrentCulture,
+                "Aравн = {0:0.#####}    Ce = {1:0.#####} мкмоль/л    qe = {2:0.#####} мкмоль/г    извлечение = {3:0.###} %",
+                draggedPoint.EquilibriumOpticalDensity, draggedPoint.Ce,
+                draggedPoint.Qe, draggedPoint.RemovalPercent);
+            Graph_Isotherm.Invalidate();
         }
 
         private void Graph_Isotherm_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (!isDraggingPoint || draggedPointIndex < 0) return;
-            IsothermPoint editedPoint = points.Where(IsValidPoint).OrderBy(point => point.Ce)
-                .ElementAtOrDefault(draggedPointIndex);
-            if (editedPoint != null)
-            {
-                IsothermCalculator.UpdateFromQe(editedPoint, currentSeries,
-                    graphPoints.Points[draggedPointIndex].YValues[0]);
-            }
+            graphPoints.Points[draggedPointIndex].MarkerBorderColor = System.Drawing.Color.Black;
+            Graph_Isotherm.Capture = false;
             draggedPointIndex = -1;
             isDraggingPoint = false;
+            draggedPoint = null;
             DataGrid_Points.Items.Refresh();
-            BuildChart();
+            Graph_Isotherm.Invalidate();
         }
 
         private void DataGrid_Points_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
@@ -166,6 +192,21 @@ namespace Graphs
             currentSeries.data = valid;
             currentSeries.langmuir = null;
             parent.SelectIsotherm(currentSeries.name);
+            Close();
+        }
+
+        private void Button_Reset_Click(object sender, RoutedEventArgs e)
+        {
+            points.Clear();
+            foreach (IsothermPoint point in originalPoints)
+                points.Add(IsothermCalculator.Clone(point));
+            DataGrid_Points.Items.Refresh();
+            TextBlock_EditStatus.Text = "Изменения отменены. Восстановлены значения, с которыми образец был открыт.";
+            BuildChart();
+        }
+
+        private void Button_Cancel_Click(object sender, RoutedEventArgs e)
+        {
             Close();
         }
 
