@@ -30,6 +30,19 @@ namespace Graphs
         public List<System.Windows.Controls.CheckBox> checkBoxes_Substances_List;
         private readonly HashSet<string> selectedKineticNames = new HashSet<string>();
         private readonly HashSet<string> selectedIsothermNames = new HashSet<string>();
+        private readonly Dictionary<string, System.Drawing.Color> seriesColors =
+            new Dictionary<string, System.Drawing.Color>(StringComparer.CurrentCultureIgnoreCase);
+        private readonly System.Drawing.Color[] colorPalette =
+        {
+            System.Drawing.Color.SteelBlue,
+            System.Drawing.Color.SeaGreen,
+            System.Drawing.Color.DarkOrange,
+            System.Drawing.Color.MediumVioletRed,
+            System.Drawing.Color.MediumPurple,
+            System.Drawing.Color.Teal,
+            System.Drawing.Color.Firebrick,
+            System.Drawing.Color.OliveDrab
+        };
         private bool isIsothermMode;
 
         public MainWindow()
@@ -244,7 +257,7 @@ namespace Graphs
         {
             if (isIsothermMode)
             {
-                new IsothermDataForm(this).Show();
+                new AddIsothermForm(this).Show();
                 Hide();
                 return;
             }
@@ -297,14 +310,12 @@ namespace Graphs
             {
                 if (Databank.substances[i].name == ((System.Windows.Controls.CheckBox)sender).Content.ToString())
                 {
-                    Random rand = new Random();
-
                     Series substanceGraph_SeriesLine = new Series();
                     substanceGraph_SeriesLine.ChartType = SeriesChartType.Spline;
                     substanceGraph_SeriesLine.Name = ((System.Windows.Controls.CheckBox)sender).Content.ToString() + "_Line";
                     substanceGraph_SeriesLine.SetCustomProperty("LineTension", "0.2");
                     substanceGraph_SeriesLine.BorderWidth = 3;
-                    substanceGraph_SeriesLine.Color = System.Drawing.Color.FromArgb(rand.Next(0, 255), rand.Next(0, 255), rand.Next(0, 255));
+                    substanceGraph_SeriesLine.Color = GetSeriesColor(selectedName);
                     substanceGraph_SeriesLine.Points.AddXY(0, 0);
                     for (int j = 0; j < Databank.substances[i].data.Count; j++)
                     {
@@ -379,15 +390,7 @@ namespace Graphs
             area.AxisY.LabelStyle.Format = "0.#####";
             Graphs_Substances.ChartAreas.Add(area);
 
-            int index = Databank.isotherms.IndexOf(isotherm);
-            System.Drawing.Color[] colors =
-            {
-                System.Drawing.Color.SeaGreen,
-                System.Drawing.Color.SteelBlue,
-                System.Drawing.Color.DarkOrange,
-                System.Drawing.Color.MediumVioletRed
-            };
-            System.Drawing.Color color = colors[Math.Abs(index) % colors.Length];
+            System.Drawing.Color color = GetSeriesColor(name);
 
             var line = new Series(name + "_Line")
             {
@@ -416,6 +419,16 @@ namespace Graphs
 
             Graphs_Substances.Series.Add(line);
             Graphs_Substances.Series.Add(points);
+        }
+
+        public System.Drawing.Color GetSeriesColor(string name)
+        {
+            System.Drawing.Color color;
+            if (seriesColors.TryGetValue(name ?? string.Empty, out color)) return color;
+
+            color = colorPalette[seriesColors.Count % colorPalette.Length];
+            seriesColors[name ?? string.Empty] = color;
+            return color;
         }
 
         #region [ Menu ]
@@ -531,20 +544,18 @@ namespace Graphs
         {
             if (isIsothermMode)
             {
-                var selected = checkBoxes_Substances_List.FirstOrDefault(item => item.IsChecked == true);
-                if (selected == null)
+                if (Databank.isotherms.Count == 0)
                 {
                     System.Windows.MessageBox.Show(
-                        "Выберите одну изотерму в списке.",
-                        "Редактирование изотермы",
+                        "Сначала добавьте или загрузите изотерму.",
+                        "Редактирование изотерм",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);
                     return;
                 }
-
-                IsothermSeries series = Databank.isotherms.FirstOrDefault(item =>
-                    item.name == selected.Content.ToString());
-                if (series == null) return;
+                var selected = checkBoxes_Substances_List.FirstOrDefault(item => item.IsChecked == true);
+                IsothermSeries series = selected == null ? Databank.isotherms[0]
+                    : Databank.isotherms.FirstOrDefault(item => item.name == selected.Content.ToString());
                 new IsothermDataForm(this, series).Show();
                 Hide();
                 return;

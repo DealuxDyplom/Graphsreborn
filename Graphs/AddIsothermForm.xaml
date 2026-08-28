@@ -1,0 +1,98 @@
+<Window x:Class="Graphs.AddIsothermForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        Title="Добавление изотермы" Height="720" Width="1000" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220"/>
+            <RowDefinition Height="220"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="44"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions><RowDefinition Height="34"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Градуировка:" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="ComboBox_Graduation" Width="220" Margin="6 4"
+                          SelectionChanged="ComboBox_Graduation_SelectionChanged"/>
+            </StackPanel>
+            <DataGrid x:Name="DataGrid_Graduation" Grid.Row="1" AutoGenerateColumns="False"
+                      IsReadOnly="True" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="C, мкг/мл" Width="*" Binding="{Binding C_mkmol}"/>
+                    <DataGridTextColumn Header="A" Width="*" Binding="{Binding A}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="68"/></Grid.RowDefinitions>
+            <WindowsFormsHost Grid.Row="0"><wf:Chart x:Name="Chart_Graduation"/></WindowsFormsHost>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <Label Content="Коэффициент:" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox_Coef" Grid.Column="1" Margin="6 3" IsReadOnly="True"/>
+                <Label Grid.Row="1" Content="R² градуировки:" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox_Determination" Grid.Row="1" Grid.Column="1" Margin="6 3" IsReadOnly="True"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions><RowDefinition Height="110"/><RowDefinition Height="*"/><RowDefinition Height="34"/></Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <Label Content="Название образца:" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox_Name" Grid.Column="1" Margin="5"/>
+                <Label Grid.Column="2" Content="Температура, °C:" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox_Temperature" Grid.Column="3" Margin="5" Text="20"/>
+                <Label Grid.Row="1" Content="Объём раствора, мл:" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox_Volume" Grid.Row="1" Grid.Column="1" Margin="5" Text="20"/>
+                <Label Grid.Row="1" Grid.Column="2" Content="Молярная масса, г/моль:" HorizontalAlignment="Right"/>
+                <TextBox x:Name="TextBox_MolarMass" Grid.Row="1" Grid.Column="3" Margin="5" Text="1355,4"/>
+                <TextBlock Grid.Row="2" Grid.ColumnSpan="4" Margin="8 4" Foreground="#555"
+                           Text="Введите для каждой концентрации Aисх, массу сорбента и равновесную A."/>
+            </Grid>
+            <DataGrid x:Name="DataGrid_Input" Grid.Row="1" AutoGenerateColumns="False"
+                      CanUserAddRows="True" CanUserDeleteRows="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Aисх" Width="*" Binding="{Binding InitialOpticalDensity}"/>
+                    <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding SorbentMassG}"/>
+                    <DataGridTextColumn Header="Aравн" Width="*" Binding="{Binding EquilibriumOpticalDensity}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <Button Content="Заполнить из файла" Margin="20 4" Click="Button_LoadRaw_Click"/>
+                <Button Grid.Column="1" Content="Сохранить в файл" Margin="20 4" Click="Button_SaveRaw_Click"/>
+            </Grid>
+        </Grid>
+
+        <DataGrid x:Name="DataGrid_Calculated" Grid.Row="2" Grid.ColumnSpan="2"
+                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Aисх" Width="*" Binding="{Binding InitialOpticalDensity, StringFormat=0.#####}"/>
+                <DataGridTextColumn Header="C0, мкмоль/л" Width="*" Binding="{Binding InitialConcentrationUmolL, StringFormat=0.#####}"/>
+                <DataGridTextColumn Header="m, г" Width="*" Binding="{Binding SorbentMassG, StringFormat=0.#####}"/>
+                <DataGridTextColumn Header="Aравн" Width="*" Binding="{Binding EquilibriumOpticalDensity, StringFormat=0.#####}"/>
+                <DataGridTextColumn Header="Ce, мкмоль/л" Width="*" Binding="{Binding Ce, StringFormat=0.#####}"/>
+                <DataGridTextColumn Header="qe, мкг/г" Width="*" Binding="{Binding CapacityUgG, StringFormat=0.#####}"/>
+                <DataGridTextColumn Header="qe, мкмоль/г" Width="*" Binding="{Binding Qe, StringFormat=0.#####}"/>
+                <DataGridTextColumn Header="%" Width="*" Binding="{Binding RemovalPercent, StringFormat=0.###}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+            <Button Content="Пересчитать" Margin="50 6" Click="Button_Recalculate_Click"/>
+            <Button Grid.Column="1" Content="Добавить изотерму" Margin="50 6" Click="Button_Add_Click"/>
+        </Grid>
+    </Grid>
+</Window>

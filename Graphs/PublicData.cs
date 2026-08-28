@@ -44,6 +44,13 @@ namespace Graphs
         public string fitNote;
     }
 
+    public class IsothermInputRow
+    {
+        public double InitialOpticalDensity { get; set; }
+        public double SorbentMassG { get; set; }
+        public double EquilibriumOpticalDensity { get; set; }
+    }
+
     public class Psevdo_2_Data
     {
         public double a;
@@ -96,8 +103,14 @@ namespace Graphs
 
     public class IsothermPoint
     {
+        public double InitialOpticalDensity { get; set; }
+        public double SorbentMassG { get; set; }
+        public double EquilibriumOpticalDensity { get; set; }
+        public double InitialConcentrationUmolL { get; set; }
         public double Ce { get; set; }
+        public double CapacityUgG { get; set; }
         public double Qe { get; set; }
+        public double RemovalPercent { get; set; }
         public double LinearX { get; set; }
         public double LinearY { get; set; }
     }
@@ -117,6 +130,10 @@ namespace Graphs
     {
         public string name;
         public double temperatureC;
+        public string graduationName;
+        public double calibrationK;
+        public double solutionVolumeMl = 20.0;
+        public double molarMassGPerMol = 1355.4;
         public string concentrationUnit = "мкмоль/л";
         public string capacityUnit = "мкмоль/г";
         public List<IsothermPoint> data;
